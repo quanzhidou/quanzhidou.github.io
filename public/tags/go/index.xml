@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Go on Ananke</title>
+    <link>https://gohugo-theme-ananke.pages.dev/tags/go/</link>
+    <description>Recent content in Go on Ananke</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Thu, 16 Jun 2022 20:18:18 +0800</lastBuildDate><atom:link href="https://gohugo-theme-ananke.pages.dev/tags/go/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>豆豆的刷题日记（1）</title>
+      <link>https://gohugo-theme-ananke.pages.dev/post/chapter-8/</link>
+      <pubDate>Thu, 16 Jun 2022 20:18:18 +0800</pubDate>
+      
+      <guid>https://gohugo-theme-ananke.pages.dev/post/chapter-8/</guid>
+      <description>递归的魔力（1）——leetcode__206反转链表 leetcode-206 反转链表
+第一步：明确函数定义，reverseList(head *ListNode) *ListNode，这个reverseList函数的定义为：将头节点为head的链表反转，返回链表反转后的头节点
+第二步：明确递归的终点：递归的终点就是当节点head为nil或者head.next为nil时返回head
+第三步：开始递归：last := reverseList(head.Next)
+如图所示，第三步的程序的意思就是将以2为头节点的链表反转，执行完毕后如图
+第四步，执行完第三步的代码后，链表结构变成上图所示，然后将head.next节点指向head即可， head.Next.Next = head
+第五步，将head节点的next置为空，返回原链表的末尾节点last
+go语言代码 func reverseList(head *ListNode) *ListNode { if head == nil || head.Next == nil { return head } res := reverseList(head.Next) head.Next.Next = head head.Next = nil return res } </description>
+    </item>
+    
+    <item>
+      <title>第一次搭建Hugo</title>
+      <link>https://gohugo-theme-ananke.pages.dev/post/chapter-7/</link>
+      <pubDate>Thu, 16 Jun 2022 15:28:30 +0800</pubDate>
+      
+      <guid>https://gohugo-theme-ananke.pages.dev/post/chapter-7/</guid>
+      <description>Hugo搭建第一步——git获取源代码 在Hugo根目录下执行git clone https://github.com/spf13/hugo.git
+Hugo搭建第二步——编译 由于是在本地Windows操作系统搭建所以使用CGO_ENABLED=1 go install --tags extended命令 本地环境无CGO，所以还需要去 sourceforge下载x86_64-win32-seh版本 Hugo搭建第三步——创建网站 使用hugo new site sitename 其中sitename是你想创建的网站名字，执行完该指令后会在项目根目录下新建一个sitename文件夹
+Hugo搭建第四步——安装主题 先进入sitename文件夹：cd sitename 可以去Hugo themes选择心仪的主题 拉取主题到本地项目git clone 主题地址 /themes/主题名 根据read_me.md来安装主题 以本次Hugo搭建为例：
+cd localhost git clone https://github.com/theNewDynamic/gohugo-theme-ananke.git themes/ananke 然后将$root/localhost/themes/ananke/exampleSite/content里面的文件复制到 $root/localhost/content文件中 其中$root为项目根目录 将$root/localhost/themes/ananke/exampleSite/config.toml中的内容复制到 $root/localhost/config.toml中 将$root/localhost/config.toml文件中的theme的值设置为ananke（将默认主题设置为ananke） Hugo搭建第五步——启动服务器 由于在安装主题步骤中已经将默认主题设置好了，所以直接使用hugo server 命令即可启动服务器
+在本机Windows操作系统环境的实际搭建中，直接执行上述命令会报一个sass不能编译的错误，解决办法如下：
+​	在Hugo release中下载Windows_extend版本hugo_extended_0.100.2_Windows-64bit.zip（版本号可能会变化），下载解压到本地目录中，该压缩包中有一个Hugo.exe文件，然后使用本地目录/Hugo.exe server命令启动服务器，访问localhost:1313即可访问项目</description>
+    </item>
+    
+  </channel>
+</rss>
