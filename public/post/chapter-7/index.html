@@ -13,7 +13,7 @@ Hugo搭建第四步——安装主题 先进入sitename文件夹：cd sitename �
 cd localhost git clone https://github.com/theNewDynamic/gohugo-theme-ananke.git themes/ananke 然后将$root/localhost/themes/ananke/exampleSite/content里面的文件复制到 $root/localhost/content文件中 其中$root为项目根目录 将$root/localhost/themes/ananke/exampleSite/config.toml中的内容复制到 $root/localhost/config.toml中 将$root/localhost/config.toml文件中的theme的值设置为ananke（将默认主题设置为ananke） Hugo搭建第五步——启动服务器 由于在安装主题步骤中已经将默认主题设置好了，所以直接使用hugo server 命令即可启动服务器
 在本机Windows操作系统环境的实际搭建中，直接执行上述命令会报一个sass不能编译的错误，解决办法如下：
 ​	在Hugo release中下载Windows_extend版本hugo_extended_0.100.2_Windows-64bit.zip（版本号可能会变化），下载解压到本地目录中，该压缩包中有一个Hugo.exe文件，然后使用本地目录/Hugo.exe server命令启动服务器，访问localhost:1313即可访问项目">
-    <meta name="generator" content="Hugo 0.101.0-DEV" />
+    <meta name="generator" content="Hugo 0.100.2" />
     
     
     
