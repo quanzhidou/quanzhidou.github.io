@@ -2,17 +2,17 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Leetcode on Ananke</title>
-    <link>https://gohugo-theme-ananke.pages.dev/tags/leetcode/</link>
+    <link>https://quanzhidou.github.io/tags/leetcode/</link>
     <description>Recent content in Leetcode on Ananke</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Thu, 16 Jun 2022 20:18:18 +0800</lastBuildDate><atom:link href="https://gohugo-theme-ananke.pages.dev/tags/leetcode/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Thu, 16 Jun 2022 20:18:18 +0800</lastBuildDate><atom:link href="https://quanzhidou.github.io/tags/leetcode/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>豆豆的刷题日记（1）</title>
-      <link>https://gohugo-theme-ananke.pages.dev/post/chapter-8/</link>
+      <link>https://quanzhidou.github.io/post/chapter-8/</link>
       <pubDate>Thu, 16 Jun 2022 20:18:18 +0800</pubDate>
       
-      <guid>https://gohugo-theme-ananke.pages.dev/post/chapter-8/</guid>
+      <guid>https://quanzhidou.github.io/post/chapter-8/</guid>
       <description>递归的魔力（1）——leetcode__206反转链表 leetcode-206 反转链表
 第一步：明确函数定义，reverseList(head *ListNode) *ListNode，这个reverseList函数的定义为：将头节点为head的链表反转，返回链表反转后的头节点
 第二步：明确递归的终点：递归的终点就是当节点head为nil或者head.next为nil时返回head

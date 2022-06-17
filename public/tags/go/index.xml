@@ -2,17 +2,17 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Go on Ananke</title>
-    <link>https://gohugo-theme-ananke.pages.dev/tags/go/</link>
+    <link>https://quanzhidou.github.io/tags/go/</link>
     <description>Recent content in Go on Ananke</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Thu, 16 Jun 2022 20:18:18 +0800</lastBuildDate><atom:link href="https://gohugo-theme-ananke.pages.dev/tags/go/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Thu, 16 Jun 2022 20:18:18 +0800</lastBuildDate><atom:link href="https://quanzhidou.github.io/tags/go/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>豆豆的刷题日记（1）</title>
-      <link>https://gohugo-theme-ananke.pages.dev/post/chapter-8/</link>
+      <link>https://quanzhidou.github.io/post/chapter-8/</link>
       <pubDate>Thu, 16 Jun 2022 20:18:18 +0800</pubDate>
       
-      <guid>https://gohugo-theme-ananke.pages.dev/post/chapter-8/</guid>
+      <guid>https://quanzhidou.github.io/post/chapter-8/</guid>
       <description>递归的魔力（1）——leetcode__206反转链表 leetcode-206 反转链表
 第一步：明确函数定义，reverseList(head *ListNode) *ListNode，这个reverseList函数的定义为：将头节点为head的链表反转，返回链表反转后的头节点
 第二步：明确递归的终点：递归的终点就是当节点head为nil或者head.next为nil时返回head
@@ -25,10 +25,10 @@ go语言代码 func reverseList(head *ListNode) *ListNode { if head == nil || he
     
     <item>
       <title>第一次搭建Hugo</title>
-      <link>https://gohugo-theme-ananke.pages.dev/post/chapter-7/</link>
+      <link>https://quanzhidou.github.io/post/chapter-7/</link>
       <pubDate>Thu, 16 Jun 2022 15:28:30 +0800</pubDate>
       
-      <guid>https://gohugo-theme-ananke.pages.dev/post/chapter-7/</guid>
+      <guid>https://quanzhidou.github.io/post/chapter-7/</guid>
       <description>Hugo搭建第一步——git获取源代码 在Hugo根目录下执行git clone https://github.com/spf13/hugo.git
 Hugo搭建第二步——编译 由于是在本地Windows操作系统搭建所以使用CGO_ENABLED=1 go install --tags extended命令 本地环境无CGO，所以还需要去 sourceforge下载x86_64-win32-seh版本 Hugo搭建第三步——创建网站 使用hugo new site sitename 其中sitename是你想创建的网站名字，执行完该指令后会在项目根目录下新建一个sitename文件夹
 Hugo搭建第四步——安装主题 先进入sitename文件夹：cd sitename 可以去Hugo themes选择心仪的主题 拉取主题到本地项目git clone 主题地址 /themes/主题名 根据read_me.md来安装主题 以本次Hugo搭建为例：

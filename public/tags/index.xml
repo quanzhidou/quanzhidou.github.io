@@ -2,35 +2,35 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Tags on Ananke</title>
-    <link>https://gohugo-theme-ananke.pages.dev/tags/</link>
+    <link>https://quanzhidou.github.io/tags/</link>
     <description>Recent content in Tags on Ananke</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Thu, 16 Jun 2022 20:18:18 +0800</lastBuildDate><atom:link href="https://gohugo-theme-ananke.pages.dev/tags/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Thu, 16 Jun 2022 20:18:18 +0800</lastBuildDate><atom:link href="https://quanzhidou.github.io/tags/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Go</title>
-      <link>https://gohugo-theme-ananke.pages.dev/tags/go/</link>
+      <link>https://quanzhidou.github.io/tags/go/</link>
       <pubDate>Thu, 16 Jun 2022 20:18:18 +0800</pubDate>
       
-      <guid>https://gohugo-theme-ananke.pages.dev/tags/go/</guid>
+      <guid>https://quanzhidou.github.io/tags/go/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Leetcode</title>
-      <link>https://gohugo-theme-ananke.pages.dev/tags/leetcode/</link>
+      <link>https://quanzhidou.github.io/tags/leetcode/</link>
       <pubDate>Thu, 16 Jun 2022 20:18:18 +0800</pubDate>
       
-      <guid>https://gohugo-theme-ananke.pages.dev/tags/leetcode/</guid>
+      <guid>https://quanzhidou.github.io/tags/leetcode/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Hugo</title>
-      <link>https://gohugo-theme-ananke.pages.dev/tags/hugo/</link>
+      <link>https://quanzhidou.github.io/tags/hugo/</link>
       <pubDate>Thu, 16 Jun 2022 15:28:30 +0800</pubDate>
       
-      <guid>https://gohugo-theme-ananke.pages.dev/tags/hugo/</guid>
+      <guid>https://quanzhidou.github.io/tags/hugo/</guid>
       <description></description>
     </item>
     
