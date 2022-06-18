@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <link rel="shortcut icon" href="../../images/star.png" type="image/x-icon"/>
+    
+    <title>豆豆的刷题日记（2） | Ananke</title>
+    <meta name="viewport" content="width=device-width,minimum-scale=1">
+    <meta name="description" content="豆豆的刷题日记（2） 递归的魔力（2）——反转链表进阶 反转链表前 N 个节点 思路和反转整个链表差不多，但需要稍微修改一下
+反转整个链表代码
+func reverseList(head *ListNode) *ListNode { if head == nil || head.Next == nil { return head } res := reverseList(head.Next) head.Next.Next = head head.Next = nil return res } 如图，需要修改的地方有返回的节点不同，不是最后一个节点，所以要记录一下后驱节点
+在反转整个链表的时候，最后直接将head.Next置为空，是因为将整个链表反转之后，原来的头节点就变成了最后一个节点，所以可以直接置为空，现在head节点反转后不一定时最后一个节点，所以要将head.Next设置为后驱节点
+go语言代码 var successor *ListNode func reverseN(head *ListNode, n int) *ListNode { if n == 1{ successor = head.Next return head } last := reverseN(head.Next, n - 1) head.Next.Next = head head.Next = successor return last } 反转一段区间内的链表 leetcode 92题反转链表Ⅱ">
+    <meta name="generator" content="Hugo 0.101.0-DEV" />
+    
+    
+    
+    
+      <meta name="robots" content="noindex, nofollow">
+    
+
+    
+<link rel="stylesheet" href="/ananke/css/main.min.css" >
+
+
+
+    
+    
+    
+      
+
+    
+
+    
+    
+    <meta property="og:title" content="豆豆的刷题日记（2）" />
+<meta property="og:description" content="豆豆的刷题日记（2） 递归的魔力（2）——反转链表进阶 反转链表前 N 个节点 思路和反转整个链表差不多，但需要稍微修改一下
+反转整个链表代码
+func reverseList(head *ListNode) *ListNode { if head == nil || head.Next == nil { return head } res := reverseList(head.Next) head.Next.Next = head head.Next = nil return res } 如图，需要修改的地方有返回的节点不同，不是最后一个节点，所以要记录一下后驱节点
+在反转整个链表的时候，最后直接将head.Next置为空，是因为将整个链表反转之后，原来的头节点就变成了最后一个节点，所以可以直接置为空，现在head节点反转后不一定时最后一个节点，所以要将head.Next设置为后驱节点
+go语言代码 var successor *ListNode func reverseN(head *ListNode, n int) *ListNode { if n == 1{ successor = head.Next return head } last := reverseN(head.Next, n - 1) head.Next.Next = head head.Next = successor return last } 反转一段区间内的链表 leetcode 92题反转链表Ⅱ" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://quanzhidou.github.io/post/chapter-10/" /><meta property="article:section" content="post" />
+<meta property="article:published_time" content="2022-06-18T15:03:05+08:00" />
+<meta property="article:modified_time" content="2022-06-18T15:03:05+08:00" /><meta property="og:site_name" content="Ananke" />
+
+<meta itemprop="name" content="豆豆的刷题日记（2）">
+<meta itemprop="description" content="豆豆的刷题日记（2） 递归的魔力（2）——反转链表进阶 反转链表前 N 个节点 思路和反转整个链表差不多，但需要稍微修改一下
+反转整个链表代码
+func reverseList(head *ListNode) *ListNode { if head == nil || head.Next == nil { return head } res := reverseList(head.Next) head.Next.Next = head head.Next = nil return res } 如图，需要修改的地方有返回的节点不同，不是最后一个节点，所以要记录一下后驱节点
+在反转整个链表的时候，最后直接将head.Next置为空，是因为将整个链表反转之后，原来的头节点就变成了最后一个节点，所以可以直接置为空，现在head节点反转后不一定时最后一个节点，所以要将head.Next设置为后驱节点
+go语言代码 var successor *ListNode func reverseN(head *ListNode, n int) *ListNode { if n == 1{ successor = head.Next return head } last := reverseN(head.Next, n - 1) head.Next.Next = head head.Next = successor return last } 反转一段区间内的链表 leetcode 92题反转链表Ⅱ"><meta itemprop="datePublished" content="2022-06-18T15:03:05+08:00" />
+<meta itemprop="dateModified" content="2022-06-18T15:03:05+08:00" />
+<meta itemprop="wordCount" content="134">
+<meta itemprop="keywords" content="Go,Leetcode," /><meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="豆豆的刷题日记（2）"/>
+<meta name="twitter:description" content="豆豆的刷题日记（2） 递归的魔力（2）——反转链表进阶 反转链表前 N 个节点 思路和反转整个链表差不多，但需要稍微修改一下
+反转整个链表代码
+func reverseList(head *ListNode) *ListNode { if head == nil || head.Next == nil { return head } res := reverseList(head.Next) head.Next.Next = head head.Next = nil return res } 如图，需要修改的地方有返回的节点不同，不是最后一个节点，所以要记录一下后驱节点
+在反转整个链表的时候，最后直接将head.Next置为空，是因为将整个链表反转之后，原来的头节点就变成了最后一个节点，所以可以直接置为空，现在head节点反转后不一定时最后一个节点，所以要将head.Next设置为后驱节点
+go语言代码 var successor *ListNode func reverseN(head *ListNode, n int) *ListNode { if n == 1{ successor = head.Next return head } last := reverseN(head.Next, n - 1) head.Next.Next = head head.Next = successor return last } 反转一段区间内的链表 leetcode 92题反转链表Ⅱ"/>
+
+	
+  </head>
+
+  <body class="ma0 avenir bg-near-white">
+
+    
+   
+  
+
+  <header>
+    <div class="bg-black">
+      <nav class="pv3 ph3 ph4-ns" role="navigation">
+  <div class="flex-l justify-between items-center center">
+    <a href="/" class="f3 fw2 hover-white no-underline white-90 dib">
+      
+        <img src="/natuo.png" class="w100 mw5-ns" alt="Ananke" />
+      
+    </a>
+    <div class="flex-l items-center">
+      
+
+      
+        <ul class="pl0 mr3">
+          
+          <li class="list f5 f4-ns fw4 dib pr3">
+            <a class="hover-white no-underline white-90" href="/about/" title="About page">
+              About
+            </a>
+          </li>
+          
+          <li class="list f5 f4-ns fw4 dib pr3">
+            <a class="hover-white no-underline white-90" href="/post/" title="Articles page">
+              Articles
+            </a>
+          </li>
+          
+          <li class="list f5 f4-ns fw4 dib pr3">
+            <a class="hover-white no-underline white-90" href="/contact/" title="Contact page">
+              Contact
+            </a>
+          </li>
+          
+        </ul>
+      
+      
+<div class="ananke-socials">
+  
+    <a href="https://github.com/quanzhidou" target="_blank" class="github ananke-social-link link-transition stackoverflow link dib z-999 pt3 pt0-l mr1" title="GitHub link" rel="noopener" aria-label="follow on GitHub——Opens in a new window">
+      
+        <span class="icon"><svg style="enable-background:new 0 0 512 512;" version="1.1" viewBox="0 0 512 512"  xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" >
+  <path d="M256,32C132.3,32,32,134.8,32,261.7c0,101.5,64.2,187.5,153.2,217.9c11.2,2.1,15.3-5,15.3-11.1   c0-5.5-0.2-19.9-0.3-39.1c-62.3,13.9-75.5-30.8-75.5-30.8c-10.2-26.5-24.9-33.6-24.9-33.6c-20.3-14.3,1.5-14,1.5-14   c22.5,1.6,34.3,23.7,34.3,23.7c20,35.1,52.4,25,65.2,19.1c2-14.8,7.8-25,14.2-30.7c-49.7-5.8-102-25.5-102-113.5   c0-25.1,8.7-45.6,23-61.6c-2.3-5.8-10-29.2,2.2-60.8c0,0,18.8-6.2,61.6,23.5c17.9-5.1,37-7.6,56.1-7.7c19,0.1,38.2,2.6,56.1,7.7   c42.8-29.7,61.5-23.5,61.5-23.5c12.2,31.6,4.5,55,2.2,60.8c14.3,16.1,23,36.6,23,61.6c0,88.2-52.4,107.6-102.3,113.3   c8,7.1,15.2,21.1,15.2,42.5c0,30.7-0.3,55.5-0.3,63c0,6.1,4,13.3,15.4,11C415.9,449.1,480,363.1,480,261.7   C480,134.8,379.7,32,256,32z"/>
+</svg>
+</span>
+      
+<span class="new-window"><svg  height="8px"  style="enable-background:new 0 0 1000 1000;" version="1.1" viewBox="0 0 1000 1000"  xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" >
+<path d="M598 128h298v298h-86v-152l-418 418-60-60 418-418h-152v-86zM810 810v-298h86v298c0 46-40 86-86 86h-596c-48 0-86-40-86-86v-596c0-46 38-86 86-86h298v86h-298v596h596z" style="fill-rule:evenodd;clip-rule:evenodd;"/>
+</svg>
+</span></a>
+  
+</div>
+
+    </div>
+  </div>
+</nav>
+
+    </div>
+  </header>
+
+
+
+    <main class="pb7" role="main">
+      
+  
+  <article class="flex-l flex-wrap justify-between mw8 center ph3">
+    <header class="mt4 w-100">
+      <aside class="instapaper_ignoref b helvetica tracked">
+          
+        ARTICLES
+      </aside>
+      
+
+
+
+
+
+
+
+
+
+
+  <div id="sharing" class="mt3 ananke-socials">
+    
+  </div>
+
+
+      <h1 class="f1 athelas mt3 mb1">豆豆的刷题日记（2）</h1>
+      
+      
+      
+      <time class="f6 mv4 dib tracked" datetime="2022-06-18T15:03:05+08:00">June 18, 2022</time>
+      
+
+      
+      
+    </header>
+    <div class="nested-copy-line-height lh-copy serif f4 nested-links mid-gray pr4-l w-two-thirds-l"><h1 id="豆豆的刷题日记2">豆豆的刷题日记（2）</h1>
+<h2 id="递归的魔力2反转链表进阶">递归的魔力（2）——反转链表进阶</h2>
+<h3 id="反转链表前-n-个节点">反转链表前 N 个节点</h3>
+<p>思路和反转整个链表差不多，但需要稍微修改一下</p>
+<p>反转整个链表代码</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-go" data-lang="go"><span style="display:flex;"><span><span style="color:#66d9ef">func</span> <span style="color:#a6e22e">reverseList</span>(<span style="color:#a6e22e">head</span> <span style="color:#f92672">*</span><span style="color:#a6e22e">ListNode</span>) <span style="color:#f92672">*</span><span style="color:#a6e22e">ListNode</span> {
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">if</span> <span style="color:#a6e22e">head</span> <span style="color:#f92672">==</span> <span style="color:#66d9ef">nil</span> <span style="color:#f92672">||</span> <span style="color:#a6e22e">head</span>.<span style="color:#a6e22e">Next</span> <span style="color:#f92672">==</span> <span style="color:#66d9ef">nil</span> {
+</span></span><span style="display:flex;"><span>		<span style="color:#66d9ef">return</span> <span style="color:#a6e22e">head</span>
+</span></span><span style="display:flex;"><span>	}
+</span></span><span style="display:flex;"><span>	<span style="color:#a6e22e">res</span> <span style="color:#f92672">:=</span> <span style="color:#a6e22e">reverseList</span>(<span style="color:#a6e22e">head</span>.<span style="color:#a6e22e">Next</span>)
+</span></span><span style="display:flex;"><span>	<span style="color:#a6e22e">head</span>.<span style="color:#a6e22e">Next</span>.<span style="color:#a6e22e">Next</span> = <span style="color:#a6e22e">head</span>
+</span></span><span style="display:flex;"><span>	<span style="color:#a6e22e">head</span>.<span style="color:#a6e22e">Next</span> = <span style="color:#66d9ef">nil</span>
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">return</span> <span style="color:#a6e22e">res</span>
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p><img src="https://labuladong.github.io/algo/images/%e5%8f%8d%e8%bd%ac%e9%93%be%e8%a1%a8/6.jpg" alt="img"></p>
+<p>如图，需要修改的地方有返回的节点不同，不是最后一个节点，所以要记录一下后驱节点</p>
+<p>在反转整个链表的时候，最后直接将head.Next置为空，是因为将整个链表反转之后，原来的头节点就变成了最后一个节点，所以可以直接置为空，现在head节点反转后不一定时最后一个节点，所以要将head.Next设置为后驱节点</p>
+<h4 id="go语言代码">go语言代码</h4>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-go" data-lang="go"><span style="display:flex;"><span><span style="color:#66d9ef">var</span> <span style="color:#a6e22e">successor</span> <span style="color:#f92672">*</span><span style="color:#a6e22e">ListNode</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">func</span> <span style="color:#a6e22e">reverseN</span>(<span style="color:#a6e22e">head</span> <span style="color:#f92672">*</span><span style="color:#a6e22e">ListNode</span>, <span style="color:#a6e22e">n</span> <span style="color:#66d9ef">int</span>) <span style="color:#f92672">*</span><span style="color:#a6e22e">ListNode</span> {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">if</span> <span style="color:#a6e22e">n</span> <span style="color:#f92672">==</span> <span style="color:#ae81ff">1</span>{
+</span></span><span style="display:flex;"><span>        <span style="color:#a6e22e">successor</span> = <span style="color:#a6e22e">head</span>.<span style="color:#a6e22e">Next</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> <span style="color:#a6e22e">head</span>
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">last</span> <span style="color:#f92672">:=</span> <span style="color:#a6e22e">reverseN</span>(<span style="color:#a6e22e">head</span>.<span style="color:#a6e22e">Next</span>, <span style="color:#a6e22e">n</span> <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span>)
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">head</span>.<span style="color:#a6e22e">Next</span>.<span style="color:#a6e22e">Next</span> = <span style="color:#a6e22e">head</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">head</span>.<span style="color:#a6e22e">Next</span> = <span style="color:#a6e22e">successor</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> <span style="color:#a6e22e">last</span>
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><h3 id="反转一段区间内的链表">反转一段区间内的链表</h3>
+<p><a href="https://leetcode.cn/problems/reverse-linked-list-ii/">leetcode 92题反转链表Ⅱ</a></p>
+<p><img src="/images/chapter-10_1.png" alt="chapter-10_1"></p>
+<p>思路：如果当m == 1的时候就相当与反转链表的前n个元素。</p>
+<p>当m != 1，如果把head节点当作第一个节点，那么就是从第m个元素开始反转，但是如果将head.Next当作第一个节点，那么就是反转第m - 1个到第n - 1个元素。这就为递归提供了可能</p>
+<h4 id="go语言代码-1">go语言代码</h4>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-go" data-lang="go"><span style="display:flex;"><span><span style="color:#66d9ef">func</span> <span style="color:#a6e22e">reverseBetween</span>(<span style="color:#a6e22e">head</span> <span style="color:#f92672">*</span><span style="color:#a6e22e">ListNode</span>, <span style="color:#a6e22e">m</span> <span style="color:#66d9ef">int</span>, <span style="color:#a6e22e">n</span> <span style="color:#66d9ef">int</span>) <span style="color:#f92672">*</span><span style="color:#a6e22e">ListNode</span> {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">if</span> <span style="color:#a6e22e">m</span> <span style="color:#f92672">==</span> <span style="color:#ae81ff">1</span> {
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> <span style="color:#a6e22e">reverseN</span>(<span style="color:#a6e22e">head</span>, <span style="color:#a6e22e">n</span>)
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>    
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">head</span>.<span style="color:#a6e22e">Next</span> <span style="color:#f92672">:=</span> <span style="color:#a6e22e">reverseBetween</span>(<span style="color:#a6e22e">head</span>.<span style="color:#a6e22e">Next</span>, <span style="color:#a6e22e">m</span> <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span>, <span style="color:#a6e22e">n</span> <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span>)
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> <span style="color:#a6e22e">head</span>
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><h4 id="思考为什么是headnext--reversebetweenheadnext-m---1-n---1">思考：为什么是head.Next := reverseBetween(head.Next, m - 1, n - 1)</h4>
+<p>对于这个问题我是这样想的，reverseBetween(head.Next, m - 1, n - 1)的意义是将以head.Next为头节点的第m-1到第n-1个元素反转，并返回反转后的头节点，此时为了不破坏链表结构，需要将当前头节点head和以head.Next为头节点反转后的头节点相连。</p>
+<ul class="pa0">
+  
+   <li class="list di">
+     <a href="/tags/go" class="link f5 grow no-underline br-pill ba ph3 pv2 mb2 dib black sans-serif">Go</a>
+   </li>
+  
+   <li class="list di">
+     <a href="/tags/leetcode" class="link f5 grow no-underline br-pill ba ph3 pv2 mb2 dib black sans-serif">Leetcode</a>
+   </li>
+  
+</ul>
+<div class="mt6 instapaper_ignoref">
+      
+      
+      </div>
+    </div>
+
+    <aside class="w-30-l mt6-l">
+
+
+
+
+  <div class="bg-light-gray pa3 nested-list-reset nested-copy-line-height nested-links">
+    <p class="f5 b mb3">Related</p>
+    <ul class="pa0 list">
+	   
+	     <li  class="mb2">
+          <a href="/post/chapter-8/">豆豆的刷题日记（1）</a>
+        </li>
+	    
+	     <li  class="mb2">
+          <a href="/post/chapter-9/">Hugo 部署到GitHub Pages</a>
+        </li>
+	    
+	     <li  class="mb2">
+          <a href="/post/chapter-7/">第一次搭建Hugo</a>
+        </li>
+	    
+    </ul>
+</div>
+
+</aside>
+
+  </article>
+
+    </main>
+    <footer class="bg-black bottom-0 w-100 pa3" role="contentinfo">
+  <div class="flex justify-between">
+  <a class="f4 fw4 hover-white no-underline white-70 dn dib-ns pv2 ph3" href="https://quanzhidou.github.io" >
+    &copy;  Ananke 2022 
+  </a>
+    <div>
+<div class="ananke-socials">
+  
+    <a href="https://github.com/quanzhidou" target="_blank" class="github ananke-social-link link-transition stackoverflow link dib z-999 pt3 pt0-l mr1" title="GitHub link" rel="noopener" aria-label="follow on GitHub——Opens in a new window">
+      
+        <span class="icon"><svg style="enable-background:new 0 0 512 512;" version="1.1" viewBox="0 0 512 512"  xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" >
+  <path d="M256,32C132.3,32,32,134.8,32,261.7c0,101.5,64.2,187.5,153.2,217.9c11.2,2.1,15.3-5,15.3-11.1   c0-5.5-0.2-19.9-0.3-39.1c-62.3,13.9-75.5-30.8-75.5-30.8c-10.2-26.5-24.9-33.6-24.9-33.6c-20.3-14.3,1.5-14,1.5-14   c22.5,1.6,34.3,23.7,34.3,23.7c20,35.1,52.4,25,65.2,19.1c2-14.8,7.8-25,14.2-30.7c-49.7-5.8-102-25.5-102-113.5   c0-25.1,8.7-45.6,23-61.6c-2.3-5.8-10-29.2,2.2-60.8c0,0,18.8-6.2,61.6,23.5c17.9-5.1,37-7.6,56.1-7.7c19,0.1,38.2,2.6,56.1,7.7   c42.8-29.7,61.5-23.5,61.5-23.5c12.2,31.6,4.5,55,2.2,60.8c14.3,16.1,23,36.6,23,61.6c0,88.2-52.4,107.6-102.3,113.3   c8,7.1,15.2,21.1,15.2,42.5c0,30.7-0.3,55.5-0.3,63c0,6.1,4,13.3,15.4,11C415.9,449.1,480,363.1,480,261.7   C480,134.8,379.7,32,256,32z"/>
+</svg>
+</span>
+      
+<span class="new-window"><svg  height="8px"  style="enable-background:new 0 0 1000 1000;" version="1.1" viewBox="0 0 1000 1000"  xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" >
+<path d="M598 128h298v298h-86v-152l-418 418-60-60 418-418h-152v-86zM810 810v-298h86v298c0 46-40 86-86 86h-596c-48 0-86-40-86-86v-596c0-46 38-86 86-86h298v86h-298v596h596z" style="fill-rule:evenodd;clip-rule:evenodd;"/>
+</svg>
+</span></a>
+  
+</div>
+</div>
+  </div>
+</footer>
+
+  </body>
+</html>

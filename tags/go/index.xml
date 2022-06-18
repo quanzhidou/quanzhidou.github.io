@@ -6,7 +6,20 @@
     <description>Recent content in Go on Ananke</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Sat, 18 Jun 2022 08:48:33 +0800</lastBuildDate><atom:link href="https://quanzhidou.github.io/tags/go/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sat, 18 Jun 2022 15:03:05 +0800</lastBuildDate><atom:link href="https://quanzhidou.github.io/tags/go/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>豆豆的刷题日记（2）</title>
+      <link>https://quanzhidou.github.io/post/chapter-10/</link>
+      <pubDate>Sat, 18 Jun 2022 15:03:05 +0800</pubDate>
+      
+      <guid>https://quanzhidou.github.io/post/chapter-10/</guid>
+      <description>豆豆的刷题日记（2） 递归的魔力（2）——反转链表进阶 反转链表前 N 个节点 思路和反转整个链表差不多，但需要稍微修改一下
+反转整个链表代码
+func reverseList(head *ListNode) *ListNode { if head == nil || head.Next == nil { return head } res := reverseList(head.Next) head.Next.Next = head head.Next = nil return res } 如图，需要修改的地方有返回的节点不同，不是最后一个节点，所以要记录一下后驱节点
+在反转整个链表的时候，最后直接将head.Next置为空，是因为将整个链表反转之后，原来的头节点就变成了最后一个节点，所以可以直接置为空，现在head节点反转后不一定时最后一个节点，所以要将head.Next设置为后驱节点
+go语言代码 var successor *ListNode func reverseN(head *ListNode, n int) *ListNode { if n == 1{ successor = head.Next return head } last := reverseN(head.Next, n - 1) head.Next.Next = head head.Next = successor return last } 反转一段区间内的链表 leetcode 92题反转链表Ⅱ</description>
+    </item>
+    
     <item>
       <title>Hugo 部署到GitHub Pages</title>
       <link>https://quanzhidou.github.io/post/chapter-9/</link>
