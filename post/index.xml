@@ -8,6 +8,20 @@
     <language>en-us</language>
     <lastBuildDate>Thu, 02 Mar 2017 12:00:00 -0500</lastBuildDate><atom:link href="https://quanzhidou.github.io/post/index.xml" rel="self" type="application/rss+xml" />
     <item>
+      <title>豆豆的刷题日记（3）</title>
+      <link>https://quanzhidou.github.io/post/chapter-11/</link>
+      <pubDate>Sat, 18 Jun 2022 21:36:24 +0800</pubDate>
+      
+      <guid>https://quanzhidou.github.io/post/chapter-11/</guid>
+      <description>豆豆的刷题日记（3） 递归的魔力（2）——反转链表进阶 leetcode 25题 K 个一组翻转链表
+分析 首先看函数定义reverseKGroup(head *ListNode, k int) *ListNode，其意义为将以head为头节点的链表按k个一组反转，最后返回反转后的头节点
+首先来看返回的新的头节点，以reverseKGroup(head, 2)为例
+如图所示，返回的新的头节点为newHead为第二个节点，也就是函数定义中的k参数，而将各个k区间反转后的链表连接起来还需要一个将head节点与第k + 1个节点相连的过程，这时我们需要一个将区间[left, right）的链表部分反转的函数
+反转区间[left, right）的链表 首先是函数签名，这个函数应该要有两个形参，分别代表left和right，函数定义reverseSection(left *ListNode, right *ListNode) *ListNode，函数内需要三个变量，第一个变量pre记录当前节点的前驱节点，cur记录当前节点，next记录当前节点的下一个节点
+go语言代码 func reverseSection(left *ListNode, right *ListNode) *ListNode{ var pre *ListNode cur := left next := left for cur != right{ next = cur.Next cur.Next = pre pre = cur cur = next } return pre } K 个一组翻转链表 go语言代码 func reverseKGroup(head *ListNode, k int) *ListNode { if head == nil{ return nil } left := head right := head for i := 0; i &amp;lt; k; i++{ //当最后不够k个一组时，不反转链表 if right == nil{ return head } right = right.</description>
+    </item>
+    
+    <item>
       <title>豆豆的刷题日记（2）</title>
       <link>https://quanzhidou.github.io/post/chapter-10/</link>
       <pubDate>Sat, 18 Jun 2022 15:03:05 +0800</pubDate>
