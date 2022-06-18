@@ -159,6 +159,35 @@
       
       <div class="blah w-100">
         <h1 class="f3 fw1 athelas mt0 lh-title">
+          <a href="/post/chapter-12/" class="color-inherit dim link">
+            豆豆的刷题日记（4）
+            </a>
+        </h1>
+        <div class="f6 f5-l lh-copy nested-copy-line-height nested-links">
+          豆豆的刷题日记（4） 递归的魔力（4）——反转链表最终版 leetcode 234题回文链表
+不多废话直接上思路
+第一步：找到中间节点主要思想为快慢指针 使用快慢指针这里会有一个问题，链表节点个数可能是奇数个也可能是偶数个，判断的方式就是fast节点最后的值是否为nil，如果fast节点最终的值是nil，证明链表节点为偶数个，如果不为空，则为奇数个节点，在这种情况下，slow指针还需要在走一步
+第二步：将以中间节点为头指针的链表反转 还是之前反转链表的思想，第一个变量pre记录当前节点的前驱节点，cur记录当前节点，next记录当前节点的下一个节点，最后返回反转后的头节点
+第三步：遍历这两个链表判断是否是回文链表 go语言代码
+func findMid(head *ListNode) *ListNode { slow := head fast := head for fast != nil &amp;&amp; fast.Next != nil { fast = fast.Next.Next slow = slow.Next } if fast != nil { slow = slow.Next } return slow } func reverse(head *ListNode) *ListNode { var pre *ListNode cur := head next := head for cur != nil { next = cur.
+        </div>
+          <a href="/post/chapter-12/" class="ba b--moon-gray bg-light-gray br2 color-inherit dib f7 hover-bg-moon-gray link mt2 ph2 pv1">read more</a>
+        
+      </div>
+    </div>
+  </div>
+</article>
+
+          </div>
+        
+          <div class="relative w-100 mb4">
+            
+<article class="bb b--black-10">
+  <div class="db pv4 ph3 ph0-l no-underline dark-gray">
+    <div class="flex flex-column flex-row-ns">
+      
+      <div class="blah w-100">
+        <h1 class="f3 fw1 athelas mt0 lh-title">
           <a href="/post/chapter-11/" class="color-inherit dim link">
             豆豆的刷题日记（3）
             </a>
@@ -272,37 +301,25 @@ go语言代码 func reverseList(head *ListNode) *ListNode { if head == nil || he
 
           </div>
         
-          <div class="relative w-100 mb4">
-            
-<article class="bb b--black-10">
-  <div class="db pv4 ph3 ph0-l no-underline dark-gray">
-    <div class="flex flex-column flex-row-ns">
-      
-      <div class="blah w-100">
-        <h1 class="f3 fw1 athelas mt0 lh-title">
-          <a href="/post/chapter-7/" class="color-inherit dim link">
-            第一次搭建Hugo
-            </a>
-        </h1>
-        <div class="f6 f5-l lh-copy nested-copy-line-height nested-links">
-          Hugo搭建第一步——git获取源代码 在Hugo根目录下执行git clone https://github.com/spf13/hugo.git
-Hugo搭建第二步——编译 由于是在本地Windows操作系统搭建所以使用CGO_ENABLED=1 go install --tags extended命令 本地环境无CGO，所以还需要去 sourceforge下载x86_64-win32-seh版本 Hugo搭建第三步——创建网站 使用hugo new site sitename 其中sitename是你想创建的网站名字，执行完该指令后会在项目根目录下新建一个sitename文件夹
-Hugo搭建第四步——安装主题 先进入sitename文件夹：cd sitename 可以去Hugo themes选择心仪的主题 拉取主题到本地项目git clone 主题地址 /themes/主题名 根据read_me.md来安装主题 以本次Hugo搭建为例：
-cd localhost git clone https://github.com/theNewDynamic/gohugo-theme-ananke.git themes/ananke 然后将$root/localhost/themes/ananke/exampleSite/content里面的文件复制到 $root/localhost/content文件中 其中$root为项目根目录 将$root/localhost/themes/ananke/exampleSite/config.toml中的内容复制到 $root/localhost/config.toml中 将$root/localhost/config.toml文件中的theme的值设置为ananke（将默认主题设置为ananke） Hugo搭建第五步——启动服务器 由于在安装主题步骤中已经将默认主题设置好了，所以直接使用hugo server 命令即可启动服务器
-在本机Windows操作系统环境的实际搭建中，直接执行上述命令会报一个sass不能编译的错误，解决办法如下：
-​	在Hugo release中下载Windows_extend版本hugo_extended_0.100.2_Windows-64bit.zip（版本号可能会变化），下载解压到本地目录中，该压缩包中有一个Hugo.exe文件，然后使用本地目录/Hugo.exe server命令启动服务器，访问localhost:1313即可访问项目
-        </div>
-          <a href="/post/chapter-7/" class="ba b--moon-gray bg-light-gray br2 color-inherit dib f7 hover-bg-moon-gray link mt2 ph2 pv1">read more</a>
-        
-      </div>
-    </div>
-  </div>
-</article>
-
-          </div>
-        
       </section>
 
+      
+      <section class="w-100">
+        <h1 class="f3">More</h1>
+        
+        
+          <h2 class="f5 fw4 mb4 dib mr3">
+            <a href="/post/chapter-7/" class="link black dim">
+              第一次搭建Hugo
+            </a>
+          </h2>
+        
+
+        
+        
+          <a href="/post/" class="link db f6 pa2 br3 bg-mid-gray white dim w4 tc">All Articles</a>
+        
+        </section>
       
 
       </div>
