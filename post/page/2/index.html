@@ -137,6 +137,30 @@
       </div>
     
     <h1 class="f3 near-black">
+      <a href="/post/chapter-11/" class="link black dim">
+        豆豆的刷题日记（3）
+      </a>
+    </h1>
+    <div class="nested-links f5 lh-copy nested-copy-line-height">
+      豆豆的刷题日记（3） 递归的魔力（2）——反转链表进阶 leetcode 25题 K 个一组翻转链表
+分析 首先看函数定义reverseKGroup(head *ListNode, k int) *ListNode，其意义为将以head为头节点的链表按k个一组反转，最后返回反转后的头节点
+首先来看返回的新的头节点，以reverseKGroup(head, 2)为例
+如图所示，返回的新的头节点为newHead为第二个节点，也就是函数定义中的k参数，而将各个k区间反转后的链表连接起来还需要一个将head节点与第k + 1个节点相连的过程，这时我们需要一个将区间[left, right）的链表部分反转的函数
+反转区间[left, right）的链表 首先是函数签名，这个函数应该要有两个形参，分别代表left和right，函数定义reverseSection(left *ListNode, right *ListNode) *ListNode，函数内需要三个变量，第一个变量pre记录当前节点的前驱节点，cur记录当前节点，next记录当前节点的下一个节点
+go语言代码 func reverseSection(left *ListNode, right *ListNode) *ListNode{ var pre *ListNode cur := left next := left for cur != right{ next = cur.Next cur.Next = pre pre = cur cur = next } return pre } K 个一组翻转链表 go语言代码 func reverseKGroup(head *ListNode, k int) *ListNode { if head == nil{ return nil } left := head right := head for i := 0; i &lt; k; i++{ //当最后不够k个一组时，不反转链表 if right == nil{ return head } right = right.
+    </div>
+  </div>
+
+        </div>
+      
+        <div class="relative w-100 w-30-l mb4 bg-white">
+            <div class="mb3 pa4 mid-gray overflow-hidden">
+    
+      <div class="f6">
+        June 18, 2022
+      </div>
+    
+    <h1 class="f3 near-black">
       <a href="/post/chapter-10/" class="link black dim">
         豆豆的刷题日记（2）
       </a>
@@ -175,32 +199,6 @@ archetypes存放创建文件时使用的模板，可以自定义front matter属�
 git config –-global user.name ‘xxxxx’ git config –-global user.email ‘xxx@xx.xxx’ 第二步生成密钥
 ssh-keygen -t rsa -C &#39;上面的邮箱’ 执行完该命令后会在C://Users/用户名/.ssh路径下生成两个文件id_rsa（私有秘钥）和id_rsa.pub（公有密钥）
 将自己的SSH key添加到github上 登陆github，进入到Settings，找到SSH&amp;GPG keys，点解new ssh key，填入刚刚生成的d_rsa.pub文件中的内容
-    </div>
-  </div>
-
-        </div>
-      
-        <div class="relative w-100 w-30-l mb4 bg-white">
-            <div class="mb3 pa4 mid-gray overflow-hidden">
-    
-      <div class="f6">
-        June 16, 2022
-      </div>
-    
-    <h1 class="f3 near-black">
-      <a href="/post/chapter-8/" class="link black dim">
-        豆豆的刷题日记（1）
-      </a>
-    </h1>
-    <div class="nested-links f5 lh-copy nested-copy-line-height">
-      递归的魔力（1）——leetcode__206反转链表 leetcode-206 反转链表
-第一步：明确函数定义，reverseList(head *ListNode) *ListNode，这个reverseList函数的定义为：将头节点为head的链表反转，返回链表反转后的头节点
-第二步：明确递归的终点：递归的终点就是当节点head为nil或者head.next为nil时返回head
-第三步：开始递归：last := reverseList(head.Next)
-如图所示，第三步的程序的意思就是将以2为头节点的链表反转，执行完毕后如图
-第四步，执行完第三步的代码后，链表结构变成上图所示，然后将head.next节点指向head即可， head.Next.Next = head
-第五步，将head节点的next置为空，返回原链表的末尾节点last
-go语言代码 func reverseList(head *ListNode) *ListNode { if head == nil || head.Next == nil { return head } res := reverseList(head.Next) head.Next.Next = head head.Next = nil return res } 
     </div>
   </div>
 

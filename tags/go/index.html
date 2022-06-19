@@ -145,6 +145,9 @@
       豆豆的刷题日记（5）——快慢指针秒杀数组问题 leetcode 26题删除有序数组中的重复项
 思路 直接使用快慢指针技巧，让fast指针走在前面，slow指针走在后面，因为是有序数组，所以重复项一定是连续的，所以只需要找到不重复项并赋值给nums[slow]即可，也就是说当nums[slow] != nums[fast]就将nums[fast]赋值给nums[slow]，最后返回不重复数组的长度即slow+1即可
 go语言代码 func removeDuplicates(nums []int) int { if len(nums) == 0 { return 0 } slow := 0 for fast := 0; fast &lt; len(nums); fast++ { if nums[slow] != nums[fast] { slow++ nums[slow] = nums[fast] } } return slow } 踩得坑 一开始以为返回的是数组最后元素的下标，没想到是返回数组的长度，看了好久。。。。
+类似问题 类似问题 leetcode 83题删除排序链表中的重复项
+思路 还是快慢指针技巧，与上题类似，只不过是将对数组的赋值操作变为对链表的删除操作
+go语言代码 func deleteDuplicates(head *ListNode) *ListNode { if head == nil { return nil } slow := head fast := head for fast !
     </div>
   </div>
 
