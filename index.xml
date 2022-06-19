@@ -6,7 +6,18 @@
     <description>Recent content in 豆豆的BLOG on Ananke</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Sun, 19 Jun 2022 02:04:33 +0800</lastBuildDate><atom:link href="https://quanzhidou.github.io/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Mon, 20 Jun 2022 00:15:24 +0800</lastBuildDate><atom:link href="https://quanzhidou.github.io/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>豆豆的刷题日记（5）</title>
+      <link>https://quanzhidou.github.io/post/chapter-13/</link>
+      <pubDate>Mon, 20 Jun 2022 00:15:24 +0800</pubDate>
+      
+      <guid>https://quanzhidou.github.io/post/chapter-13/</guid>
+      <description>豆豆的刷题日记（5）——快慢指针秒杀数组问题 leetcode 26题删除有序数组中的重复项
+思路 直接使用快慢指针技巧，让fast指针走在前面，slow指针走在后面，因为是有序数组，所以重复项一定是连续的，所以只需要找到不重复项并赋值给nums[slow]即可，也就是说当nums[slow] != nums[fast]就将nums[fast]赋值给nums[slow]，最后返回不重复数组的长度即slow+1即可
+go语言代码 func removeDuplicates(nums []int) int { if len(nums) == 0 { return 0 } slow := 0 for fast := 0; fast &amp;lt; len(nums); fast++ { if nums[slow] != nums[fast] { slow++ nums[slow] = nums[fast] } } return slow } 踩得坑 一开始以为返回的是数组最后元素的下标，没想到是返回数组的长度，看了好久。。。。</description>
+    </item>
+    
     <item>
       <title>豆豆的刷题日记（4）</title>
       <link>https://quanzhidou.github.io/post/chapter-12/</link>

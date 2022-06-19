@@ -133,74 +133,21 @@
             <div class="mb3 pa4 mid-gray overflow-hidden">
     
       <div class="f6">
-        June 18, 2022
-      </div>
-    
-    <h1 class="f3 near-black">
-      <a href="/post/chapter-10/" class="link black dim">
-        豆豆的刷题日记（2）
-      </a>
-    </h1>
-    <div class="nested-links f5 lh-copy nested-copy-line-height">
-      豆豆的刷题日记（2） 递归的魔力（2）——反转链表进阶 反转链表前 N 个节点 思路和反转整个链表差不多，但需要稍微修改一下
-反转整个链表代码
-func reverseList(head *ListNode) *ListNode { if head == nil || head.Next == nil { return head } res := reverseList(head.Next) head.Next.Next = head head.Next = nil return res } 如图，需要修改的地方有返回的节点不同，不是最后一个节点，所以要记录一下后驱节点
-在反转整个链表的时候，最后直接将head.Next置为空，是因为将整个链表反转之后，原来的头节点就变成了最后一个节点，所以可以直接置为空，现在head节点反转后不一定时最后一个节点，所以要将head.Next设置为后驱节点
-go语言代码 var successor *ListNode func reverseN(head *ListNode, n int) *ListNode { if n == 1{ successor = head.Next return head } last := reverseN(head.Next, n - 1) head.Next.Next = head head.Next = successor return last } 反转一段区间内的链表 leetcode 92题反转链表Ⅱ
-    </div>
-  </div>
-
-        </div>
-      
-        <div class="relative w-100 w-30-l mb4 bg-white">
-            <div class="mb3 pa4 mid-gray overflow-hidden">
-    
-      <div class="f6">
-        June 18, 2022
-      </div>
-    
-    <h1 class="f3 near-black">
-      <a href="/post/chapter-9/" class="link black dim">
-        Hugo 部署到GitHub Pages
-      </a>
-    </h1>
-    <div class="nested-links f5 lh-copy nested-copy-line-height">
-      将本地Hugo部署到Github Pages 第一步在本地生成Hugo静态资源 在本地搭建好Hugo项目后，使用hugo new sitename命令会生成一个名为sitename的文件夹，该文件夹目录结构如下
-archetypes/ content/ data/ layouts/ static/ themes/ config.toml 简单介绍下各个文件夹作用
-archetypes存放创建文件时使用的模板，可以自定义front matter属性。 assets存放需要被Hugo Pipes处理的文件，且只有使用了.Permalink或者.RelPermalink的文件才能被发布到public目录。 注意，默认不会创建assets目录。 config是配置文件，可以有JSON、 YAML或者TOML三种格式，默认使用根目录下的config.toml、config.yaml或config.json中的某一个。可以通过--config来配置读取一个或多个配置文件，如：hugo --config a.toml,b.toml,c.toml。 注意，默认不会创建config目录。 content存放的各种md文件用于部署站点，该目录下可以自行创建若干个子目录来便于对文章进行分类，这些子目录被称为section。 data目录存放的是用于定义变量的模板文件，相当于Java里的常量类，这些文件有JSON、 YAML或者TOML三种格式，会在生成站点时被使用到。一般用不到该功能，具体用法可以参考：data templates layouts目录存放的模板文件用于渲染html页面，模板里可以定义不同页面的html代码。 static目录存放的是静态内容：图片、CSS、JavaScript等。 resources目录用于缓存某些文件来提高生成效率。 注意，默认不会创建resources目录。 在安装好主题之后，使用hugo new chapter命令来生成新的博客，该命令会在网站根目录/content/post文件夹中生成一个新的文章文件，在该文件中编辑好内容后就可以启动服务查看博客了
-使用hugo server -D来启动服务，这时通过127.0.0.1:1313就可以访问刚刚编辑好的博客
-确认博客无问题后，通过hugo -D命令生成网站静态资源，该命令执行完毕之后，会生成一个public文件，这个文件中就是网站的静态资源，此文件也是我们要上传到仓库的文件。
-第二步创建github仓库 在github上创建仓库 首先在github上创建一个名为.github.io的仓库，这样创建仓库是因为GitHub默认会把&lt;username&gt;.github.io的master分支的内容部署到GitHub Pages站点上，所以只需要使用.github.io作为域名即可浏览hugo，而无需添加其他子域名
-创建SSH key 首先为自己的git创建用户名及邮箱
-git config –-global user.name ‘xxxxx’ git config –-global user.email ‘xxx@xx.xxx’ 第二步生成密钥
-ssh-keygen -t rsa -C &#39;上面的邮箱’ 执行完该命令后会在C://Users/用户名/.ssh路径下生成两个文件id_rsa（私有秘钥）和id_rsa.pub（公有密钥）
-将自己的SSH key添加到github上 登陆github，进入到Settings，找到SSH&amp;GPG keys，点解new ssh key，填入刚刚生成的d_rsa.pub文件中的内容
-    </div>
-  </div>
-
-        </div>
-      
-        <div class="relative w-100 w-30-l mb4 bg-white">
-            <div class="mb3 pa4 mid-gray overflow-hidden">
-    
-      <div class="f6">
         June 16, 2022
       </div>
     
     <h1 class="f3 near-black">
-      <a href="/post/chapter-8/" class="link black dim">
-        豆豆的刷题日记（1）
+      <a href="/post/chapter-7/" class="link black dim">
+        第一次搭建Hugo
       </a>
     </h1>
     <div class="nested-links f5 lh-copy nested-copy-line-height">
-      递归的魔力（1）——leetcode__206反转链表 leetcode-206 反转链表
-第一步：明确函数定义，reverseList(head *ListNode) *ListNode，这个reverseList函数的定义为：将头节点为head的链表反转，返回链表反转后的头节点
-第二步：明确递归的终点：递归的终点就是当节点head为nil或者head.next为nil时返回head
-第三步：开始递归：last := reverseList(head.Next)
-如图所示，第三步的程序的意思就是将以2为头节点的链表反转，执行完毕后如图
-第四步，执行完第三步的代码后，链表结构变成上图所示，然后将head.next节点指向head即可， head.Next.Next = head
-第五步，将head节点的next置为空，返回原链表的末尾节点last
-go语言代码 func reverseList(head *ListNode) *ListNode { if head == nil || head.Next == nil { return head } res := reverseList(head.Next) head.Next.Next = head head.Next = nil return res } 
+      Hugo搭建第一步——git获取源代码 在Hugo根目录下执行git clone https://github.com/spf13/hugo.git
+Hugo搭建第二步——编译 由于是在本地Windows操作系统搭建所以使用CGO_ENABLED=1 go install --tags extended命令 本地环境无CGO，所以还需要去 sourceforge下载x86_64-win32-seh版本 Hugo搭建第三步——创建网站 使用hugo new site sitename 其中sitename是你想创建的网站名字，执行完该指令后会在项目根目录下新建一个sitename文件夹
+Hugo搭建第四步——安装主题 先进入sitename文件夹：cd sitename 可以去Hugo themes选择心仪的主题 拉取主题到本地项目git clone 主题地址 /themes/主题名 根据read_me.md来安装主题 以本次Hugo搭建为例：
+cd localhost git clone https://github.com/theNewDynamic/gohugo-theme-ananke.git themes/ananke 然后将$root/localhost/themes/ananke/exampleSite/content里面的文件复制到 $root/localhost/content文件中 其中$root为项目根目录 将$root/localhost/themes/ananke/exampleSite/config.toml中的内容复制到 $root/localhost/config.toml中 将$root/localhost/config.toml文件中的theme的值设置为ananke（将默认主题设置为ananke） Hugo搭建第五步——启动服务器 由于在安装主题步骤中已经将默认主题设置好了，所以直接使用hugo server 命令即可启动服务器
+在本机Windows操作系统环境的实际搭建中，直接执行上述命令会报一个sass不能编译的错误，解决办法如下：
+​	在Hugo release中下载Windows_extend版本hugo_extended_0.100.2_Windows-64bit.zip（版本号可能会变化），下载解压到本地目录中，该压缩包中有一个Hugo.exe文件，然后使用本地目录/Hugo.exe server命令启动服务器，访问localhost:1313即可访问项目
     </div>
   </div>
 
@@ -213,22 +160,22 @@ go语言代码 func reverseList(head *ListNode) *ListNode { if head == nil || he
         <a href="/post/" aria-label="First" class="page-link" role="button"><span aria-hidden="true">&laquo;&laquo;</span></a>
       </li>
       <li class="page-item">
-        <a href="/post/" aria-label="Previous" class="page-link" role="button"><span aria-hidden="true">&laquo;</span></a>
+        <a href="/post/page/2/" aria-label="Previous" class="page-link" role="button"><span aria-hidden="true">&laquo;</span></a>
       </li>
       <li class="page-item">
         <a href="/post/" aria-label="Page 1" class="page-link" role="button">1</a>
       </li>
+      <li class="page-item">
+        <a href="/post/page/2/" aria-label="Page 2" class="page-link" role="button">2</a>
+      </li>
       <li class="page-item active">
-        <a aria-current="page" aria-label="Page 2" class="page-link" role="button">2</a>
+        <a aria-current="page" aria-label="Page 3" class="page-link" role="button">3</a>
       </li>
-      <li class="page-item">
-        <a href="/post/page/3/" aria-label="Page 3" class="page-link" role="button">3</a>
+      <li class="page-item disabled">
+        <a aria-disabled="true" aria-label="Next" class="page-link" role="button" tabindex="-1"><span aria-hidden="true">&raquo;</span></a>
       </li>
-      <li class="page-item">
-        <a href="/post/page/3/" aria-label="Next" class="page-link" role="button"><span aria-hidden="true">&raquo;</span></a>
-      </li>
-      <li class="page-item">
-        <a href="/post/page/3/" aria-label="Last" class="page-link" role="button"><span aria-hidden="true">&raquo;&raquo;</span></a>
+      <li class="page-item disabled">
+        <a aria-disabled="true" aria-label="Last" class="page-link" role="button" tabindex="-1"><span aria-hidden="true">&raquo;&raquo;</span></a>
       </li>
     </ul>
   </article>

@@ -159,6 +159,32 @@
       
       <div class="blah w-100">
         <h1 class="f3 fw1 athelas mt0 lh-title">
+          <a href="/post/chapter-13/" class="color-inherit dim link">
+            豆豆的刷题日记（5）
+            </a>
+        </h1>
+        <div class="f6 f5-l lh-copy nested-copy-line-height nested-links">
+          豆豆的刷题日记（5）——快慢指针秒杀数组问题 leetcode 26题删除有序数组中的重复项
+思路 直接使用快慢指针技巧，让fast指针走在前面，slow指针走在后面，因为是有序数组，所以重复项一定是连续的，所以只需要找到不重复项并赋值给nums[slow]即可，也就是说当nums[slow] != nums[fast]就将nums[fast]赋值给nums[slow]，最后返回不重复数组的长度即slow+1即可
+go语言代码 func removeDuplicates(nums []int) int { if len(nums) == 0 { return 0 } slow := 0 for fast := 0; fast &lt; len(nums); fast++ { if nums[slow] != nums[fast] { slow++ nums[slow] = nums[fast] } } return slow } 踩得坑 一开始以为返回的是数组最后元素的下标，没想到是返回数组的长度，看了好久。。。。
+        </div>
+          <a href="/post/chapter-13/" class="ba b--moon-gray bg-light-gray br2 color-inherit dib f7 hover-bg-moon-gray link mt2 ph2 pv1">read more</a>
+        
+      </div>
+    </div>
+  </div>
+</article>
+
+          </div>
+        
+          <div class="relative w-100 mb4">
+            
+<article class="bb b--black-10">
+  <div class="db pv4 ph3 ph0-l no-underline dark-gray">
+    <div class="flex flex-column flex-row-ns">
+      
+      <div class="blah w-100">
+        <h1 class="f3 fw1 athelas mt0 lh-title">
           <a href="/post/chapter-12/" class="color-inherit dim link">
             豆豆的刷题日记（4）
             </a>
@@ -270,43 +296,18 @@ ssh-keygen -t rsa -C &#39;上面的邮箱’ 执行完该命令后会在C://User
 
           </div>
         
-          <div class="relative w-100 mb4">
-            
-<article class="bb b--black-10">
-  <div class="db pv4 ph3 ph0-l no-underline dark-gray">
-    <div class="flex flex-column flex-row-ns">
-      
-      <div class="blah w-100">
-        <h1 class="f3 fw1 athelas mt0 lh-title">
-          <a href="/post/chapter-8/" class="color-inherit dim link">
-            豆豆的刷题日记（1）
-            </a>
-        </h1>
-        <div class="f6 f5-l lh-copy nested-copy-line-height nested-links">
-          递归的魔力（1）——leetcode__206反转链表 leetcode-206 反转链表
-第一步：明确函数定义，reverseList(head *ListNode) *ListNode，这个reverseList函数的定义为：将头节点为head的链表反转，返回链表反转后的头节点
-第二步：明确递归的终点：递归的终点就是当节点head为nil或者head.next为nil时返回head
-第三步：开始递归：last := reverseList(head.Next)
-如图所示，第三步的程序的意思就是将以2为头节点的链表反转，执行完毕后如图
-第四步，执行完第三步的代码后，链表结构变成上图所示，然后将head.next节点指向head即可， head.Next.Next = head
-第五步，将head节点的next置为空，返回原链表的末尾节点last
-go语言代码 func reverseList(head *ListNode) *ListNode { if head == nil || head.Next == nil { return head } res := reverseList(head.Next) head.Next.Next = head head.Next = nil return res } 
-        </div>
-          <a href="/post/chapter-8/" class="ba b--moon-gray bg-light-gray br2 color-inherit dib f7 hover-bg-moon-gray link mt2 ph2 pv1">read more</a>
-        
-      </div>
-    </div>
-  </div>
-</article>
-
-          </div>
-        
       </section>
 
       
       <section class="w-100">
         <h1 class="f3">More</h1>
         
+        
+          <h2 class="f5 fw4 mb4 dib mr3">
+            <a href="/post/chapter-8/" class="link black dim">
+              豆豆的刷题日记（1）
+            </a>
+          </h2>
         
           <h2 class="f5 fw4 mb4 dib mr3">
             <a href="/post/chapter-7/" class="link black dim">
