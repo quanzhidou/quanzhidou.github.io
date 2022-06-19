@@ -7,7 +7,11 @@
     
     <title>豆豆的刷题日记（6） | Ananke</title>
     <meta name="viewport" content="width=device-width,minimum-scale=1">
-    <meta name="description" content="">
+    <meta name="description" content="豆豆的刷题日记（6）——快慢指针秒杀数组问题 快慢指针解决移除元素问题 leetcode 27题移除元素
+思路 还是快慢指针的思路，让fast指针走在前面，当nums[fast] != val的时候赋值给nums[slow]，但是这里有一个细节问题，就是先给nums[slow]赋值，然后在让slow&#43;&#43;，这样做可以避免数组的开头就是val的情况，这时slow就是数组的长度
+go语言代码 func removeElement(nums []int, val int) int { if len(nums) == 0 { return 0 } slow := 0 for fast := 0; fast &lt; len(nums); fast&#43;&#43; { if nums[fast] != val { nums[slow] = nums[fast] slow&#43;&#43; } } return slow } 移除元素衍生问题 leetcode 283题移动0
+思路 移动零的问题就相当于上题中将要移除的元素设置为零，然后将移除完元素的数组后面的元素都设置为零
+go语言代码 func removeElement(nums []int, val int) int { p := removeElement(nums, 0); for ; p &lt; len(nums); p&#43;&#43;{ nums[p] = 0 } } 其中removeElement函数见上题">
     <meta name="generator" content="Hugo 0.101.0-DEV" />
     
     
@@ -31,19 +35,31 @@
     
     
     <meta property="og:title" content="豆豆的刷题日记（6）" />
-<meta property="og:description" content="" />
+<meta property="og:description" content="豆豆的刷题日记（6）——快慢指针秒杀数组问题 快慢指针解决移除元素问题 leetcode 27题移除元素
+思路 还是快慢指针的思路，让fast指针走在前面，当nums[fast] != val的时候赋值给nums[slow]，但是这里有一个细节问题，就是先给nums[slow]赋值，然后在让slow&#43;&#43;，这样做可以避免数组的开头就是val的情况，这时slow就是数组的长度
+go语言代码 func removeElement(nums []int, val int) int { if len(nums) == 0 { return 0 } slow := 0 for fast := 0; fast &lt; len(nums); fast&#43;&#43; { if nums[fast] != val { nums[slow] = nums[fast] slow&#43;&#43; } } return slow } 移除元素衍生问题 leetcode 283题移动0
+思路 移动零的问题就相当于上题中将要移除的元素设置为零，然后将移除完元素的数组后面的元素都设置为零
+go语言代码 func removeElement(nums []int, val int) int { p := removeElement(nums, 0); for ; p &lt; len(nums); p&#43;&#43;{ nums[p] = 0 } } 其中removeElement函数见上题" />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://quanzhidou.github.io/post/chapter-14/" /><meta property="article:section" content="post" />
 <meta property="article:published_time" content="2022-06-20T01:15:08+08:00" />
 <meta property="article:modified_time" content="2022-06-20T01:15:08+08:00" /><meta property="og:site_name" content="Ananke" />
 
 <meta itemprop="name" content="豆豆的刷题日记（6）">
-<meta itemprop="description" content=""><meta itemprop="datePublished" content="2022-06-20T01:15:08+08:00" />
+<meta itemprop="description" content="豆豆的刷题日记（6）——快慢指针秒杀数组问题 快慢指针解决移除元素问题 leetcode 27题移除元素
+思路 还是快慢指针的思路，让fast指针走在前面，当nums[fast] != val的时候赋值给nums[slow]，但是这里有一个细节问题，就是先给nums[slow]赋值，然后在让slow&#43;&#43;，这样做可以避免数组的开头就是val的情况，这时slow就是数组的长度
+go语言代码 func removeElement(nums []int, val int) int { if len(nums) == 0 { return 0 } slow := 0 for fast := 0; fast &lt; len(nums); fast&#43;&#43; { if nums[fast] != val { nums[slow] = nums[fast] slow&#43;&#43; } } return slow } 移除元素衍生问题 leetcode 283题移动0
+思路 移动零的问题就相当于上题中将要移除的元素设置为零，然后将移除完元素的数组后面的元素都设置为零
+go语言代码 func removeElement(nums []int, val int) int { p := removeElement(nums, 0); for ; p &lt; len(nums); p&#43;&#43;{ nums[p] = 0 } } 其中removeElement函数见上题"><meta itemprop="datePublished" content="2022-06-20T01:15:08+08:00" />
 <meta itemprop="dateModified" content="2022-06-20T01:15:08+08:00" />
-<meta itemprop="wordCount" content="0">
-<meta itemprop="keywords" content="" /><meta name="twitter:card" content="summary"/>
+<meta itemprop="wordCount" content="79">
+<meta itemprop="keywords" content="Go,Leetcode," /><meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="豆豆的刷题日记（6）"/>
-<meta name="twitter:description" content=""/>
+<meta name="twitter:description" content="豆豆的刷题日记（6）——快慢指针秒杀数组问题 快慢指针解决移除元素问题 leetcode 27题移除元素
+思路 还是快慢指针的思路，让fast指针走在前面，当nums[fast] != val的时候赋值给nums[slow]，但是这里有一个细节问题，就是先给nums[slow]赋值，然后在让slow&#43;&#43;，这样做可以避免数组的开头就是val的情况，这时slow就是数组的长度
+go语言代码 func removeElement(nums []int, val int) int { if len(nums) == 0 { return 0 } slow := 0 for fast := 0; fast &lt; len(nums); fast&#43;&#43; { if nums[fast] != val { nums[slow] = nums[fast] slow&#43;&#43; } } return slow } 移除元素衍生问题 leetcode 283题移动0
+思路 移动零的问题就相当于上题中将要移除的元素设置为零，然后将移除完元素的数组后面的元素都设置为零
+go语言代码 func removeElement(nums []int, val int) int { p := removeElement(nums, 0); for ; p &lt; len(nums); p&#43;&#43;{ nums[p] = 0 } } 其中removeElement函数见上题"/>
 
 	
   </head>
@@ -54,9 +70,8 @@
    
   
 
-  
-  <header class="cover bg-top" style="background-image: url('https://quanzhidou.github.io/images/preview.jpg');">
-    <div class="bg-black-60">
+  <header>
+    <div class="bg-black">
       <nav class="pv3 ph3 ph4-ns" role="navigation">
   <div class="flex-l justify-between items-center center">
     <a href="/" class="f3 fw2 hover-white no-underline white-90 dib">
@@ -111,12 +126,6 @@
   </div>
 </nav>
 
-      <div class="tc-l pv6 ph3 ph4-ns">
-        
-          <h1 class="f2 f1-l fw2 white-90 mb0 lh-title">豆豆的刷题日记（6）</h1>
-          
-        
-      </div>
     </div>
   </header>
 
@@ -157,7 +166,48 @@
       
       
     </header>
-    <div class="nested-copy-line-height lh-copy serif f4 nested-links mid-gray pr4-l w-two-thirds-l"><ul class="pa0">
+    <div class="nested-copy-line-height lh-copy serif f4 nested-links mid-gray pr4-l w-two-thirds-l"><h2 id="豆豆的刷题日记6快慢指针秒杀数组问题">豆豆的刷题日记（6）——快慢指针秒杀数组问题</h2>
+<h2 id="快慢指针解决移除元素问题">快慢指针解决移除元素问题</h2>
+<p><a href="https://leetcode.cn/problems/remove-element/">leetcode 27题移除元素</a></p>
+<p><img src="/images/chapter-14_1.png" alt="img"></p>
+<h3 id="思路">思路</h3>
+<p>还是快慢指针的思路，让fast指针走在前面，当nums[fast] != val的时候赋值给nums[slow]，但是这里有一个细节问题，就是先给nums[slow]赋值，然后在让slow++，这样做可以避免数组的开头就是val的情况，这时slow就是数组的长度</p>
+<h3 id="go语言代码">go语言代码</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-go" data-lang="go"><span style="display:flex;"><span><span style="color:#66d9ef">func</span> <span style="color:#a6e22e">removeElement</span>(<span style="color:#a6e22e">nums</span> []<span style="color:#66d9ef">int</span>, <span style="color:#a6e22e">val</span> <span style="color:#66d9ef">int</span>) <span style="color:#66d9ef">int</span> {
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">if</span> len(<span style="color:#a6e22e">nums</span>) <span style="color:#f92672">==</span> <span style="color:#ae81ff">0</span> {
+</span></span><span style="display:flex;"><span>		<span style="color:#66d9ef">return</span> <span style="color:#ae81ff">0</span>
+</span></span><span style="display:flex;"><span>	}
+</span></span><span style="display:flex;"><span>	<span style="color:#a6e22e">slow</span> <span style="color:#f92672">:=</span> <span style="color:#ae81ff">0</span>
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">for</span> <span style="color:#a6e22e">fast</span> <span style="color:#f92672">:=</span> <span style="color:#ae81ff">0</span>; <span style="color:#a6e22e">fast</span> &lt; len(<span style="color:#a6e22e">nums</span>); <span style="color:#a6e22e">fast</span><span style="color:#f92672">++</span> {
+</span></span><span style="display:flex;"><span>		<span style="color:#66d9ef">if</span> <span style="color:#a6e22e">nums</span>[<span style="color:#a6e22e">fast</span>] <span style="color:#f92672">!=</span> <span style="color:#a6e22e">val</span> {
+</span></span><span style="display:flex;"><span>			<span style="color:#a6e22e">nums</span>[<span style="color:#a6e22e">slow</span>] = <span style="color:#a6e22e">nums</span>[<span style="color:#a6e22e">fast</span>]
+</span></span><span style="display:flex;"><span>			<span style="color:#a6e22e">slow</span><span style="color:#f92672">++</span>
+</span></span><span style="display:flex;"><span>		}
+</span></span><span style="display:flex;"><span>	}
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">return</span> <span style="color:#a6e22e">slow</span>
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><h2 id="移除元素衍生问题">移除元素衍生问题</h2>
+<p><a href="https://leetcode.cn/problems/move-zeroes/">leetcode 283题移动0</a></p>
+<p><img src="/images/chapter-14_2.png" alt="img"></p>
+<h3 id="思路-1">思路</h3>
+<p>移动零的问题就相当于上题中将要移除的元素设置为零，然后将移除完元素的数组后面的元素都设置为零</p>
+<h3 id="go语言代码-1">go语言代码</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-go" data-lang="go"><span style="display:flex;"><span><span style="color:#66d9ef">func</span> <span style="color:#a6e22e">removeElement</span>(<span style="color:#a6e22e">nums</span> []<span style="color:#66d9ef">int</span>, <span style="color:#a6e22e">val</span> <span style="color:#66d9ef">int</span>) <span style="color:#66d9ef">int</span> {
+</span></span><span style="display:flex;"><span>	<span style="color:#a6e22e">p</span> <span style="color:#f92672">:=</span> <span style="color:#a6e22e">removeElement</span>(<span style="color:#a6e22e">nums</span>, <span style="color:#ae81ff">0</span>);
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">for</span> ; <span style="color:#a6e22e">p</span> &lt; len(<span style="color:#a6e22e">nums</span>); <span style="color:#a6e22e">p</span><span style="color:#f92672">++</span>{
+</span></span><span style="display:flex;"><span>		<span style="color:#a6e22e">nums</span>[<span style="color:#a6e22e">p</span>] = <span style="color:#ae81ff">0</span>
+</span></span><span style="display:flex;"><span>	}
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>其中removeElement函数见上题</p>
+<ul class="pa0">
+  
+   <li class="list di">
+     <a href="/tags/go" class="link f5 grow no-underline br-pill ba ph3 pv2 mb2 dib black sans-serif">Go</a>
+   </li>
+  
+   <li class="list di">
+     <a href="/tags/leetcode" class="link f5 grow no-underline br-pill ba ph3 pv2 mb2 dib black sans-serif">Leetcode</a>
+   </li>
   
 </ul>
 <div class="mt6 instapaper_ignoref">
@@ -170,6 +220,41 @@
 
 
 
+
+  <div class="bg-light-gray pa3 nested-list-reset nested-copy-line-height nested-links">
+    <p class="f5 b mb3">Related</p>
+    <ul class="pa0 list">
+	   
+	     <li  class="mb2">
+          <a href="/post/chapter-13/">豆豆的刷题日记（5）</a>
+        </li>
+	    
+	     <li  class="mb2">
+          <a href="/post/chapter-12/">豆豆的刷题日记（4）</a>
+        </li>
+	    
+	     <li  class="mb2">
+          <a href="/post/chapter-11/">豆豆的刷题日记（3）</a>
+        </li>
+	    
+	     <li  class="mb2">
+          <a href="/post/chapter-10/">豆豆的刷题日记（2）</a>
+        </li>
+	    
+	     <li  class="mb2">
+          <a href="/post/chapter-8/">豆豆的刷题日记（1）</a>
+        </li>
+	    
+	     <li  class="mb2">
+          <a href="/post/chapter-9/">Hugo 部署到GitHub Pages</a>
+        </li>
+	    
+	     <li  class="mb2">
+          <a href="/post/chapter-7/">第一次搭建Hugo</a>
+        </li>
+	    
+    </ul>
+</div>
 
 </aside>
 

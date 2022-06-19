@@ -142,7 +142,11 @@
       </a>
     </h1>
     <div class="nested-links f5 lh-copy nested-copy-line-height">
-      
+      豆豆的刷题日记（6）——快慢指针秒杀数组问题 快慢指针解决移除元素问题 leetcode 27题移除元素
+思路 还是快慢指针的思路，让fast指针走在前面，当nums[fast] != val的时候赋值给nums[slow]，但是这里有一个细节问题，就是先给nums[slow]赋值，然后在让slow++，这样做可以避免数组的开头就是val的情况，这时slow就是数组的长度
+go语言代码 func removeElement(nums []int, val int) int { if len(nums) == 0 { return 0 } slow := 0 for fast := 0; fast &lt; len(nums); fast++ { if nums[fast] != val { nums[slow] = nums[fast] slow++ } } return slow } 移除元素衍生问题 leetcode 283题移动0
+思路 移动零的问题就相当于上题中将要移除的元素设置为零，然后将移除完元素的数组后面的元素都设置为零
+go语言代码 func removeElement(nums []int, val int) int { p := removeElement(nums, 0); for ; p &lt; len(nums); p++{ nums[p] = 0 } } 其中removeElement函数见上题
     </div>
   </div>
 
