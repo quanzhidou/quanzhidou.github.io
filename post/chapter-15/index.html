@@ -1,0 +1,359 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <link rel="shortcut icon" href="../../images/star.png" type="image/x-icon"/>
+    
+    <title> 豆豆的刷题日记（7） | Ananke</title>
+    <meta name="viewport" content="width=device-width,minimum-scale=1">
+    <meta name="description" content="豆豆的刷题日记（7）——双指针之滑动窗口 原理 滑动窗口就是维护一个窗口不断滑动，然后更新答案
+模板 func minWindow(s string, t string){ //left，right分别为滑动窗口的左右端点，并且是[left, right) left, right := 0, 0 //window为窗口中的数据，need为窗口中需要有的数据 window, need := make(map[byte]int), make(map[byte]int) //start保存最优解的左端点，length保存最优解的长度 start, length := 0, math.MaxInt //valid保存window中已经保存的数据的数量 valid := 0 //先将窗口需要有的数据存入need for i := range t { need[t[i]]&#43;&#43; } //循环结束的条件即是窗口滑动到最右端的时候 for right &lt; len(s) { //c是即将存入窗口的数据 c := s[right] //增大窗口 right&#43;&#43; //对窗口进行一系列数据更新 ... //判断左侧窗口给是否要收缩 for window needs shrink { //d是要移出窗口的数据 d := s[left] //缩小窗口 left&#43;&#43; //对窗口进行一系列数据更新 ... } } } 每一行的代码的具体意义已经写在注释中">
+    <meta name="generator" content="Hugo 0.101.0-DEV" />
+    
+    
+    
+    
+      <meta name="robots" content="noindex, nofollow">
+    
+
+    
+<link rel="stylesheet" href="/ananke/css/main.min.css" >
+
+
+
+    
+    
+    
+      
+
+    
+
+    
+    
+    <meta property="og:title" content=" 豆豆的刷题日记（7）" />
+<meta property="og:description" content="豆豆的刷题日记（7）——双指针之滑动窗口 原理 滑动窗口就是维护一个窗口不断滑动，然后更新答案
+模板 func minWindow(s string, t string){ //left，right分别为滑动窗口的左右端点，并且是[left, right) left, right := 0, 0 //window为窗口中的数据，need为窗口中需要有的数据 window, need := make(map[byte]int), make(map[byte]int) //start保存最优解的左端点，length保存最优解的长度 start, length := 0, math.MaxInt //valid保存window中已经保存的数据的数量 valid := 0 //先将窗口需要有的数据存入need for i := range t { need[t[i]]&#43;&#43; } //循环结束的条件即是窗口滑动到最右端的时候 for right &lt; len(s) { //c是即将存入窗口的数据 c := s[right] //增大窗口 right&#43;&#43; //对窗口进行一系列数据更新 ... //判断左侧窗口给是否要收缩 for window needs shrink { //d是要移出窗口的数据 d := s[left] //缩小窗口 left&#43;&#43; //对窗口进行一系列数据更新 ... } } } 每一行的代码的具体意义已经写在注释中" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://quanzhidou.github.io/post/chapter-15/" /><meta property="article:section" content="post" />
+<meta property="article:published_time" content="2022-06-20T16:32:30+08:00" />
+<meta property="article:modified_time" content="2022-06-20T16:32:30+08:00" /><meta property="og:site_name" content="Ananke" />
+
+<meta itemprop="name" content=" 豆豆的刷题日记（7）">
+<meta itemprop="description" content="豆豆的刷题日记（7）——双指针之滑动窗口 原理 滑动窗口就是维护一个窗口不断滑动，然后更新答案
+模板 func minWindow(s string, t string){ //left，right分别为滑动窗口的左右端点，并且是[left, right) left, right := 0, 0 //window为窗口中的数据，need为窗口中需要有的数据 window, need := make(map[byte]int), make(map[byte]int) //start保存最优解的左端点，length保存最优解的长度 start, length := 0, math.MaxInt //valid保存window中已经保存的数据的数量 valid := 0 //先将窗口需要有的数据存入need for i := range t { need[t[i]]&#43;&#43; } //循环结束的条件即是窗口滑动到最右端的时候 for right &lt; len(s) { //c是即将存入窗口的数据 c := s[right] //增大窗口 right&#43;&#43; //对窗口进行一系列数据更新 ... //判断左侧窗口给是否要收缩 for window needs shrink { //d是要移出窗口的数据 d := s[left] //缩小窗口 left&#43;&#43; //对窗口进行一系列数据更新 ... } } } 每一行的代码的具体意义已经写在注释中"><meta itemprop="datePublished" content="2022-06-20T16:32:30+08:00" />
+<meta itemprop="dateModified" content="2022-06-20T16:32:30+08:00" />
+<meta itemprop="wordCount" content="244">
+<meta itemprop="keywords" content="Go,Leetcode," /><meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content=" 豆豆的刷题日记（7）"/>
+<meta name="twitter:description" content="豆豆的刷题日记（7）——双指针之滑动窗口 原理 滑动窗口就是维护一个窗口不断滑动，然后更新答案
+模板 func minWindow(s string, t string){ //left，right分别为滑动窗口的左右端点，并且是[left, right) left, right := 0, 0 //window为窗口中的数据，need为窗口中需要有的数据 window, need := make(map[byte]int), make(map[byte]int) //start保存最优解的左端点，length保存最优解的长度 start, length := 0, math.MaxInt //valid保存window中已经保存的数据的数量 valid := 0 //先将窗口需要有的数据存入need for i := range t { need[t[i]]&#43;&#43; } //循环结束的条件即是窗口滑动到最右端的时候 for right &lt; len(s) { //c是即将存入窗口的数据 c := s[right] //增大窗口 right&#43;&#43; //对窗口进行一系列数据更新 ... //判断左侧窗口给是否要收缩 for window needs shrink { //d是要移出窗口的数据 d := s[left] //缩小窗口 left&#43;&#43; //对窗口进行一系列数据更新 ... } } } 每一行的代码的具体意义已经写在注释中"/>
+
+	
+  </head>
+
+  <body class="ma0 avenir bg-near-white">
+
+    
+   
+  
+
+  <header>
+    <div class="bg-black">
+      <nav class="pv3 ph3 ph4-ns" role="navigation">
+  <div class="flex-l justify-between items-center center">
+    <a href="/" class="f3 fw2 hover-white no-underline white-90 dib">
+      
+        <img src="/natuo.png" class="w100 mw5-ns" alt="Ananke" />
+      
+    </a>
+    <div class="flex-l items-center">
+      
+
+      
+        <ul class="pl0 mr3">
+          
+          <li class="list f5 f4-ns fw4 dib pr3">
+            <a class="hover-white no-underline white-90" href="/about/" title="About page">
+              About
+            </a>
+          </li>
+          
+          <li class="list f5 f4-ns fw4 dib pr3">
+            <a class="hover-white no-underline white-90" href="/post/" title="Articles page">
+              Articles
+            </a>
+          </li>
+          
+          <li class="list f5 f4-ns fw4 dib pr3">
+            <a class="hover-white no-underline white-90" href="/contact/" title="Contact page">
+              Contact
+            </a>
+          </li>
+          
+        </ul>
+      
+      
+<div class="ananke-socials">
+  
+    <a href="https://github.com/quanzhidou" target="_blank" class="github ananke-social-link link-transition stackoverflow link dib z-999 pt3 pt0-l mr1" title="GitHub link" rel="noopener" aria-label="follow on GitHub——Opens in a new window">
+      
+        <span class="icon"><svg style="enable-background:new 0 0 512 512;" version="1.1" viewBox="0 0 512 512"  xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" >
+  <path d="M256,32C132.3,32,32,134.8,32,261.7c0,101.5,64.2,187.5,153.2,217.9c11.2,2.1,15.3-5,15.3-11.1   c0-5.5-0.2-19.9-0.3-39.1c-62.3,13.9-75.5-30.8-75.5-30.8c-10.2-26.5-24.9-33.6-24.9-33.6c-20.3-14.3,1.5-14,1.5-14   c22.5,1.6,34.3,23.7,34.3,23.7c20,35.1,52.4,25,65.2,19.1c2-14.8,7.8-25,14.2-30.7c-49.7-5.8-102-25.5-102-113.5   c0-25.1,8.7-45.6,23-61.6c-2.3-5.8-10-29.2,2.2-60.8c0,0,18.8-6.2,61.6,23.5c17.9-5.1,37-7.6,56.1-7.7c19,0.1,38.2,2.6,56.1,7.7   c42.8-29.7,61.5-23.5,61.5-23.5c12.2,31.6,4.5,55,2.2,60.8c14.3,16.1,23,36.6,23,61.6c0,88.2-52.4,107.6-102.3,113.3   c8,7.1,15.2,21.1,15.2,42.5c0,30.7-0.3,55.5-0.3,63c0,6.1,4,13.3,15.4,11C415.9,449.1,480,363.1,480,261.7   C480,134.8,379.7,32,256,32z"/>
+</svg>
+</span>
+      
+<span class="new-window"><svg  height="8px"  style="enable-background:new 0 0 1000 1000;" version="1.1" viewBox="0 0 1000 1000"  xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" >
+<path d="M598 128h298v298h-86v-152l-418 418-60-60 418-418h-152v-86zM810 810v-298h86v298c0 46-40 86-86 86h-596c-48 0-86-40-86-86v-596c0-46 38-86 86-86h298v86h-298v596h596z" style="fill-rule:evenodd;clip-rule:evenodd;"/>
+</svg>
+</span></a>
+  
+</div>
+
+    </div>
+  </div>
+</nav>
+
+    </div>
+  </header>
+
+
+
+    <main class="pb7" role="main">
+      
+  
+  <article class="flex-l flex-wrap justify-between mw8 center ph3">
+    <header class="mt4 w-100">
+      <aside class="instapaper_ignoref b helvetica tracked">
+          
+        ARTICLES
+      </aside>
+      
+
+
+
+
+
+
+
+
+
+
+  <div id="sharing" class="mt3 ananke-socials">
+    
+  </div>
+
+
+      <h1 class="f1 athelas mt3 mb1"> 豆豆的刷题日记（7）</h1>
+      
+      
+      
+      <time class="f6 mv4 dib tracked" datetime="2022-06-20T16:32:30+08:00">June 20, 2022</time>
+      
+
+      
+      
+    </header>
+    <div class="nested-copy-line-height lh-copy serif f4 nested-links mid-gray pr4-l w-two-thirds-l"><h1 id="豆豆的刷题日记7双指针之滑动窗口">豆豆的刷题日记（7）——双指针之滑动窗口</h1>
+<h2 id="原理">原理</h2>
+<p>滑动窗口就是维护一个窗口不断滑动，然后更新答案</p>
+<h2 id="模板">模板</h2>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-go" data-lang="go"><span style="display:flex;"><span><span style="color:#66d9ef">func</span> <span style="color:#a6e22e">minWindow</span>(<span style="color:#a6e22e">s</span> <span style="color:#66d9ef">string</span>, <span style="color:#a6e22e">t</span> <span style="color:#66d9ef">string</span>){
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">//left，right分别为滑动窗口的左右端点，并且是[left, right)
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>	<span style="color:#a6e22e">left</span>, <span style="color:#a6e22e">right</span> <span style="color:#f92672">:=</span> <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">0</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">//window为窗口中的数据，need为窗口中需要有的数据
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>	<span style="color:#a6e22e">window</span>, <span style="color:#a6e22e">need</span> <span style="color:#f92672">:=</span> make(<span style="color:#66d9ef">map</span>[<span style="color:#66d9ef">byte</span>]<span style="color:#66d9ef">int</span>), make(<span style="color:#66d9ef">map</span>[<span style="color:#66d9ef">byte</span>]<span style="color:#66d9ef">int</span>)
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">//start保存最优解的左端点，length保存最优解的长度
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>	<span style="color:#a6e22e">start</span>, <span style="color:#a6e22e">length</span> <span style="color:#f92672">:=</span> <span style="color:#ae81ff">0</span>, <span style="color:#a6e22e">math</span>.<span style="color:#a6e22e">MaxInt</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">//valid保存window中已经保存的数据的数量
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>	<span style="color:#a6e22e">valid</span> <span style="color:#f92672">:=</span> <span style="color:#ae81ff">0</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">//先将窗口需要有的数据存入need
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>	<span style="color:#66d9ef">for</span> <span style="color:#a6e22e">i</span> <span style="color:#f92672">:=</span> <span style="color:#66d9ef">range</span> <span style="color:#a6e22e">t</span> {
+</span></span><span style="display:flex;"><span>		<span style="color:#a6e22e">need</span>[<span style="color:#a6e22e">t</span>[<span style="color:#a6e22e">i</span>]]<span style="color:#f92672">++</span>
+</span></span><span style="display:flex;"><span>	}
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">//循环结束的条件即是窗口滑动到最右端的时候
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>	<span style="color:#66d9ef">for</span> <span style="color:#a6e22e">right</span> &lt; len(<span style="color:#a6e22e">s</span>) {
+</span></span><span style="display:flex;"><span>        <span style="color:#75715e">//c是即将存入窗口的数据
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>		<span style="color:#a6e22e">c</span> <span style="color:#f92672">:=</span> <span style="color:#a6e22e">s</span>[<span style="color:#a6e22e">right</span>]
+</span></span><span style="display:flex;"><span>        <span style="color:#75715e">//增大窗口
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>		<span style="color:#a6e22e">right</span><span style="color:#f92672">++</span>
+</span></span><span style="display:flex;"><span>		<span style="color:#75715e">//对窗口进行一系列数据更新
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>        <span style="color:#f92672">...</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#75715e">//判断左侧窗口给是否要收缩
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>		<span style="color:#66d9ef">for</span> <span style="color:#a6e22e">window</span> <span style="color:#a6e22e">needs</span> <span style="color:#a6e22e">shrink</span> {
+</span></span><span style="display:flex;"><span>			<span style="color:#75715e">//d是要移出窗口的数据
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>			<span style="color:#a6e22e">d</span> <span style="color:#f92672">:=</span> <span style="color:#a6e22e">s</span>[<span style="color:#a6e22e">left</span>]
+</span></span><span style="display:flex;"><span>            <span style="color:#75715e">//缩小窗口
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>			<span style="color:#a6e22e">left</span><span style="color:#f92672">++</span>
+</span></span><span style="display:flex;"><span>			<span style="color:#75715e">//对窗口进行一系列数据更新
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>        	<span style="color:#f92672">...</span>
+</span></span><span style="display:flex;"><span>		}
+</span></span><span style="display:flex;"><span>	}
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>每一行的代码的具体意义已经写在注释中</p>
+<h2 id="实战演示">实战演示</h2>
+<p><a href="https://leetcode.cn/problems/minimum-window-substring/">leetcode 76最小覆盖字串</a></p>
+<p><img src="/images/chapter-15_1.png" alt="img"></p>
+<h3 id="思路">思路</h3>
+<p>核心思想为双指针滑动窗口，具体步骤为</p>
+<ol>
+<li>在字符串s中维护一个滑动窗口，这个窗口初始化left = right = 0，而且是左闭右开区间</li>
+<li>先不断的扩大窗口，也就是right++，直到窗口中的数据包含了t的所有字符</li>
+<li>此时，停止扩大窗口，转而不断缩小窗口，也就是left++，直到窗口中的数据不符合要求（不包含t的所有字符）。同时，每次left++我们都要更新一轮结果</li>
+<li>重复第二第三步，直到right到达字符串的尽头</li>
+</ol>
+<p>东哥图片法演绎过程：</p>
+<p>初始状态：</p>
+<p><a href="https://labuladong.github.io/algo/images/slidingwindow/1.png"><img src="https://labuladong.github.io/algo/images/slidingwindow/1.png" alt="img"></a></p>
+<p>增加 <code>right</code>，直到窗口 <code>[left, right)</code> 包含了 <code>T</code> 中所有字符：</p>
+<p><a href="https://labuladong.github.io/algo/images/slidingwindow/2.png"><img src="https://labuladong.github.io/algo/images/slidingwindow/2.png" alt="img"></a></p>
+<p>现在开始增加 <code>left</code>，缩小窗口 <code>[left, right)</code>：</p>
+<p><a href="https://labuladong.github.io/algo/images/slidingwindow/3.png"><img src="https://labuladong.github.io/algo/images/slidingwindow/3.png" alt="img"></a></p>
+<p>直到窗口中的字符串不再符合要求，<code>left</code> 不再继续移动：</p>
+<p><a href="https://labuladong.github.io/algo/images/slidingwindow/4.png"><img src="https://labuladong.github.io/algo/images/slidingwindow/4.png" alt="img"></a></p>
+<p>之后重复上述过程，先移动 <code>right</code>，再移动 <code>left</code>…… 直到 <code>right</code> 指针到达字符串 <code>S</code> 的末端，算法结束。</p>
+<h3 id="go语言代码">go语言代码</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-go" data-lang="go"><span style="display:flex;"><span><span style="color:#66d9ef">func</span> <span style="color:#a6e22e">minWindow</span>(<span style="color:#a6e22e">s</span> <span style="color:#66d9ef">string</span>, <span style="color:#a6e22e">t</span> <span style="color:#66d9ef">string</span>) <span style="color:#66d9ef">string</span> {
+</span></span><span style="display:flex;"><span>	<span style="color:#a6e22e">left</span>, <span style="color:#a6e22e">right</span> <span style="color:#f92672">:=</span> <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">0</span>
+</span></span><span style="display:flex;"><span>	<span style="color:#a6e22e">window</span>, <span style="color:#a6e22e">need</span> <span style="color:#f92672">:=</span> make(<span style="color:#66d9ef">map</span>[<span style="color:#66d9ef">byte</span>]<span style="color:#66d9ef">int</span>), make(<span style="color:#66d9ef">map</span>[<span style="color:#66d9ef">byte</span>]<span style="color:#66d9ef">int</span>)
+</span></span><span style="display:flex;"><span>	<span style="color:#a6e22e">start</span>, <span style="color:#a6e22e">length</span> <span style="color:#f92672">:=</span> <span style="color:#ae81ff">0</span>, <span style="color:#a6e22e">math</span>.<span style="color:#a6e22e">MaxInt</span>
+</span></span><span style="display:flex;"><span>	<span style="color:#a6e22e">valid</span> <span style="color:#f92672">:=</span> <span style="color:#ae81ff">0</span>
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">for</span> <span style="color:#a6e22e">i</span> <span style="color:#f92672">:=</span> <span style="color:#66d9ef">range</span> <span style="color:#a6e22e">t</span> {
+</span></span><span style="display:flex;"><span>		<span style="color:#a6e22e">need</span>[<span style="color:#a6e22e">t</span>[<span style="color:#a6e22e">i</span>]]<span style="color:#f92672">++</span>
+</span></span><span style="display:flex;"><span>	}
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">for</span> <span style="color:#a6e22e">right</span> &lt; len(<span style="color:#a6e22e">s</span>) {
+</span></span><span style="display:flex;"><span>		<span style="color:#a6e22e">c</span> <span style="color:#f92672">:=</span> <span style="color:#a6e22e">s</span>[<span style="color:#a6e22e">right</span>]
+</span></span><span style="display:flex;"><span>		<span style="color:#a6e22e">right</span><span style="color:#f92672">++</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#75715e">//如果t中有c这个字符，就保存到窗口window中
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>		<span style="color:#66d9ef">if</span> <span style="color:#a6e22e">need</span>[<span style="color:#a6e22e">c</span>] <span style="color:#f92672">!=</span> <span style="color:#ae81ff">0</span> {
+</span></span><span style="display:flex;"><span>			<span style="color:#a6e22e">window</span>[<span style="color:#a6e22e">c</span>]<span style="color:#f92672">++</span>
+</span></span><span style="display:flex;"><span>            <span style="color:#75715e">//当window[c] == need[c]的时候，证明窗口window中包含了所有t中的c字符，valid++代表满足了t中的一个字符
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>			<span style="color:#66d9ef">if</span> <span style="color:#a6e22e">window</span>[<span style="color:#a6e22e">c</span>] <span style="color:#f92672">==</span> <span style="color:#a6e22e">need</span>[<span style="color:#a6e22e">c</span>] {
+</span></span><span style="display:flex;"><span>				<span style="color:#a6e22e">valid</span><span style="color:#f92672">++</span>
+</span></span><span style="display:flex;"><span>			}
+</span></span><span style="display:flex;"><span>		}
+</span></span><span style="display:flex;"><span>        <span style="color:#75715e">//当valid == len(need)就代表窗口中包含了t中的所有字符
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>		<span style="color:#66d9ef">for</span> <span style="color:#a6e22e">valid</span> <span style="color:#f92672">==</span> len(<span style="color:#a6e22e">need</span>) {
+</span></span><span style="display:flex;"><span>            <span style="color:#75715e">//要在窗口收缩之前记录符合条件的最优
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>			<span style="color:#66d9ef">if</span> <span style="color:#a6e22e">right</span><span style="color:#f92672">-</span><span style="color:#a6e22e">left</span> &lt; <span style="color:#a6e22e">end</span> {
+</span></span><span style="display:flex;"><span>				<span style="color:#a6e22e">length</span> = <span style="color:#a6e22e">right</span> <span style="color:#f92672">-</span> <span style="color:#a6e22e">left</span>
+</span></span><span style="display:flex;"><span>				<span style="color:#a6e22e">start</span> = <span style="color:#a6e22e">left</span>
+</span></span><span style="display:flex;"><span>			}
+</span></span><span style="display:flex;"><span>            <span style="color:#75715e">//收缩窗口，d是要从窗口删除的字符
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>			<span style="color:#a6e22e">d</span> <span style="color:#f92672">:=</span> <span style="color:#a6e22e">s</span>[<span style="color:#a6e22e">left</span>]
+</span></span><span style="display:flex;"><span>			<span style="color:#a6e22e">left</span><span style="color:#f92672">++</span>
+</span></span><span style="display:flex;"><span>            <span style="color:#75715e">//判断从窗口删除的字符是不是t中的字符
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>			<span style="color:#66d9ef">if</span> <span style="color:#a6e22e">need</span>[<span style="color:#a6e22e">d</span>] <span style="color:#f92672">!=</span> <span style="color:#ae81ff">0</span> {
+</span></span><span style="display:flex;"><span>                <span style="color:#75715e">//如果窗口中字符d的数量和t字符串中字符d的数量相同，删除d字符后，就不满足条件，故valid--
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>				<span style="color:#66d9ef">if</span> <span style="color:#a6e22e">window</span>[<span style="color:#a6e22e">d</span>] <span style="color:#f92672">==</span> <span style="color:#a6e22e">need</span>[<span style="color:#a6e22e">d</span>] {
+</span></span><span style="display:flex;"><span>					<span style="color:#a6e22e">valid</span><span style="color:#f92672">--</span>
+</span></span><span style="display:flex;"><span>				}
+</span></span><span style="display:flex;"><span>                <span style="color:#75715e">//反之，删除d字符后仍满足条件，valid无需处理，大循环继续
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>				<span style="color:#a6e22e">window</span>[<span style="color:#a6e22e">d</span>]<span style="color:#f92672">--</span>
+</span></span><span style="display:flex;"><span>			}
+</span></span><span style="display:flex;"><span>		}
+</span></span><span style="display:flex;"><span>	}
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">if</span> <span style="color:#a6e22e">length</span> <span style="color:#f92672">!=</span> <span style="color:#a6e22e">math</span>.<span style="color:#a6e22e">MaxInt</span> {
+</span></span><span style="display:flex;"><span>		<span style="color:#66d9ef">return</span> <span style="color:#a6e22e">s</span>[<span style="color:#a6e22e">start</span> : <span style="color:#a6e22e">start</span><span style="color:#f92672">+</span><span style="color:#a6e22e">length</span>]
+</span></span><span style="display:flex;"><span>	} <span style="color:#66d9ef">else</span> {
+</span></span><span style="display:flex;"><span>		<span style="color:#66d9ef">return</span> <span style="color:#e6db74">&#34;&#34;</span>
+</span></span><span style="display:flex;"><span>	}
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>go语言代码如上所示，但在编写的时候还要思考几个问题</p>
+<p>1、当移动 <code>right</code> 扩大窗口，即加入字符时，应该更新哪些数据？</p>
+<p>2、什么条件下，窗口应该暂停扩大，开始移动 <code>left</code> 缩小窗口？</p>
+<p>3、当移动 <code>left</code> 缩小窗口，即移出字符时，应该更新哪些数据？</p>
+<p>4、我们要的结果应该在扩大窗口时还是缩小窗口时进行更新？</p>
+<ul class="pa0">
+  
+   <li class="list di">
+     <a href="/tags/go" class="link f5 grow no-underline br-pill ba ph3 pv2 mb2 dib black sans-serif">Go</a>
+   </li>
+  
+   <li class="list di">
+     <a href="/tags/leetcode" class="link f5 grow no-underline br-pill ba ph3 pv2 mb2 dib black sans-serif">Leetcode</a>
+   </li>
+  
+</ul>
+<div class="mt6 instapaper_ignoref">
+      
+      
+      </div>
+    </div>
+
+    <aside class="w-30-l mt6-l">
+
+
+
+
+  <div class="bg-light-gray pa3 nested-list-reset nested-copy-line-height nested-links">
+    <p class="f5 b mb3">Related</p>
+    <ul class="pa0 list">
+	   
+	     <li  class="mb2">
+          <a href="/post/chapter-14/">豆豆的刷题日记（6）</a>
+        </li>
+	    
+	     <li  class="mb2">
+          <a href="/post/chapter-13/">豆豆的刷题日记（5）</a>
+        </li>
+	    
+	     <li  class="mb2">
+          <a href="/post/chapter-12/">豆豆的刷题日记（4）</a>
+        </li>
+	    
+	     <li  class="mb2">
+          <a href="/post/chapter-11/">豆豆的刷题日记（3）</a>
+        </li>
+	    
+	     <li  class="mb2">
+          <a href="/post/chapter-10/">豆豆的刷题日记（2）</a>
+        </li>
+	    
+	     <li  class="mb2">
+          <a href="/post/chapter-8/">豆豆的刷题日记（1）</a>
+        </li>
+	    
+	     <li  class="mb2">
+          <a href="/post/chapter-9/">Hugo 部署到GitHub Pages</a>
+        </li>
+	    
+	     <li  class="mb2">
+          <a href="/post/chapter-7/">第一次搭建Hugo</a>
+        </li>
+	    
+    </ul>
+</div>
+
+</aside>
+
+  </article>
+
+    </main>
+    <footer class="bg-black bottom-0 w-100 pa3" role="contentinfo">
+  <div class="flex justify-between">
+  <a class="f4 fw4 hover-white no-underline white-70 dn dib-ns pv2 ph3" href="https://quanzhidou.github.io" >
+    &copy;  Ananke 2022 
+  </a>
+    <div>
+<div class="ananke-socials">
+  
+    <a href="https://github.com/quanzhidou" target="_blank" class="github ananke-social-link link-transition stackoverflow link dib z-999 pt3 pt0-l mr1" title="GitHub link" rel="noopener" aria-label="follow on GitHub——Opens in a new window">
+      
+        <span class="icon"><svg style="enable-background:new 0 0 512 512;" version="1.1" viewBox="0 0 512 512"  xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" >
+  <path d="M256,32C132.3,32,32,134.8,32,261.7c0,101.5,64.2,187.5,153.2,217.9c11.2,2.1,15.3-5,15.3-11.1   c0-5.5-0.2-19.9-0.3-39.1c-62.3,13.9-75.5-30.8-75.5-30.8c-10.2-26.5-24.9-33.6-24.9-33.6c-20.3-14.3,1.5-14,1.5-14   c22.5,1.6,34.3,23.7,34.3,23.7c20,35.1,52.4,25,65.2,19.1c2-14.8,7.8-25,14.2-30.7c-49.7-5.8-102-25.5-102-113.5   c0-25.1,8.7-45.6,23-61.6c-2.3-5.8-10-29.2,2.2-60.8c0,0,18.8-6.2,61.6,23.5c17.9-5.1,37-7.6,56.1-7.7c19,0.1,38.2,2.6,56.1,7.7   c42.8-29.7,61.5-23.5,61.5-23.5c12.2,31.6,4.5,55,2.2,60.8c14.3,16.1,23,36.6,23,61.6c0,88.2-52.4,107.6-102.3,113.3   c8,7.1,15.2,21.1,15.2,42.5c0,30.7-0.3,55.5-0.3,63c0,6.1,4,13.3,15.4,11C415.9,449.1,480,363.1,480,261.7   C480,134.8,379.7,32,256,32z"/>
+</svg>
+</span>
+      
+<span class="new-window"><svg  height="8px"  style="enable-background:new 0 0 1000 1000;" version="1.1" viewBox="0 0 1000 1000"  xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" >
+<path d="M598 128h298v298h-86v-152l-418 418-60-60 418-418h-152v-86zM810 810v-298h86v298c0 46-40 86-86 86h-596c-48 0-86-40-86-86v-596c0-46 38-86 86-86h298v86h-298v596h596z" style="fill-rule:evenodd;clip-rule:evenodd;"/>
+</svg>
+</span></a>
+  
+</div>
+</div>
+  </div>
+</footer>
+
+  </body>
+</html>

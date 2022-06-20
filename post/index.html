@@ -137,6 +137,26 @@
       </div>
     
     <h1 class="f3 near-black">
+      <a href="/post/chapter-15/" class="link black dim">
+         豆豆的刷题日记（7）
+      </a>
+    </h1>
+    <div class="nested-links f5 lh-copy nested-copy-line-height">
+      豆豆的刷题日记（7）——双指针之滑动窗口 原理 滑动窗口就是维护一个窗口不断滑动，然后更新答案
+模板 func minWindow(s string, t string){ //left，right分别为滑动窗口的左右端点，并且是[left, right) left, right := 0, 0 //window为窗口中的数据，need为窗口中需要有的数据 window, need := make(map[byte]int), make(map[byte]int) //start保存最优解的左端点，length保存最优解的长度 start, length := 0, math.MaxInt //valid保存window中已经保存的数据的数量 valid := 0 //先将窗口需要有的数据存入need for i := range t { need[t[i]]++ } //循环结束的条件即是窗口滑动到最右端的时候 for right &lt; len(s) { //c是即将存入窗口的数据 c := s[right] //增大窗口 right++ //对窗口进行一系列数据更新 ... //判断左侧窗口给是否要收缩 for window needs shrink { //d是要移出窗口的数据 d := s[left] //缩小窗口 left++ //对窗口进行一系列数据更新 ... } } } 每一行的代码的具体意义已经写在注释中
+    </div>
+  </div>
+
+        </div>
+      
+        <div class="relative w-100 w-30-l mb4 bg-white">
+            <div class="mb3 pa4 mid-gray overflow-hidden">
+    
+      <div class="f6">
+        June 20, 2022
+      </div>
+    
+    <h1 class="f3 near-black">
       <a href="/post/chapter-14/" class="link black dim">
         豆豆的刷题日记（6）
       </a>
@@ -171,30 +191,6 @@ go语言代码 func removeDuplicates(nums []int) int { if len(nums) == 0 { retur
 类似问题 类似问题 leetcode 83题删除排序链表中的重复项
 思路 还是快慢指针技巧，与上题类似，只不过是将对数组的赋值操作变为对链表的删除操作
 go语言代码 func deleteDuplicates(head *ListNode) *ListNode { if head == nil { return nil } slow := head fast := head for fast !
-    </div>
-  </div>
-
-        </div>
-      
-        <div class="relative w-100 w-30-l mb4 bg-white">
-            <div class="mb3 pa4 mid-gray overflow-hidden">
-    
-      <div class="f6">
-        June 19, 2022
-      </div>
-    
-    <h1 class="f3 near-black">
-      <a href="/post/chapter-12/" class="link black dim">
-        豆豆的刷题日记（4）
-      </a>
-    </h1>
-    <div class="nested-links f5 lh-copy nested-copy-line-height">
-      豆豆的刷题日记（4） 递归的魔力（4）——反转链表最终版 leetcode 234题回文链表
-不多废话直接上思路
-第一步：找到中间节点主要思想为快慢指针 使用快慢指针这里会有一个问题，链表节点个数可能是奇数个也可能是偶数个，判断的方式就是fast节点最后的值是否为nil，如果fast节点最终的值是nil，证明链表节点为偶数个，如果不为空，则为奇数个节点，在这种情况下，slow指针还需要在走一步
-第二步：将以中间节点为头指针的链表反转 还是之前反转链表的思想，第一个变量pre记录当前节点的前驱节点，cur记录当前节点，next记录当前节点的下一个节点，最后返回反转后的头节点
-第三步：遍历这两个链表判断是否是回文链表 go语言代码
-func findMid(head *ListNode) *ListNode { slow := head fast := head for fast != nil &amp;&amp; fast.Next != nil { fast = fast.Next.Next slow = slow.Next } if fast != nil { slow = slow.Next } return slow } func reverse(head *ListNode) *ListNode { var pre *ListNode cur := head next := head for cur != nil { next = cur.
     </div>
   </div>
 

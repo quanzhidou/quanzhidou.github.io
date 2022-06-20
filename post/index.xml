@@ -8,6 +8,16 @@
     <language>en-us</language>
     <lastBuildDate>Thu, 02 Mar 2017 12:00:00 -0500</lastBuildDate><atom:link href="https://quanzhidou.github.io/post/index.xml" rel="self" type="application/rss+xml" />
     <item>
+      <title> 豆豆的刷题日记（7）</title>
+      <link>https://quanzhidou.github.io/post/chapter-15/</link>
+      <pubDate>Mon, 20 Jun 2022 16:32:30 +0800</pubDate>
+      
+      <guid>https://quanzhidou.github.io/post/chapter-15/</guid>
+      <description>豆豆的刷题日记（7）——双指针之滑动窗口 原理 滑动窗口就是维护一个窗口不断滑动，然后更新答案
+模板 func minWindow(s string, t string){ //left，right分别为滑动窗口的左右端点，并且是[left, right) left, right := 0, 0 //window为窗口中的数据，need为窗口中需要有的数据 window, need := make(map[byte]int), make(map[byte]int) //start保存最优解的左端点，length保存最优解的长度 start, length := 0, math.MaxInt //valid保存window中已经保存的数据的数量 valid := 0 //先将窗口需要有的数据存入need for i := range t { need[t[i]]++ } //循环结束的条件即是窗口滑动到最右端的时候 for right &amp;lt; len(s) { //c是即将存入窗口的数据 c := s[right] //增大窗口 right++ //对窗口进行一系列数据更新 ... //判断左侧窗口给是否要收缩 for window needs shrink { //d是要移出窗口的数据 d := s[left] //缩小窗口 left++ //对窗口进行一系列数据更新 ... } } } 每一行的代码的具体意义已经写在注释中</description>
+    </item>
+    
+    <item>
       <title>豆豆的刷题日记（6）</title>
       <link>https://quanzhidou.github.io/post/chapter-14/</link>
       <pubDate>Mon, 20 Jun 2022 01:15:08 +0800</pubDate>
