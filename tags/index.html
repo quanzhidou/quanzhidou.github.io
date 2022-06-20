@@ -143,6 +143,32 @@
       </div>
     
     <h1 class="f3 near-black">
+      <a href="/post/chapter-16/" class="link black dim">
+        豆豆的刷题日记（8）
+      </a>
+    </h1>
+    <div class="nested-links f5 lh-copy nested-copy-line-height">
+      豆豆的刷题日记（8）——双指针之滑动窗口 leetcode 567题字符串的排列
+思路 还是滑动窗口的思路，不过在套用模板之前还是要明确那四个问题
+1、当移动 right 扩大窗口，即加入字符时，应该更新哪些数据？
+2、什么条件下，窗口应该暂停扩大，开始移动 left 缩小窗口？
+3、当移动 left 缩小窗口，即移出字符时，应该更新哪些数据？
+4、我们要的结果应该在扩大窗口时还是缩小窗口时进行更新？
+先回答第二个问题，该题要确认s2是否包含s1的一个排列，既然是排列，当然是窗口的大小，即right - left 需要大于或等于s1字符串的长度
+第一个问题与第三个问题，其本质上与leetcode 76最小覆盖字串的对窗口进行的操作是一致的
+而何时返回这个问题，只要当valid == len(need)被满足时，就可以返回true，当窗口滑动到s2字符串最右端时仍不满足这个条件，证明s2中不包含s1的排列，返回false
+go语言代码 func checkInclusion(s1 string, s2 string) bool { left, right := 0, 0 valid := 0 window, need := make(map[byte]int), make(map[byte]int) for i := range s1 { need[s1[i]]++ } for right &lt; len(s2) { c := s2[right] right++ if need[c] != 0 { window[c]++ if window[c] == need[c] { valid++ } } for right-left &gt;= len(s1) { if valid == len(need) { return true } b := s2[left] left++ if need[b] !
+    </div>
+  </div>
+
+        
+            <div class="mb3 pa4 mid-gray overflow-hidden">
+    
+      <div class="f6">
+        June 20, 2022
+      </div>
+    
+    <h1 class="f3 near-black">
       <a href="/post/chapter-15/" class="link black dim">
          豆豆的刷题日记（7）
       </a>
@@ -395,6 +421,32 @@ cd localhost git clone https://github.com/theNewDynamic/gohugo-theme-ananke.git 
             Tag: leetcode
           </a>
         </h2>
+        
+            <div class="mb3 pa4 mid-gray overflow-hidden">
+    
+      <div class="f6">
+        June 20, 2022
+      </div>
+    
+    <h1 class="f3 near-black">
+      <a href="/post/chapter-16/" class="link black dim">
+        豆豆的刷题日记（8）
+      </a>
+    </h1>
+    <div class="nested-links f5 lh-copy nested-copy-line-height">
+      豆豆的刷题日记（8）——双指针之滑动窗口 leetcode 567题字符串的排列
+思路 还是滑动窗口的思路，不过在套用模板之前还是要明确那四个问题
+1、当移动 right 扩大窗口，即加入字符时，应该更新哪些数据？
+2、什么条件下，窗口应该暂停扩大，开始移动 left 缩小窗口？
+3、当移动 left 缩小窗口，即移出字符时，应该更新哪些数据？
+4、我们要的结果应该在扩大窗口时还是缩小窗口时进行更新？
+先回答第二个问题，该题要确认s2是否包含s1的一个排列，既然是排列，当然是窗口的大小，即right - left 需要大于或等于s1字符串的长度
+第一个问题与第三个问题，其本质上与leetcode 76最小覆盖字串的对窗口进行的操作是一致的
+而何时返回这个问题，只要当valid == len(need)被满足时，就可以返回true，当窗口滑动到s2字符串最右端时仍不满足这个条件，证明s2中不包含s1的排列，返回false
+go语言代码 func checkInclusion(s1 string, s2 string) bool { left, right := 0, 0 valid := 0 window, need := make(map[byte]int), make(map[byte]int) for i := range s1 { need[s1[i]]++ } for right &lt; len(s2) { c := s2[right] right++ if need[c] != 0 { window[c]++ if window[c] == need[c] { valid++ } } for right-left &gt;= len(s1) { if valid == len(need) { return true } b := s2[left] left++ if need[b] !
+    </div>
+  </div>
+
         
             <div class="mb3 pa4 mid-gray overflow-hidden">
     

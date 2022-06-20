@@ -137,6 +137,29 @@
       </div>
     
     <h1 class="f3 near-black">
+      <a href="/post/chapter-10/" class="link black dim">
+        豆豆的刷题日记（2）
+      </a>
+    </h1>
+    <div class="nested-links f5 lh-copy nested-copy-line-height">
+      豆豆的刷题日记（2） 递归的魔力（2）——反转链表进阶 反转链表前 N 个节点 思路和反转整个链表差不多，但需要稍微修改一下
+反转整个链表代码
+func reverseList(head *ListNode) *ListNode { if head == nil || head.Next == nil { return head } res := reverseList(head.Next) head.Next.Next = head head.Next = nil return res } 如图，需要修改的地方有返回的节点不同，不是最后一个节点，所以要记录一下后驱节点
+在反转整个链表的时候，最后直接将head.Next置为空，是因为将整个链表反转之后，原来的头节点就变成了最后一个节点，所以可以直接置为空，现在head节点反转后不一定时最后一个节点，所以要将head.Next设置为后驱节点
+go语言代码 var successor *ListNode func reverseN(head *ListNode, n int) *ListNode { if n == 1{ successor = head.Next return head } last := reverseN(head.Next, n - 1) head.Next.Next = head head.Next = successor return last } 反转一段区间内的链表 leetcode 92题反转链表Ⅱ
+    </div>
+  </div>
+
+        </div>
+      
+        <div class="relative w-100 w-30-l mb4 bg-white">
+            <div class="mb3 pa4 mid-gray overflow-hidden">
+    
+      <div class="f6">
+        June 18, 2022
+      </div>
+    
+    <h1 class="f3 near-black">
       <a href="/post/chapter-9/" class="link black dim">
         Hugo 部署到GitHub Pages
       </a>
@@ -183,30 +206,6 @@ go语言代码 func reverseList(head *ListNode) *ListNode { if head == nil || he
 
         </div>
       
-        <div class="relative w-100 w-30-l mb4 bg-white">
-            <div class="mb3 pa4 mid-gray overflow-hidden">
-    
-      <div class="f6">
-        June 16, 2022
-      </div>
-    
-    <h1 class="f3 near-black">
-      <a href="/post/chapter-7/" class="link black dim">
-        第一次搭建Hugo
-      </a>
-    </h1>
-    <div class="nested-links f5 lh-copy nested-copy-line-height">
-      Hugo搭建第一步——git获取源代码 在Hugo根目录下执行git clone https://github.com/spf13/hugo.git
-Hugo搭建第二步——编译 由于是在本地Windows操作系统搭建所以使用CGO_ENABLED=1 go install --tags extended命令 本地环境无CGO，所以还需要去 sourceforge下载x86_64-win32-seh版本 Hugo搭建第三步——创建网站 使用hugo new site sitename 其中sitename是你想创建的网站名字，执行完该指令后会在项目根目录下新建一个sitename文件夹
-Hugo搭建第四步——安装主题 先进入sitename文件夹：cd sitename 可以去Hugo themes选择心仪的主题 拉取主题到本地项目git clone 主题地址 /themes/主题名 根据read_me.md来安装主题 以本次Hugo搭建为例：
-cd localhost git clone https://github.com/theNewDynamic/gohugo-theme-ananke.git themes/ananke 然后将$root/localhost/themes/ananke/exampleSite/content里面的文件复制到 $root/localhost/content文件中 其中$root为项目根目录 将$root/localhost/themes/ananke/exampleSite/config.toml中的内容复制到 $root/localhost/config.toml中 将$root/localhost/config.toml文件中的theme的值设置为ananke（将默认主题设置为ananke） Hugo搭建第五步——启动服务器 由于在安装主题步骤中已经将默认主题设置好了，所以直接使用hugo server 命令即可启动服务器
-在本机Windows操作系统环境的实际搭建中，直接执行上述命令会报一个sass不能编译的错误，解决办法如下：
-​	在Hugo release中下载Windows_extend版本hugo_extended_0.100.2_Windows-64bit.zip（版本号可能会变化），下载解压到本地目录中，该压缩包中有一个Hugo.exe文件，然后使用本地目录/Hugo.exe server命令启动服务器，访问localhost:1313即可访问项目
-    </div>
-  </div>
-
-        </div>
-      
     </aside>
     
     <ul class="pagination pagination-default">
@@ -225,11 +224,14 @@ cd localhost git clone https://github.com/theNewDynamic/gohugo-theme-ananke.git 
       <li class="page-item active">
         <a aria-current="page" aria-label="Page 3" class="page-link" role="button">3</a>
       </li>
-      <li class="page-item disabled">
-        <a aria-disabled="true" aria-label="Next" class="page-link" role="button" tabindex="-1"><span aria-hidden="true">&raquo;</span></a>
+      <li class="page-item">
+        <a href="/post/page/4/" aria-label="Page 4" class="page-link" role="button">4</a>
       </li>
-      <li class="page-item disabled">
-        <a aria-disabled="true" aria-label="Last" class="page-link" role="button" tabindex="-1"><span aria-hidden="true">&raquo;&raquo;</span></a>
+      <li class="page-item">
+        <a href="/post/page/4/" aria-label="Next" class="page-link" role="button"><span aria-hidden="true">&raquo;</span></a>
+      </li>
+      <li class="page-item">
+        <a href="/post/page/4/" aria-label="Last" class="page-link" role="button"><span aria-hidden="true">&raquo;&raquo;</span></a>
       </li>
     </ul>
   </article>

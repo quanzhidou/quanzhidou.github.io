@@ -159,6 +159,39 @@
       
       <div class="blah w-100">
         <h1 class="f3 fw1 athelas mt0 lh-title">
+          <a href="/post/chapter-16/" class="color-inherit dim link">
+            豆豆的刷题日记（8）
+            </a>
+        </h1>
+        <div class="f6 f5-l lh-copy nested-copy-line-height nested-links">
+          豆豆的刷题日记（8）——双指针之滑动窗口 leetcode 567题字符串的排列
+思路 还是滑动窗口的思路，不过在套用模板之前还是要明确那四个问题
+1、当移动 right 扩大窗口，即加入字符时，应该更新哪些数据？
+2、什么条件下，窗口应该暂停扩大，开始移动 left 缩小窗口？
+3、当移动 left 缩小窗口，即移出字符时，应该更新哪些数据？
+4、我们要的结果应该在扩大窗口时还是缩小窗口时进行更新？
+先回答第二个问题，该题要确认s2是否包含s1的一个排列，既然是排列，当然是窗口的大小，即right - left 需要大于或等于s1字符串的长度
+第一个问题与第三个问题，其本质上与leetcode 76最小覆盖字串的对窗口进行的操作是一致的
+而何时返回这个问题，只要当valid == len(need)被满足时，就可以返回true，当窗口滑动到s2字符串最右端时仍不满足这个条件，证明s2中不包含s1的排列，返回false
+go语言代码 func checkInclusion(s1 string, s2 string) bool { left, right := 0, 0 valid := 0 window, need := make(map[byte]int), make(map[byte]int) for i := range s1 { need[s1[i]]++ } for right &lt; len(s2) { c := s2[right] right++ if need[c] != 0 { window[c]++ if window[c] == need[c] { valid++ } } for right-left &gt;= len(s1) { if valid == len(need) { return true } b := s2[left] left++ if need[b] !
+        </div>
+          <a href="/post/chapter-16/" class="ba b--moon-gray bg-light-gray br2 color-inherit dib f7 hover-bg-moon-gray link mt2 ph2 pv1">read more</a>
+        
+      </div>
+    </div>
+  </div>
+</article>
+
+          </div>
+        
+          <div class="relative w-100 mb4">
+            
+<article class="bb b--black-10">
+  <div class="db pv4 ph3 ph0-l no-underline dark-gray">
+    <div class="flex flex-column flex-row-ns">
+      
+      <div class="blah w-100">
+        <h1 class="f3 fw1 athelas mt0 lh-title">
           <a href="/post/chapter-15/" class="color-inherit dim link">
              豆豆的刷题日记（7）
             </a>
@@ -262,41 +295,18 @@ func findMid(head *ListNode) *ListNode { slow := head fast := head for fast != n
 
           </div>
         
-          <div class="relative w-100 mb4">
-            
-<article class="bb b--black-10">
-  <div class="db pv4 ph3 ph0-l no-underline dark-gray">
-    <div class="flex flex-column flex-row-ns">
-      
-      <div class="blah w-100">
-        <h1 class="f3 fw1 athelas mt0 lh-title">
-          <a href="/post/chapter-11/" class="color-inherit dim link">
-            豆豆的刷题日记（3）
-            </a>
-        </h1>
-        <div class="f6 f5-l lh-copy nested-copy-line-height nested-links">
-          豆豆的刷题日记（3） 递归的魔力（2）——反转链表进阶 leetcode 25题 K 个一组翻转链表
-分析 首先看函数定义reverseKGroup(head *ListNode, k int) *ListNode，其意义为将以head为头节点的链表按k个一组反转，最后返回反转后的头节点
-首先来看返回的新的头节点，以reverseKGroup(head, 2)为例
-如图所示，返回的新的头节点为newHead为第二个节点，也就是函数定义中的k参数，而将各个k区间反转后的链表连接起来还需要一个将head节点与第k + 1个节点相连的过程，这时我们需要一个将区间[left, right）的链表部分反转的函数
-反转区间[left, right）的链表 首先是函数签名，这个函数应该要有两个形参，分别代表left和right，函数定义reverseSection(left *ListNode, right *ListNode) *ListNode，函数内需要三个变量，第一个变量pre记录当前节点的前驱节点，cur记录当前节点，next记录当前节点的下一个节点
-go语言代码 func reverseSection(left *ListNode, right *ListNode) *ListNode{ var pre *ListNode cur := left next := left for cur != right{ next = cur.Next cur.Next = pre pre = cur cur = next } return pre } K 个一组翻转链表 go语言代码 func reverseKGroup(head *ListNode, k int) *ListNode { if head == nil{ return nil } left := head right := head for i := 0; i &lt; k; i++{ //当最后不够k个一组时，不反转链表 if right == nil{ return head } right = right.
-        </div>
-          <a href="/post/chapter-11/" class="ba b--moon-gray bg-light-gray br2 color-inherit dib f7 hover-bg-moon-gray link mt2 ph2 pv1">read more</a>
-        
-      </div>
-    </div>
-  </div>
-</article>
-
-          </div>
-        
       </section>
 
       
       <section class="w-100">
         <h1 class="f3">More</h1>
         
+        
+          <h2 class="f5 fw4 mb4 dib mr3">
+            <a href="/post/chapter-11/" class="link black dim">
+              豆豆的刷题日记（3）
+            </a>
+          </h2>
         
           <h2 class="f5 fw4 mb4 dib mr3">
             <a href="/post/chapter-10/" class="link black dim">
@@ -313,12 +323,6 @@ go语言代码 func reverseSection(left *ListNode, right *ListNode) *ListNode{ v
           <h2 class="f5 fw4 mb4 dib mr3">
             <a href="/post/chapter-8/" class="link black dim">
               豆豆的刷题日记（1）
-            </a>
-          </h2>
-        
-          <h2 class="f5 fw4 mb4 dib mr3">
-            <a href="/post/chapter-7/" class="link black dim">
-              第一次搭建Hugo
             </a>
           </h2>
         

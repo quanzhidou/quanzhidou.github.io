@@ -133,69 +133,21 @@
             <div class="mb3 pa4 mid-gray overflow-hidden">
     
       <div class="f6">
-        June 20, 2022
+        June 16, 2022
       </div>
     
     <h1 class="f3 near-black">
-      <a href="/post/chapter-13/" class="link black dim">
-        豆豆的刷题日记（5）
+      <a href="/post/chapter-7/" class="link black dim">
+        第一次搭建Hugo
       </a>
     </h1>
     <div class="nested-links f5 lh-copy nested-copy-line-height">
-      豆豆的刷题日记（5）——快慢指针秒杀数组问题 leetcode 26题删除有序数组中的重复项
-思路 直接使用快慢指针技巧，让fast指针走在前面，slow指针走在后面，因为是有序数组，所以重复项一定是连续的，所以只需要找到不重复项并赋值给nums[slow]即可，也就是说当nums[slow] != nums[fast]就将nums[fast]赋值给nums[slow]，最后返回不重复数组的长度即slow+1即可
-go语言代码 func removeDuplicates(nums []int) int { if len(nums) == 0 { return 0 } slow := 0 for fast := 0; fast &lt; len(nums); fast++ { if nums[slow] != nums[fast] { slow++ nums[slow] = nums[fast] } } return slow } 踩得坑 一开始以为返回的是数组最后元素的下标，没想到是返回数组的长度，看了好久。。。。
-类似问题 类似问题 leetcode 83题删除排序链表中的重复项
-思路 还是快慢指针技巧，与上题类似，只不过是将对数组的赋值操作变为对链表的删除操作
-go语言代码 func deleteDuplicates(head *ListNode) *ListNode { if head == nil { return nil } slow := head fast := head for fast !
-    </div>
-  </div>
-
-        </div>
-      
-        <div class="relative w-100 w-30-l mb4 bg-white">
-            <div class="mb3 pa4 mid-gray overflow-hidden">
-    
-      <div class="f6">
-        June 19, 2022
-      </div>
-    
-    <h1 class="f3 near-black">
-      <a href="/post/chapter-12/" class="link black dim">
-        豆豆的刷题日记（4）
-      </a>
-    </h1>
-    <div class="nested-links f5 lh-copy nested-copy-line-height">
-      豆豆的刷题日记（4） 递归的魔力（4）——反转链表最终版 leetcode 234题回文链表
-不多废话直接上思路
-第一步：找到中间节点主要思想为快慢指针 使用快慢指针这里会有一个问题，链表节点个数可能是奇数个也可能是偶数个，判断的方式就是fast节点最后的值是否为nil，如果fast节点最终的值是nil，证明链表节点为偶数个，如果不为空，则为奇数个节点，在这种情况下，slow指针还需要在走一步
-第二步：将以中间节点为头指针的链表反转 还是之前反转链表的思想，第一个变量pre记录当前节点的前驱节点，cur记录当前节点，next记录当前节点的下一个节点，最后返回反转后的头节点
-第三步：遍历这两个链表判断是否是回文链表 go语言代码
-func findMid(head *ListNode) *ListNode { slow := head fast := head for fast != nil &amp;&amp; fast.Next != nil { fast = fast.Next.Next slow = slow.Next } if fast != nil { slow = slow.Next } return slow } func reverse(head *ListNode) *ListNode { var pre *ListNode cur := head next := head for cur != nil { next = cur.
-    </div>
-  </div>
-
-        </div>
-      
-        <div class="relative w-100 w-30-l mb4 bg-white">
-            <div class="mb3 pa4 mid-gray overflow-hidden">
-    
-      <div class="f6">
-        June 18, 2022
-      </div>
-    
-    <h1 class="f3 near-black">
-      <a href="/post/chapter-11/" class="link black dim">
-        豆豆的刷题日记（3）
-      </a>
-    </h1>
-    <div class="nested-links f5 lh-copy nested-copy-line-height">
-      豆豆的刷题日记（3） 递归的魔力（2）——反转链表进阶 leetcode 25题 K 个一组翻转链表
-分析 首先看函数定义reverseKGroup(head *ListNode, k int) *ListNode，其意义为将以head为头节点的链表按k个一组反转，最后返回反转后的头节点
-首先来看返回的新的头节点，以reverseKGroup(head, 2)为例
-如图所示，返回的新的头节点为newHead为第二个节点，也就是函数定义中的k参数，而将各个k区间反转后的链表连接起来还需要一个将head节点与第k + 1个节点相连的过程，这时我们需要一个将区间[left, right）的链表部分反转的函数
-反转区间[left, right）的链表 首先是函数签名，这个函数应该要有两个形参，分别代表left和right，函数定义reverseSection(left *ListNode, right *ListNode) *ListNode，函数内需要三个变量，第一个变量pre记录当前节点的前驱节点，cur记录当前节点，next记录当前节点的下一个节点
-go语言代码 func reverseSection(left *ListNode, right *ListNode) *ListNode{ var pre *ListNode cur := left next := left for cur != right{ next = cur.Next cur.Next = pre pre = cur cur = next } return pre } K 个一组翻转链表 go语言代码 func reverseKGroup(head *ListNode, k int) *ListNode { if head == nil{ return nil } left := head right := head for i := 0; i &lt; k; i++{ //当最后不够k个一组时，不反转链表 if right == nil{ return head } right = right.
+      Hugo搭建第一步——git获取源代码 在Hugo根目录下执行git clone https://github.com/spf13/hugo.git
+Hugo搭建第二步——编译 由于是在本地Windows操作系统搭建所以使用CGO_ENABLED=1 go install --tags extended命令 本地环境无CGO，所以还需要去 sourceforge下载x86_64-win32-seh版本 Hugo搭建第三步——创建网站 使用hugo new site sitename 其中sitename是你想创建的网站名字，执行完该指令后会在项目根目录下新建一个sitename文件夹
+Hugo搭建第四步——安装主题 先进入sitename文件夹：cd sitename 可以去Hugo themes选择心仪的主题 拉取主题到本地项目git clone 主题地址 /themes/主题名 根据read_me.md来安装主题 以本次Hugo搭建为例：
+cd localhost git clone https://github.com/theNewDynamic/gohugo-theme-ananke.git themes/ananke 然后将$root/localhost/themes/ananke/exampleSite/content里面的文件复制到 $root/localhost/content文件中 其中$root为项目根目录 将$root/localhost/themes/ananke/exampleSite/config.toml中的内容复制到 $root/localhost/config.toml中 将$root/localhost/config.toml文件中的theme的值设置为ananke（将默认主题设置为ananke） Hugo搭建第五步——启动服务器 由于在安装主题步骤中已经将默认主题设置好了，所以直接使用hugo server 命令即可启动服务器
+在本机Windows操作系统环境的实际搭建中，直接执行上述命令会报一个sass不能编译的错误，解决办法如下：
+​	在Hugo release中下载Windows_extend版本hugo_extended_0.100.2_Windows-64bit.zip（版本号可能会变化），下载解压到本地目录中，该压缩包中有一个Hugo.exe文件，然后使用本地目录/Hugo.exe server命令启动服务器，访问localhost:1313即可访问项目
     </div>
   </div>
 
@@ -208,25 +160,25 @@ go语言代码 func reverseSection(left *ListNode, right *ListNode) *ListNode{ v
         <a href="/post/" aria-label="First" class="page-link" role="button"><span aria-hidden="true">&laquo;&laquo;</span></a>
       </li>
       <li class="page-item">
-        <a href="/post/" aria-label="Previous" class="page-link" role="button"><span aria-hidden="true">&laquo;</span></a>
+        <a href="/post/page/3/" aria-label="Previous" class="page-link" role="button"><span aria-hidden="true">&laquo;</span></a>
       </li>
       <li class="page-item">
         <a href="/post/" aria-label="Page 1" class="page-link" role="button">1</a>
       </li>
-      <li class="page-item active">
-        <a aria-current="page" aria-label="Page 2" class="page-link" role="button">2</a>
+      <li class="page-item">
+        <a href="/post/page/2/" aria-label="Page 2" class="page-link" role="button">2</a>
       </li>
       <li class="page-item">
         <a href="/post/page/3/" aria-label="Page 3" class="page-link" role="button">3</a>
       </li>
-      <li class="page-item">
-        <a href="/post/page/4/" aria-label="Page 4" class="page-link" role="button">4</a>
+      <li class="page-item active">
+        <a aria-current="page" aria-label="Page 4" class="page-link" role="button">4</a>
       </li>
-      <li class="page-item">
-        <a href="/post/page/3/" aria-label="Next" class="page-link" role="button"><span aria-hidden="true">&raquo;</span></a>
+      <li class="page-item disabled">
+        <a aria-disabled="true" aria-label="Next" class="page-link" role="button" tabindex="-1"><span aria-hidden="true">&raquo;</span></a>
       </li>
-      <li class="page-item">
-        <a href="/post/page/4/" aria-label="Last" class="page-link" role="button"><span aria-hidden="true">&raquo;&raquo;</span></a>
+      <li class="page-item disabled">
+        <a aria-disabled="true" aria-label="Last" class="page-link" role="button" tabindex="-1"><span aria-hidden="true">&raquo;&raquo;</span></a>
       </li>
     </ul>
   </article>
