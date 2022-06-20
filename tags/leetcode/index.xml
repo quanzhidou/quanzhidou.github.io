@@ -6,7 +6,19 @@
     <description>Recent content in Leetcode on Ananke</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Mon, 20 Jun 2022 19:16:29 +0800</lastBuildDate><atom:link href="https://quanzhidou.github.io/tags/leetcode/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Mon, 20 Jun 2022 21:07:39 +0800</lastBuildDate><atom:link href="https://quanzhidou.github.io/tags/leetcode/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>豆豆的刷题日记（10）</title>
+      <link>https://quanzhidou.github.io/post/chapter-18/</link>
+      <pubDate>Mon, 20 Jun 2022 21:07:39 +0800</pubDate>
+      
+      <guid>https://quanzhidou.github.io/post/chapter-18/</guid>
+      <description>豆豆的刷题日记（10）——双指针之滑动窗口 leetcode 3题无重复字符的最长字串
+思路 这题比较关键的点在于窗口收缩的条件以及何时更新最大值，首先来看窗口扩大的过程
+首先用一个名为window的map来记录窗口中的字符及数量，而窗口何时收缩呢，当窗口中的字符数量大于1的时候则开始收缩，即window[c] &amp;gt; 1的时候left++，然后将s[left]从窗口中删去；因为窗口收缩时由条件（即window[c] &amp;gt; 1）得知，窗口收缩时是有重复字符的，这时候如果记录窗口长度是不符合题目条件的，所以需要在窗口收缩后在更新最大值
+go语言代码 func lengthOfLongestSubstring(s string) int { left, right := 0, 0 window := make(map[byte]int) length := math.MinInt for right &amp;lt; len(s) { c := s[right] right++ window[c]++ for window[c] &amp;gt; 1 { d := s[left] left++ window[d]-- } if length &amp;lt; right-left { length = right - left } } if length != math.MinInt { return length } else { return 0 } } 总结 滑动窗口其实原理很简单，但是有很多细节问题难以处理，通过对滑动窗口问题的总结出的模板，在做滑动窗口的相关问题时只需考虑以下四个问题</description>
+    </item>
+    
     <item>
       <title>豆豆的刷题日记（9）</title>
       <link>https://quanzhidou.github.io/post/chapter-17/</link>

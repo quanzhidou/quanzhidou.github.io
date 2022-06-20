@@ -137,6 +137,28 @@
       </div>
     
     <h1 class="f3 near-black">
+      <a href="/post/chapter-18/" class="link black dim">
+        豆豆的刷题日记（10）
+      </a>
+    </h1>
+    <div class="nested-links f5 lh-copy nested-copy-line-height">
+      豆豆的刷题日记（10）——双指针之滑动窗口 leetcode 3题无重复字符的最长字串
+思路 这题比较关键的点在于窗口收缩的条件以及何时更新最大值，首先来看窗口扩大的过程
+首先用一个名为window的map来记录窗口中的字符及数量，而窗口何时收缩呢，当窗口中的字符数量大于1的时候则开始收缩，即window[c] &gt; 1的时候left++，然后将s[left]从窗口中删去；因为窗口收缩时由条件（即window[c] &gt; 1）得知，窗口收缩时是有重复字符的，这时候如果记录窗口长度是不符合题目条件的，所以需要在窗口收缩后在更新最大值
+go语言代码 func lengthOfLongestSubstring(s string) int { left, right := 0, 0 window := make(map[byte]int) length := math.MinInt for right &lt; len(s) { c := s[right] right++ window[c]++ for window[c] &gt; 1 { d := s[left] left++ window[d]-- } if length &lt; right-left { length = right - left } } if length != math.MinInt { return length } else { return 0 } } 总结 滑动窗口其实原理很简单，但是有很多细节问题难以处理，通过对滑动窗口问题的总结出的模板，在做滑动窗口的相关问题时只需考虑以下四个问题
+    </div>
+  </div>
+
+        </div>
+      
+        <div class="relative w-100 w-30-l mb4 bg-white">
+            <div class="mb3 pa4 mid-gray overflow-hidden">
+    
+      <div class="f6">
+        June 20, 2022
+      </div>
+    
+    <h1 class="f3 near-black">
       <a href="/post/chapter-17/" class="link black dim">
         豆豆的刷题日记（9）
       </a>
@@ -173,26 +195,6 @@ go语言代码 func findAnagrams(s string, p string) []int { left, right := 0, 0
 第一个问题与第三个问题，其本质上与leetcode 76最小覆盖字串的对窗口进行的操作是一致的
 而何时返回这个问题，只要当valid == len(need)被满足时，就可以返回true，当窗口滑动到s2字符串最右端时仍不满足这个条件，证明s2中不包含s1的排列，返回false
 go语言代码 func checkInclusion(s1 string, s2 string) bool { left, right := 0, 0 valid := 0 window, need := make(map[byte]int), make(map[byte]int) for i := range s1 { need[s1[i]]++ } for right &lt; len(s2) { c := s2[right] right++ if need[c] != 0 { window[c]++ if window[c] == need[c] { valid++ } } for right-left &gt;= len(s1) { if valid == len(need) { return true } b := s2[left] left++ if need[b] !
-    </div>
-  </div>
-
-        </div>
-      
-        <div class="relative w-100 w-30-l mb4 bg-white">
-            <div class="mb3 pa4 mid-gray overflow-hidden">
-    
-      <div class="f6">
-        June 20, 2022
-      </div>
-    
-    <h1 class="f3 near-black">
-      <a href="/post/chapter-15/" class="link black dim">
-         豆豆的刷题日记（7）
-      </a>
-    </h1>
-    <div class="nested-links f5 lh-copy nested-copy-line-height">
-      豆豆的刷题日记（7）——双指针之滑动窗口 原理 滑动窗口就是维护一个窗口不断滑动，然后更新答案
-模板 func minWindow(s string, t string){ //left，right分别为滑动窗口的左右端点，并且是[left, right) left, right := 0, 0 //window为窗口中的数据，need为窗口中需要有的数据 window, need := make(map[byte]int), make(map[byte]int) //start保存最优解的左端点，length保存最优解的长度 start, length := 0, math.MaxInt //valid保存window中已经保存的数据的数量 valid := 0 //先将窗口需要有的数据存入need for i := range t { need[t[i]]++ } //循环结束的条件即是窗口滑动到最右端的时候 for right &lt; len(s) { //c是即将存入窗口的数据 c := s[right] //增大窗口 right++ //对窗口进行一系列数据更新 ... //判断左侧窗口给是否要收缩 for window needs shrink { //d是要移出窗口的数据 d := s[left] //缩小窗口 left++ //对窗口进行一系列数据更新 ... } } } 每一行的代码的具体意义已经写在注释中
     </div>
   </div>
 
