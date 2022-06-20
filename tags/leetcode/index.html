@@ -137,6 +137,27 @@
       </div>
     
     <h1 class="f3 near-black">
+      <a href="/post/chapter-17/" class="link black dim">
+        豆豆的刷题日记（9）
+      </a>
+    </h1>
+    <div class="nested-links f5 lh-copy nested-copy-line-height">
+      豆豆的刷题日记（9）——双指针之滑动窗口 leetcode 438题找到所有字母异位词
+思路 和leetcode 567题字符串的排列的思路一样，只需设置一个结果数组，在567题返回结果为true时不直接返回，而是记录到结果数组里即可
+go语言代码 func findAnagrams(s string, p string) []int { left, right := 0, 0 window, need := make(map[byte]int), make(map[byte]int) valid := 0 var start []int for i := range p { need[p[i]]++ } for right &lt; len(s) { c := s[right] right++ if need[c] != 0 { window[c]++ if window[c] == need[c] { valid++ } } for right-left &gt;= len(p) { if valid == len(need) { //这里不直接返回，记录到结果数组里 start = append(start, left) } d := s[left] left++ if need[d] !
+    </div>
+  </div>
+
+        </div>
+      
+        <div class="relative w-100  mb4 bg-white">
+            <div class="mb3 pa4 mid-gray overflow-hidden">
+    
+      <div class="f6">
+        June 20, 2022
+      </div>
+    
+    <h1 class="f3 near-black">
       <a href="/post/chapter-16/" class="link black dim">
         豆豆的刷题日记（8）
       </a>
