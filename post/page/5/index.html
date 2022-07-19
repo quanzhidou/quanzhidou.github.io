@@ -133,68 +133,21 @@
             <div class="mb3 pa4 mid-gray overflow-hidden">
     
       <div class="f6">
-        June 20, 2022
+        June 16, 2022
       </div>
     
     <h1 class="f3 near-black">
-      <a href="/post/chapter-16/" class="link black dim">
-        豆豆的刷题日记（8）
+      <a href="/post/chapter-7/" class="link black dim">
+        第一次搭建Hugo
       </a>
     </h1>
     <div class="nested-links f5 lh-copy nested-copy-line-height">
-      豆豆的刷题日记（8）——双指针之滑动窗口 leetcode 567题字符串的排列
-思路 还是滑动窗口的思路，不过在套用模板之前还是要明确那四个问题
-1、当移动 right 扩大窗口，即加入字符时，应该更新哪些数据？
-2、什么条件下，窗口应该暂停扩大，开始移动 left 缩小窗口？
-3、当移动 left 缩小窗口，即移出字符时，应该更新哪些数据？
-4、我们要的结果应该在扩大窗口时还是缩小窗口时进行更新？
-先回答第二个问题，该题要确认s2是否包含s1的一个排列，既然是排列，当然是窗口的大小，即right - left 需要大于或等于s1字符串的长度
-第一个问题与第三个问题，其本质上与leetcode 76最小覆盖字串的对窗口进行的操作是一致的
-而何时返回这个问题，只要当valid == len(need)被满足时，就可以返回true，当窗口滑动到s2字符串最右端时仍不满足这个条件，证明s2中不包含s1的排列，返回false
-go语言代码 func checkInclusion(s1 string, s2 string) bool { left, right := 0, 0 valid := 0 window, need := make(map[byte]int), make(map[byte]int) for i := range s1 { need[s1[i]]++ } for right &lt; len(s2) { c := s2[right] right++ if need[c] != 0 { window[c]++ if window[c] == need[c] { valid++ } } for right-left &gt;= len(s1) { if valid == len(need) { return true } b := s2[left] left++ if need[b] !
-    </div>
-  </div>
-
-        </div>
-      
-        <div class="relative w-100 w-30-l mb4 bg-white">
-            <div class="mb3 pa4 mid-gray overflow-hidden">
-    
-      <div class="f6">
-        June 20, 2022
-      </div>
-    
-    <h1 class="f3 near-black">
-      <a href="/post/chapter-15/" class="link black dim">
-         豆豆的刷题日记（7）
-      </a>
-    </h1>
-    <div class="nested-links f5 lh-copy nested-copy-line-height">
-      豆豆的刷题日记（7）——双指针之滑动窗口 原理 滑动窗口就是维护一个窗口不断滑动，然后更新答案
-模板 func minWindow(s string, t string){ //left，right分别为滑动窗口的左右端点，并且是[left, right) left, right := 0, 0 //window为窗口中的数据，need为窗口中需要有的数据 window, need := make(map[byte]int), make(map[byte]int) //start保存最优解的左端点，length保存最优解的长度 start, length := 0, math.MaxInt //valid保存window中已经保存的数据的数量 valid := 0 //先将窗口需要有的数据存入need for i := range t { need[t[i]]++ } //循环结束的条件即是窗口滑动到最右端的时候 for right &lt; len(s) { //c是即将存入窗口的数据 c := s[right] //增大窗口 right++ //对窗口进行一系列数据更新 ... //判断左侧窗口给是否要收缩 for window needs shrink { //d是要移出窗口的数据 d := s[left] //缩小窗口 left++ //对窗口进行一系列数据更新 ... } } } 每一行的代码的具体意义已经写在注释中
-    </div>
-  </div>
-
-        </div>
-      
-        <div class="relative w-100 w-30-l mb4 bg-white">
-            <div class="mb3 pa4 mid-gray overflow-hidden">
-    
-      <div class="f6">
-        June 20, 2022
-      </div>
-    
-    <h1 class="f3 near-black">
-      <a href="/post/chapter-14/" class="link black dim">
-        豆豆的刷题日记（6）
-      </a>
-    </h1>
-    <div class="nested-links f5 lh-copy nested-copy-line-height">
-      豆豆的刷题日记（6）——快慢指针秒杀数组问题 快慢指针解决移除元素问题 leetcode 27题移除元素
-思路 还是快慢指针的思路，让fast指针走在前面，当nums[fast] != val的时候赋值给nums[slow]，但是这里有一个细节问题，就是先给nums[slow]赋值，然后在让slow++，这样做可以避免数组的开头就是val的情况，这时slow就是数组的长度
-go语言代码 func removeElement(nums []int, val int) int { if len(nums) == 0 { return 0 } slow := 0 for fast := 0; fast &lt; len(nums); fast++ { if nums[fast] != val { nums[slow] = nums[fast] slow++ } } return slow } 移除元素衍生问题 leetcode 283题移动0
-思路 移动零的问题就相当于上题中将要移除的元素设置为零，然后将移除完元素的数组后面的元素都设置为零
-go语言代码 func removeElement(nums []int, val int) int { p := removeElement(nums, 0); for ; p &lt; len(nums); p++{ nums[p] = 0 } } 其中removeElement函数见上题
+      Hugo搭建第一步——git获取源代码 在Hugo根目录下执行git clone https://github.com/spf13/hugo.git
+Hugo搭建第二步——编译 由于是在本地Windows操作系统搭建所以使用CGO_ENABLED=1 go install --tags extended命令 本地环境无CGO，所以还需要去 sourceforge下载x86_64-win32-seh版本 Hugo搭建第三步——创建网站 使用hugo new site sitename 其中sitename是你想创建的网站名字，执行完该指令后会在项目根目录下新建一个sitename文件夹
+Hugo搭建第四步——安装主题 先进入sitename文件夹：cd sitename 可以去Hugo themes选择心仪的主题 拉取主题到本地项目git clone 主题地址 /themes/主题名 根据read_me.md来安装主题 以本次Hugo搭建为例：
+cd localhost git clone https://github.com/theNewDynamic/gohugo-theme-ananke.git themes/ananke 然后将$root/localhost/themes/ananke/exampleSite/content里面的文件复制到 $root/localhost/content文件中 其中$root为项目根目录 将$root/localhost/themes/ananke/exampleSite/config.toml中的内容复制到 $root/localhost/config.toml中 将$root/localhost/config.toml文件中的theme的值设置为ananke（将默认主题设置为ananke） Hugo搭建第五步——启动服务器 由于在安装主题步骤中已经将默认主题设置好了，所以直接使用hugo server 命令即可启动服务器
+在本机Windows操作系统环境的实际搭建中，直接执行上述命令会报一个sass不能编译的错误，解决办法如下：
+​	在Hugo release中下载Windows_extend版本hugo_extended_0.100.2_Windows-64bit.zip（版本号可能会变化），下载解压到本地目录中，该压缩包中有一个Hugo.exe文件，然后使用本地目录/Hugo.exe server命令启动服务器，访问localhost:1313即可访问项目
     </div>
   </div>
 
@@ -207,13 +160,13 @@ go语言代码 func removeElement(nums []int, val int) int { p := removeElement(
         <a href="/post/" aria-label="First" class="page-link" role="button"><span aria-hidden="true">&laquo;&laquo;</span></a>
       </li>
       <li class="page-item">
-        <a href="/post/" aria-label="Previous" class="page-link" role="button"><span aria-hidden="true">&laquo;</span></a>
+        <a href="/post/page/4/" aria-label="Previous" class="page-link" role="button"><span aria-hidden="true">&laquo;</span></a>
       </li>
       <li class="page-item">
         <a href="/post/" aria-label="Page 1" class="page-link" role="button">1</a>
       </li>
-      <li class="page-item active">
-        <a aria-current="page" aria-label="Page 2" class="page-link" role="button">2</a>
+      <li class="page-item">
+        <a href="/post/page/2/" aria-label="Page 2" class="page-link" role="button">2</a>
       </li>
       <li class="page-item">
         <a href="/post/page/3/" aria-label="Page 3" class="page-link" role="button">3</a>
@@ -221,14 +174,14 @@ go语言代码 func removeElement(nums []int, val int) int { p := removeElement(
       <li class="page-item">
         <a href="/post/page/4/" aria-label="Page 4" class="page-link" role="button">4</a>
       </li>
-      <li class="page-item">
-        <a href="/post/page/5/" aria-label="Page 5" class="page-link" role="button">5</a>
+      <li class="page-item active">
+        <a aria-current="page" aria-label="Page 5" class="page-link" role="button">5</a>
       </li>
-      <li class="page-item">
-        <a href="/post/page/3/" aria-label="Next" class="page-link" role="button"><span aria-hidden="true">&raquo;</span></a>
+      <li class="page-item disabled">
+        <a aria-disabled="true" aria-label="Next" class="page-link" role="button" tabindex="-1"><span aria-hidden="true">&raquo;</span></a>
       </li>
-      <li class="page-item">
-        <a href="/post/page/5/" aria-label="Last" class="page-link" role="button"><span aria-hidden="true">&raquo;&raquo;</span></a>
+      <li class="page-item disabled">
+        <a aria-disabled="true" aria-label="Last" class="page-link" role="button" tabindex="-1"><span aria-hidden="true">&raquo;&raquo;</span></a>
       </li>
     </ul>
   </article>

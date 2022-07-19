@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     <link rel="shortcut icon" href="../../images/star.png" type="image/x-icon"/>
     
-    <title>Articles | Ananke</title>
+    <title>DataStruct | Ananke</title>
     <meta name="viewport" content="width=device-width,minimum-scale=1">
     <meta name="description" content="记录生活，分享快乐">
     <meta name="generator" content="Hugo 0.101.0-DEV" />
@@ -30,19 +30,19 @@
 
     
     
-      <link href="/post/index.xml" rel="alternate" type="application/rss+xml" title="Ananke" />
-      <link href="/post/index.xml" rel="feed" type="application/rss+xml" title="Ananke" />
+      <link href="/tags/datastruct/index.xml" rel="alternate" type="application/rss+xml" title="Ananke" />
+      <link href="/tags/datastruct/index.xml" rel="feed" type="application/rss+xml" title="Ananke" />
       
     
     
-    <meta property="og:title" content="Articles" />
+    <meta property="og:title" content="DataStruct" />
 <meta property="og:description" content="记录生活，分享快乐" />
 <meta property="og:type" content="website" />
-<meta property="og:url" content="https://quanzhidou.github.io/post/" /><meta property="og:site_name" content="Ananke" />
+<meta property="og:url" content="https://quanzhidou.github.io/tags/datastruct/" /><meta property="og:site_name" content="Ananke" />
 
-<meta itemprop="name" content="Articles">
+<meta itemprop="name" content="DataStruct">
 <meta itemprop="description" content="记录生活，分享快乐"><meta name="twitter:card" content="summary"/>
-<meta name="twitter:title" content="Articles"/>
+<meta name="twitter:title" content="DataStruct"/>
 <meta name="twitter:description" content="记录生活，分享快乐"/>
 
 	
@@ -111,7 +111,7 @@
 
       <div class="tc-l pv4 pv6-l ph3 ph4-ns">
         <h1 class="f2 f-subheadline-l fw2 white-90 mb0 lh-title">
-          Articles
+          DataStruct
         </h1>
         
       </div>
@@ -121,15 +121,15 @@
 
     <main class="pb7" role="main">
       
-
-  <article class="pa3 pa4-ns nested-copy-line-height">
-    <section class="cf ph3 ph5-l pv3 pv4-l f4 tc-l center measure-wide lh-copy mid-gray">
-      <p>Articles are paginated with only three posts here for example. You can set the number of entries to show on this page with the &ldquo;pagination&rdquo; setting in the config file.</p>
-
-    </section>
-    <aside class="flex-ns flex-wrap justify-around mt5">
+  <article class="cf pa3 pa4-m pa4-l">
+    <div class="measure-wide-l center f4 lh-copy nested-copy-line-height nested-links mid-gray">
+      <p>Below you will find pages that utilize the taxonomy term “DataStruct”</p>
+    </div>
+  </article>
+  <div class="mw8 center">
+    <section class="flex-ns flex-wrap justify-around mt5">
       
-        <div class="relative w-100 w-30-l mb4 bg-white">
+        <div class="relative w-100  mb4 bg-white">
             <div class="mb3 pa4 mid-gray overflow-hidden">
     
       <div class="f6">
@@ -151,81 +151,8 @@ func KMP(s, t string) int{ next := getNext(t) i, j := 0, 0 for i &lt; len(s) &am
 
         </div>
       
-        <div class="relative w-100 w-30-l mb4 bg-white">
-            <div class="mb3 pa4 mid-gray overflow-hidden">
-    
-      <div class="f6">
-        June 20, 2022
-      </div>
-    
-    <h1 class="f3 near-black">
-      <a href="/post/chapter-18/" class="link black dim">
-        豆豆的刷题日记（10）
-      </a>
-    </h1>
-    <div class="nested-links f5 lh-copy nested-copy-line-height">
-      豆豆的刷题日记（10）——双指针之滑动窗口 leetcode 3题无重复字符的最长字串
-思路 这题比较关键的点在于窗口收缩的条件以及何时更新最大值，首先来看窗口扩大的过程
-首先用一个名为window的map来记录窗口中的字符及数量，而窗口何时收缩呢，当窗口中的字符数量大于1的时候则开始收缩，即window[c] &gt; 1的时候left++，然后将s[left]从窗口中删去；因为窗口收缩时由条件（即window[c] &gt; 1）得知，窗口收缩时是有重复字符的，这时候如果记录窗口长度是不符合题目条件的，所以需要在窗口收缩后在更新最大值
-go语言代码 func lengthOfLongestSubstring(s string) int { left, right := 0, 0 window := make(map[byte]int) length := math.MinInt for right &lt; len(s) { c := s[right] right++ window[c]++ for window[c] &gt; 1 { d := s[left] left++ window[d]-- } if length &lt; right-left { length = right - left } } if length != math.MinInt { return length } else { return 0 } } 总结 滑动窗口其实原理很简单，但是有很多细节问题难以处理，通过对滑动窗口问题的总结出的模板，在做滑动窗口的相关问题时只需考虑以下四个问题
-    </div>
+    </section>
   </div>
-
-        </div>
-      
-        <div class="relative w-100 w-30-l mb4 bg-white">
-            <div class="mb3 pa4 mid-gray overflow-hidden">
-    
-      <div class="f6">
-        June 20, 2022
-      </div>
-    
-    <h1 class="f3 near-black">
-      <a href="/post/chapter-17/" class="link black dim">
-        豆豆的刷题日记（9）
-      </a>
-    </h1>
-    <div class="nested-links f5 lh-copy nested-copy-line-height">
-      豆豆的刷题日记（9）——双指针之滑动窗口 leetcode 438题找到所有字母异位词
-思路 和leetcode 567题字符串的排列的思路一样，只需设置一个结果数组，在567题返回结果为true时不直接返回，而是记录到结果数组里即可
-go语言代码 func findAnagrams(s string, p string) []int { left, right := 0, 0 window, need := make(map[byte]int), make(map[byte]int) valid := 0 var start []int for i := range p { need[p[i]]++ } for right &lt; len(s) { c := s[right] right++ if need[c] != 0 { window[c]++ if window[c] == need[c] { valid++ } } for right-left &gt;= len(p) { if valid == len(need) { //这里不直接返回，记录到结果数组里 start = append(start, left) } d := s[left] left++ if need[d] !
-    </div>
-  </div>
-
-        </div>
-      
-    </aside>
-    
-    <ul class="pagination pagination-default">
-      <li class="page-item disabled">
-        <a aria-disabled="true" aria-label="First" class="page-link" role="button" tabindex="-1"><span aria-hidden="true">&laquo;&laquo;</span></a>
-      </li>
-      <li class="page-item disabled">
-        <a aria-disabled="true" aria-label="Previous" class="page-link" role="button" tabindex="-1"><span aria-hidden="true">&laquo;</span></a>
-      </li>
-      <li class="page-item active">
-        <a aria-current="page" aria-label="Page 1" class="page-link" role="button">1</a>
-      </li>
-      <li class="page-item">
-        <a href="/post/page/2/" aria-label="Page 2" class="page-link" role="button">2</a>
-      </li>
-      <li class="page-item">
-        <a href="/post/page/3/" aria-label="Page 3" class="page-link" role="button">3</a>
-      </li>
-      <li class="page-item">
-        <a href="/post/page/4/" aria-label="Page 4" class="page-link" role="button">4</a>
-      </li>
-      <li class="page-item">
-        <a href="/post/page/5/" aria-label="Page 5" class="page-link" role="button">5</a>
-      </li>
-      <li class="page-item">
-        <a href="/post/page/2/" aria-label="Next" class="page-link" role="button"><span aria-hidden="true">&raquo;</span></a>
-      </li>
-      <li class="page-item">
-        <a href="/post/page/5/" aria-label="Last" class="page-link" role="button"><span aria-hidden="true">&raquo;&raquo;</span></a>
-      </li>
-    </ul>
-  </article>
 
     </main>
     <footer class="bg-black bottom-0 w-100 pa3" role="contentinfo">

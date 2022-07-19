@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>DataStruct on Ananke</title>
+    <link>https://quanzhidou.github.io/tags/datastruct/</link>
+    <description>Recent content in DataStruct on Ananke</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Tue, 19 Jul 2022 23:11:43 +0800</lastBuildDate><atom:link href="https://quanzhidou.github.io/tags/datastruct/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>KMP算法</title>
+      <link>https://quanzhidou.github.io/post/chapter-19/</link>
+      <pubDate>Tue, 19 Jul 2022 23:11:43 +0800</pubDate>
+      
+      <guid>https://quanzhidou.github.io/post/chapter-19/</guid>
+      <description>回炉重造数据结构之——KMP算法 原理：暴力匹配有很大的弊端，当发生某个字符匹配不到的时候，主串的索引i与模式串的索引j都要回溯，可是每次匹配时，索引j前面的模式串已经匹配过了，根据这个匹配结果，主串的索引i就可以避免回溯，在进行匹配之前，我们需要对模式串进行处理，求出模式串中每一个位置的前缀与后缀相等的最大长度。
+获取next数组代码
+func getNext(t string) []int{ next := make([]int, 0) next = append(next, 0) i, prefixLen := 1, 0 //prefixLen为最大公共前后缀长度，初始为0 for i &amp;lt; len(t){ if t[prefixLen] == t[i]{//如果匹配上最大公共前后缀长度+1，并记录到next中 prefixLen++ next = append(next, prefixLen) i++ }else{ if prefixLen == 0{ next = append(next, 0) i++ }else{ prefixLen = next[prefixLen - 1] } } } } KMP
+func KMP(s, t string) int{ next := getNext(t) i, j := 0, 0 for i &amp;lt; len(s) &amp;amp;&amp;amp; j &amp;lt; len(t){ if s[i] == t[j]{ i++ j++ }else if j &amp;gt; 0{ j = next[j - 1] }else{ i++ } } if j &amp;gt;= len(t) { return i - j } else { return -1 } } </description>
+    </item>
+    
+  </channel>
+</rss>

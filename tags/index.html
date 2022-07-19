@@ -131,10 +131,57 @@
     <section class="ph4">
       
         <h2 class="f1">
+          <a href="/tags/datastruct" class="link blue hover-black">
+            Tag: datastruct
+          </a>
+        </h2>
+        
+            <div class="mb3 pa4 mid-gray overflow-hidden">
+    
+      <div class="f6">
+        July 19, 2022
+      </div>
+    
+    <h1 class="f3 near-black">
+      <a href="/post/chapter-19/" class="link black dim">
+        KMP算法
+      </a>
+    </h1>
+    <div class="nested-links f5 lh-copy nested-copy-line-height">
+      回炉重造数据结构之——KMP算法 原理：暴力匹配有很大的弊端，当发生某个字符匹配不到的时候，主串的索引i与模式串的索引j都要回溯，可是每次匹配时，索引j前面的模式串已经匹配过了，根据这个匹配结果，主串的索引i就可以避免回溯，在进行匹配之前，我们需要对模式串进行处理，求出模式串中每一个位置的前缀与后缀相等的最大长度。
+获取next数组代码
+func getNext(t string) []int{ next := make([]int, 0) next = append(next, 0) i, prefixLen := 1, 0 //prefixLen为最大公共前后缀长度，初始为0 for i &lt; len(t){ if t[prefixLen] == t[i]{//如果匹配上最大公共前后缀长度+1，并记录到next中 prefixLen++ next = append(next, prefixLen) i++ }else{ if prefixLen == 0{ next = append(next, 0) i++ }else{ prefixLen = next[prefixLen - 1] } } } } KMP
+func KMP(s, t string) int{ next := getNext(t) i, j := 0, 0 for i &lt; len(s) &amp;&amp; j &lt; len(t){ if s[i] == t[j]{ i++ j++ }else if j &gt; 0{ j = next[j - 1] }else{ i++ } } if j &gt;= len(t) { return i - j } else { return -1 } } 
+    </div>
+  </div>
+
+        
+      
+        <h2 class="f1">
           <a href="/tags/go" class="link blue hover-black">
             Tag: go
           </a>
         </h2>
+        
+            <div class="mb3 pa4 mid-gray overflow-hidden">
+    
+      <div class="f6">
+        July 19, 2022
+      </div>
+    
+    <h1 class="f3 near-black">
+      <a href="/post/chapter-19/" class="link black dim">
+        KMP算法
+      </a>
+    </h1>
+    <div class="nested-links f5 lh-copy nested-copy-line-height">
+      回炉重造数据结构之——KMP算法 原理：暴力匹配有很大的弊端，当发生某个字符匹配不到的时候，主串的索引i与模式串的索引j都要回溯，可是每次匹配时，索引j前面的模式串已经匹配过了，根据这个匹配结果，主串的索引i就可以避免回溯，在进行匹配之前，我们需要对模式串进行处理，求出模式串中每一个位置的前缀与后缀相等的最大长度。
+获取next数组代码
+func getNext(t string) []int{ next := make([]int, 0) next = append(next, 0) i, prefixLen := 1, 0 //prefixLen为最大公共前后缀长度，初始为0 for i &lt; len(t){ if t[prefixLen] == t[i]{//如果匹配上最大公共前后缀长度+1，并记录到next中 prefixLen++ next = append(next, prefixLen) i++ }else{ if prefixLen == 0{ next = append(next, 0) i++ }else{ prefixLen = next[prefixLen - 1] } } } } KMP
+func KMP(s, t string) int{ next := getNext(t) i, j := 0, 0 for i &lt; len(s) &amp;&amp; j &lt; len(t){ if s[i] == t[j]{ i++ j++ }else if j &gt; 0{ j = next[j - 1] }else{ i++ } } if j &gt;= len(t) { return i - j } else { return -1 } } 
+    </div>
+  </div>
+
         
             <div class="mb3 pa4 mid-gray overflow-hidden">
     
@@ -460,6 +507,26 @@ cd localhost git clone https://github.com/theNewDynamic/gohugo-theme-ananke.git 
             Tag: leetcode
           </a>
         </h2>
+        
+            <div class="mb3 pa4 mid-gray overflow-hidden">
+    
+      <div class="f6">
+        July 19, 2022
+      </div>
+    
+    <h1 class="f3 near-black">
+      <a href="/post/chapter-19/" class="link black dim">
+        KMP算法
+      </a>
+    </h1>
+    <div class="nested-links f5 lh-copy nested-copy-line-height">
+      回炉重造数据结构之——KMP算法 原理：暴力匹配有很大的弊端，当发生某个字符匹配不到的时候，主串的索引i与模式串的索引j都要回溯，可是每次匹配时，索引j前面的模式串已经匹配过了，根据这个匹配结果，主串的索引i就可以避免回溯，在进行匹配之前，我们需要对模式串进行处理，求出模式串中每一个位置的前缀与后缀相等的最大长度。
+获取next数组代码
+func getNext(t string) []int{ next := make([]int, 0) next = append(next, 0) i, prefixLen := 1, 0 //prefixLen为最大公共前后缀长度，初始为0 for i &lt; len(t){ if t[prefixLen] == t[i]{//如果匹配上最大公共前后缀长度+1，并记录到next中 prefixLen++ next = append(next, prefixLen) i++ }else{ if prefixLen == 0{ next = append(next, 0) i++ }else{ prefixLen = next[prefixLen - 1] } } } } KMP
+func KMP(s, t string) int{ next := getNext(t) i, j := 0, 0 for i &lt; len(s) &amp;&amp; j &lt; len(t){ if s[i] == t[j]{ i++ j++ }else if j &gt; 0{ j = next[j - 1] }else{ i++ } } if j &gt;= len(t) { return i - j } else { return -1 } } 
+    </div>
+  </div>
+
         
             <div class="mb3 pa4 mid-gray overflow-hidden">
     
