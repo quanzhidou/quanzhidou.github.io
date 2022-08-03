@@ -130,7 +130,7 @@ func preOrderTraverse(node *BiTNode) { if node == nil { return } fmt.Printf(&#34
 type BiTNode struct { data string lchild *BiTNode rchild *BiTNode } 二叉树遍历 前序遍历 规则是若二叉树为空，则空操作返回，否则先访问根节点，然后前序遍历左子树，在前序遍历右子树。
 func preOrderTraverse(node *BiTNode) { if node == nil { return } fmt.Printf(&#34;%s&#34;, node.data) preOrderTraverse(node.lchild) preOrderTraverse(node.rchild) } 中序遍历 规则是若二叉树为空，则空操作返回，否则从根节点开始，中序遍历左子树，然后访问根节点，在中序遍历右子树。"><meta itemprop="datePublished" content="2022-08-03T15:16:50+08:00" />
 <meta itemprop="dateModified" content="2022-08-03T15:16:50+08:00" />
-<meta itemprop="wordCount" content="105">
+<meta itemprop="wordCount" content="156">
 <meta itemprop="keywords" content="Go,Leetcode,DataStruct," /><meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="二叉树"/>
 <meta name="twitter:description" content="回炉重造数据结构——二叉树 二叉树的定义 二叉树是n个节点的有限集合。该集合或者为空集（成为空二叉树），或者由一个根节点和两棵互不相交的、分别称为根节点的左子树和右子树的二叉树组成
@@ -391,7 +391,21 @@ func preOrderTraverse(node *BiTNode) { if node == nil { return } fmt.Printf(&#34
 </span></span><span style="display:flex;"><span>}
 </span></span></code></pre></div><h2 id="二叉树的建立">二叉树的建立</h2>
 <p>二叉树的建立基于之前的二叉树遍历顺序，只不过是将之前遍历时打印节点的操作改成生成节点即可</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-go" data-lang="go"></code></pre></div><ul class="pa0">
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-go" data-lang="go"><span style="display:flex;"><span><span style="color:#66d9ef">func</span> <span style="color:#a6e22e">createBiTree</span>(<span style="color:#a6e22e">t</span> <span style="color:#f92672">*</span><span style="color:#a6e22e">BiTNode</span>, <span style="color:#a6e22e">str</span> <span style="color:#66d9ef">string</span>, <span style="color:#a6e22e">index</span> <span style="color:#f92672">*</span><span style="color:#66d9ef">int</span>) <span style="color:#f92672">*</span><span style="color:#a6e22e">BiTNode</span> {
+</span></span><span style="display:flex;"><span>	<span style="color:#a6e22e">ch</span> <span style="color:#f92672">:=</span> <span style="color:#a6e22e">str</span>[<span style="color:#f92672">*</span><span style="color:#a6e22e">index</span>:<span style="color:#f92672">*</span><span style="color:#a6e22e">index</span> <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span>]
+</span></span><span style="display:flex;"><span>	<span style="color:#f92672">*</span><span style="color:#a6e22e">index</span><span style="color:#f92672">++</span>
+</span></span><span style="display:flex;"><span>	<span style="color:#a6e22e">fmt</span>.<span style="color:#a6e22e">Printf</span>(<span style="color:#e6db74">&#34;%s, %d &#34;</span>, <span style="color:#a6e22e">ch</span>, <span style="color:#f92672">*</span><span style="color:#a6e22e">index</span>)
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">if</span> <span style="color:#a6e22e">ch</span> <span style="color:#f92672">==</span> <span style="color:#e6db74">&#34;#&#34;</span> {
+</span></span><span style="display:flex;"><span>		<span style="color:#a6e22e">t</span> = <span style="color:#66d9ef">nil</span>
+</span></span><span style="display:flex;"><span>	} <span style="color:#66d9ef">else</span> {
+</span></span><span style="display:flex;"><span>		<span style="color:#a6e22e">t</span> = new(<span style="color:#a6e22e">BiTNode</span>)
+</span></span><span style="display:flex;"><span>		<span style="color:#a6e22e">t</span>.<span style="color:#a6e22e">data</span> = <span style="color:#a6e22e">ch</span>
+</span></span><span style="display:flex;"><span>		<span style="color:#a6e22e">t</span>.<span style="color:#a6e22e">lchild</span> = <span style="color:#a6e22e">createBiTree</span>(<span style="color:#a6e22e">t</span>.<span style="color:#a6e22e">lchild</span>, <span style="color:#a6e22e">str</span>, <span style="color:#a6e22e">index</span>)
+</span></span><span style="display:flex;"><span>		<span style="color:#a6e22e">t</span>.<span style="color:#a6e22e">rchild</span> = <span style="color:#a6e22e">createBiTree</span>(<span style="color:#a6e22e">t</span>.<span style="color:#a6e22e">rchild</span>, <span style="color:#a6e22e">str</span>, <span style="color:#a6e22e">index</span>)
+</span></span><span style="display:flex;"><span>	}
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">return</span> <span style="color:#a6e22e">t</span>
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><ul class="pa0">
   
    <li class="list di">
      <a href="/tags/go" class="link f5 grow no-underline br-pill ba ph3 pv2 mb2 dib black sans-serif">Go</a>
