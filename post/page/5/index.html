@@ -8,7 +8,7 @@
     <title>Articles | Ananke</title>
     <meta name="viewport" content="width=device-width,minimum-scale=1">
     <meta name="description" content="记录生活，分享快乐">
-    <meta name="generator" content="Hugo 0.101.0-DEV" />
+    <meta name="generator" content="Hugo 0.100.2" />
     
     
     
@@ -128,6 +128,32 @@
 
     </section>
     <aside class="flex-ns flex-wrap justify-around mt5">
+      
+        <div class="relative w-100 w-30-l mb4 bg-white">
+            <div class="mb3 pa4 mid-gray overflow-hidden">
+    
+      <div class="f6">
+        June 16, 2022
+      </div>
+    
+    <h1 class="f3 near-black">
+      <a href="/post/chapter-8/" class="link black dim">
+        豆豆的刷题日记（1）
+      </a>
+    </h1>
+    <div class="nested-links f5 lh-copy nested-copy-line-height">
+      递归的魔力（1）——leetcode__206反转链表 leetcode-206 反转链表
+第一步：明确函数定义，reverseList(head *ListNode) *ListNode，这个reverseList函数的定义为：将头节点为head的链表反转，返回链表反转后的头节点
+第二步：明确递归的终点：递归的终点就是当节点head为nil或者head.next为nil时返回head
+第三步：开始递归：last := reverseList(head.Next)
+如图所示，第三步的程序的意思就是将以2为头节点的链表反转，执行完毕后如图
+第四步，执行完第三步的代码后，链表结构变成上图所示，然后将head.next节点指向head即可， head.Next.Next = head
+第五步，将head节点的next置为空，返回原链表的末尾节点last
+go语言代码 func reverseList(head *ListNode) *ListNode { if head == nil || head.Next == nil { return head } res := reverseList(head.Next) head.Next.Next = head head.Next = nil return res } 
+    </div>
+  </div>
+
+        </div>
       
         <div class="relative w-100 w-30-l mb4 bg-white">
             <div class="mb3 pa4 mid-gray overflow-hidden">

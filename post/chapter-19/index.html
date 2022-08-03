@@ -11,7 +11,7 @@
 获取next数组代码
 func getNext(t string) []int{ next := make([]int, 0) next = append(next, 0) i, prefixLen := 1, 0 //prefixLen为最大公共前后缀长度，初始为0 for i &lt; len(t){ if t[prefixLen] == t[i]{//如果匹配上最大公共前后缀长度&#43;1，并记录到next中 prefixLen&#43;&#43; next = append(next, prefixLen) i&#43;&#43; }else{ if prefixLen == 0{ next = append(next, 0) i&#43;&#43; }else{ prefixLen = next[prefixLen - 1] } } } } KMP
 func KMP(s, t string) int{ next := getNext(t) i, j := 0, 0 for i &lt; len(s) &amp;&amp; j &lt; len(t){ if s[i] == t[j]{ i&#43;&#43; j&#43;&#43; }else if j &gt; 0{ j = next[j - 1] }else{ i&#43;&#43; } } if j &gt;= len(t) { return i - j } else { return -1 } } ">
-    <meta name="generator" content="Hugo 0.101.0-DEV" />
+    <meta name="generator" content="Hugo 0.100.2" />
     
     
     

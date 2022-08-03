@@ -17,7 +17,7 @@
 第一个问题与第三个问题，其本质上与leetcode 76最小覆盖字串的对窗口进行的操作是一致的
 而何时返回这个问题，只要当valid == len(need)被满足时，就可以返回true，当窗口滑动到s2字符串最右端时仍不满足这个条件，证明s2中不包含s1的排列，返回false
 go语言代码 func checkInclusion(s1 string, s2 string) bool { left, right := 0, 0 valid := 0 window, need := make(map[byte]int), make(map[byte]int) for i := range s1 { need[s1[i]]&#43;&#43; } for right &lt; len(s2) { c := s2[right] right&#43;&#43; if need[c] != 0 { window[c]&#43;&#43; if window[c] == need[c] { valid&#43;&#43; } } for right-left &gt;= len(s1) { if valid == len(need) { return true } b := s2[left] left&#43;&#43; if need[b] !">
-    <meta name="generator" content="Hugo 0.101.0-DEV" />
+    <meta name="generator" content="Hugo 0.100.2" />
     
     
     

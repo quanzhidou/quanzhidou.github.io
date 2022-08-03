@@ -13,7 +13,7 @@
 如图所示，返回的新的头节点为newHead为第二个节点，也就是函数定义中的k参数，而将各个k区间反转后的链表连接起来还需要一个将head节点与第k &#43; 1个节点相连的过程，这时我们需要一个将区间[left, right）的链表部分反转的函数
 反转区间[left, right）的链表 首先是函数签名，这个函数应该要有两个形参，分别代表left和right，函数定义reverseSection(left *ListNode, right *ListNode) *ListNode，函数内需要三个变量，第一个变量pre记录当前节点的前驱节点，cur记录当前节点，next记录当前节点的下一个节点
 go语言代码 func reverseSection(left *ListNode, right *ListNode) *ListNode{ var pre *ListNode cur := left next := left for cur != right{ next = cur.Next cur.Next = pre pre = cur cur = next } return pre } K 个一组翻转链表 go语言代码 func reverseKGroup(head *ListNode, k int) *ListNode { if head == nil{ return nil } left := head right := head for i := 0; i &lt; k; i&#43;&#43;{ //当最后不够k个一组时，不反转链表 if right == nil{ return head } right = right.">
-    <meta name="generator" content="Hugo 0.101.0-DEV" />
+    <meta name="generator" content="Hugo 0.100.2" />
     
     
     

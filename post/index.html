@@ -8,7 +8,7 @@
     <title>Articles | Ananke</title>
     <meta name="viewport" content="width=device-width,minimum-scale=1">
     <meta name="description" content="记录生活，分享快乐">
-    <meta name="generator" content="Hugo 0.101.0-DEV" />
+    <meta name="generator" content="Hugo 0.100.2" />
     
     
     
@@ -133,6 +133,55 @@
             <div class="mb3 pa4 mid-gray overflow-hidden">
     
       <div class="f6">
+        August 3, 2022
+      </div>
+    
+    <h1 class="f3 near-black">
+      <a href="/post/chapter20/" class="link black dim">
+        二叉树
+      </a>
+    </h1>
+    <div class="nested-links f5 lh-copy nested-copy-line-height">
+      回炉重造数据结构——二叉树 二叉树的定义 二叉树是n个节点的有限集合。该集合或者为空集（成为空二叉树），或者由一个根节点和两棵互不相交的、分别称为根节点的左子树和右子树的二叉树组成
+二叉树的特点 每个节点最多有两棵子树，所以二叉树中不存在度大于2的节点。
+左子树和右子树是有顺序的，次序不能任意颠倒
+即使树中某节点只有一棵子树，爷爷要区分他是左子树还是右子树
+二叉树的五种形态 空二叉树
+只有一个根节点
+根节点只有左子树
+根节点只有右子树
+根节点既有左子树又有右子树
+特殊二叉树 斜树
+所有的节点都只有左子树的二叉树叫左斜树；所有节点都只有右子树的二叉树叫右斜树
+满二叉树
+在一棵二叉树中，如果所有的分支节点都存在左子树和右子树，并且所有叶子都在同一层上，这样的二叉树称为满二叉树
+完全二叉树
+对一棵具有n个节点的二叉树按层序编号，如果编号为i（1≤i≤n）的节点与同样深度的满二叉树中编号为i的节点在二叉树中位置完全相同，则这棵二叉树称为完全二叉树
+二叉树的性质 性质1
+在二叉树的第i层至多有2^(i-1)个节点
+性质2
+深度为k的二叉树至多有2^i-1个节点
+性质3
+对任何一棵二叉树T，如果齐终端节点数为n0，都为2的节点数为n2，则n0=n2+1
+性质4
+具有n个节点的完全二叉树的深度为⌊log2n⌋ + 1
+性质5
+如果对一颗有n个节点的完全二叉树的节点按层序编号，对任意节点i有：
+如果i=1，则节点i是二叉树的根，无双亲；如果i&gt;1则其双亲是节点⌊i/2⌋
+如果2i&gt;n，则节点无左孩子（节点i为叶子节点）；否则其左孩子是节点2i
+如果2i+1&gt;n，则节点无右孩子；否则其有孩子是节点2i+1
+二叉树的存储结构 由于顺序存储结构不适用于二叉树这种树状数据结构，所以我们要考虑链式存储结构，二叉树的每个节点最多又两个孩子，所以为他设计一个数据域和两个指针域时比较自然的想法，我们称这样的链表叫做二叉链表
+type BiTNode struct { data string lchild *BiTNode rchild *BiTNode } 二叉树遍历 前序遍历 规则是若二叉树为空，则空操作返回，否则先访问根节点，然后前序遍历左子树，在前序遍历右子树。
+func preOrderTraverse(node *BiTNode) { if node == nil { return } fmt.Printf(&#34;%s&#34;, node.data) preOrderTraverse(node.lchild) preOrderTraverse(node.rchild) } 中序遍历 规则是若二叉树为空，则空操作返回，否则从根节点开始，中序遍历左子树，然后访问根节点，在中序遍历右子树。
+    </div>
+  </div>
+
+        </div>
+      
+        <div class="relative w-100 w-30-l mb4 bg-white">
+            <div class="mb3 pa4 mid-gray overflow-hidden">
+    
+      <div class="f6">
         July 19, 2022
       </div>
     
@@ -168,27 +217,6 @@ func KMP(s, t string) int{ next := getNext(t) i, j := 0, 0 for i &lt; len(s) &am
 思路 这题比较关键的点在于窗口收缩的条件以及何时更新最大值，首先来看窗口扩大的过程
 首先用一个名为window的map来记录窗口中的字符及数量，而窗口何时收缩呢，当窗口中的字符数量大于1的时候则开始收缩，即window[c] &gt; 1的时候left++，然后将s[left]从窗口中删去；因为窗口收缩时由条件（即window[c] &gt; 1）得知，窗口收缩时是有重复字符的，这时候如果记录窗口长度是不符合题目条件的，所以需要在窗口收缩后在更新最大值
 go语言代码 func lengthOfLongestSubstring(s string) int { left, right := 0, 0 window := make(map[byte]int) length := math.MinInt for right &lt; len(s) { c := s[right] right++ window[c]++ for window[c] &gt; 1 { d := s[left] left++ window[d]-- } if length &lt; right-left { length = right - left } } if length != math.MinInt { return length } else { return 0 } } 总结 滑动窗口其实原理很简单，但是有很多细节问题难以处理，通过对滑动窗口问题的总结出的模板，在做滑动窗口的相关问题时只需考虑以下四个问题
-    </div>
-  </div>
-
-        </div>
-      
-        <div class="relative w-100 w-30-l mb4 bg-white">
-            <div class="mb3 pa4 mid-gray overflow-hidden">
-    
-      <div class="f6">
-        June 20, 2022
-      </div>
-    
-    <h1 class="f3 near-black">
-      <a href="/post/chapter-17/" class="link black dim">
-        豆豆的刷题日记（9）
-      </a>
-    </h1>
-    <div class="nested-links f5 lh-copy nested-copy-line-height">
-      豆豆的刷题日记（9）——双指针之滑动窗口 leetcode 438题找到所有字母异位词
-思路 和leetcode 567题字符串的排列的思路一样，只需设置一个结果数组，在567题返回结果为true时不直接返回，而是记录到结果数组里即可
-go语言代码 func findAnagrams(s string, p string) []int { left, right := 0, 0 window, need := make(map[byte]int), make(map[byte]int) valid := 0 var start []int for i := range p { need[p[i]]++ } for right &lt; len(s) { c := s[right] right++ if need[c] != 0 { window[c]++ if window[c] == need[c] { valid++ } } for right-left &gt;= len(p) { if valid == len(need) { //这里不直接返回，记录到结果数组里 start = append(start, left) } d := s[left] left++ if need[d] !
     </div>
   </div>
 

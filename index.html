@@ -8,7 +8,7 @@
     <title>豆豆的BLOG | Ananke</title>
     <meta name="viewport" content="width=device-width,minimum-scale=1">
     <meta name="description" content="记录生活，分享快乐">
-    <meta name="generator" content="Hugo 0.101.0-DEV" />
+    <meta name="generator" content="Hugo 0.100.2" />
     
     
     
@@ -159,6 +159,60 @@
       
       <div class="blah w-100">
         <h1 class="f3 fw1 athelas mt0 lh-title">
+          <a href="/post/chapter20/" class="color-inherit dim link">
+            二叉树
+            </a>
+        </h1>
+        <div class="f6 f5-l lh-copy nested-copy-line-height nested-links">
+          回炉重造数据结构——二叉树 二叉树的定义 二叉树是n个节点的有限集合。该集合或者为空集（成为空二叉树），或者由一个根节点和两棵互不相交的、分别称为根节点的左子树和右子树的二叉树组成
+二叉树的特点 每个节点最多有两棵子树，所以二叉树中不存在度大于2的节点。
+左子树和右子树是有顺序的，次序不能任意颠倒
+即使树中某节点只有一棵子树，爷爷要区分他是左子树还是右子树
+二叉树的五种形态 空二叉树
+只有一个根节点
+根节点只有左子树
+根节点只有右子树
+根节点既有左子树又有右子树
+特殊二叉树 斜树
+所有的节点都只有左子树的二叉树叫左斜树；所有节点都只有右子树的二叉树叫右斜树
+满二叉树
+在一棵二叉树中，如果所有的分支节点都存在左子树和右子树，并且所有叶子都在同一层上，这样的二叉树称为满二叉树
+完全二叉树
+对一棵具有n个节点的二叉树按层序编号，如果编号为i（1≤i≤n）的节点与同样深度的满二叉树中编号为i的节点在二叉树中位置完全相同，则这棵二叉树称为完全二叉树
+二叉树的性质 性质1
+在二叉树的第i层至多有2^(i-1)个节点
+性质2
+深度为k的二叉树至多有2^i-1个节点
+性质3
+对任何一棵二叉树T，如果齐终端节点数为n0，都为2的节点数为n2，则n0=n2+1
+性质4
+具有n个节点的完全二叉树的深度为⌊log2n⌋ + 1
+性质5
+如果对一颗有n个节点的完全二叉树的节点按层序编号，对任意节点i有：
+如果i=1，则节点i是二叉树的根，无双亲；如果i&gt;1则其双亲是节点⌊i/2⌋
+如果2i&gt;n，则节点无左孩子（节点i为叶子节点）；否则其左孩子是节点2i
+如果2i+1&gt;n，则节点无右孩子；否则其有孩子是节点2i+1
+二叉树的存储结构 由于顺序存储结构不适用于二叉树这种树状数据结构，所以我们要考虑链式存储结构，二叉树的每个节点最多又两个孩子，所以为他设计一个数据域和两个指针域时比较自然的想法，我们称这样的链表叫做二叉链表
+type BiTNode struct { data string lchild *BiTNode rchild *BiTNode } 二叉树遍历 前序遍历 规则是若二叉树为空，则空操作返回，否则先访问根节点，然后前序遍历左子树，在前序遍历右子树。
+func preOrderTraverse(node *BiTNode) { if node == nil { return } fmt.Printf(&#34;%s&#34;, node.data) preOrderTraverse(node.lchild) preOrderTraverse(node.rchild) } 中序遍历 规则是若二叉树为空，则空操作返回，否则从根节点开始，中序遍历左子树，然后访问根节点，在中序遍历右子树。
+        </div>
+          <a href="/post/chapter20/" class="ba b--moon-gray bg-light-gray br2 color-inherit dib f7 hover-bg-moon-gray link mt2 ph2 pv1">read more</a>
+        
+      </div>
+    </div>
+  </div>
+</article>
+
+          </div>
+        
+          <div class="relative w-100 mb4">
+            
+<article class="bb b--black-10">
+  <div class="db pv4 ph3 ph0-l no-underline dark-gray">
+    <div class="flex flex-column flex-row-ns">
+      
+      <div class="blah w-100">
+        <h1 class="f3 fw1 athelas mt0 lh-title">
           <a href="/post/chapter-19/" class="color-inherit dim link">
             KMP算法
             </a>
@@ -264,37 +318,18 @@ go语言代码 func checkInclusion(s1 string, s2 string) bool { left, right := 0
 
           </div>
         
-          <div class="relative w-100 mb4">
-            
-<article class="bb b--black-10">
-  <div class="db pv4 ph3 ph0-l no-underline dark-gray">
-    <div class="flex flex-column flex-row-ns">
-      
-      <div class="blah w-100">
-        <h1 class="f3 fw1 athelas mt0 lh-title">
-          <a href="/post/chapter-15/" class="color-inherit dim link">
-             豆豆的刷题日记（7）
-            </a>
-        </h1>
-        <div class="f6 f5-l lh-copy nested-copy-line-height nested-links">
-          豆豆的刷题日记（7）——双指针之滑动窗口 原理 滑动窗口就是维护一个窗口不断滑动，然后更新答案
-模板 func minWindow(s string, t string){ //left，right分别为滑动窗口的左右端点，并且是[left, right) left, right := 0, 0 //window为窗口中的数据，need为窗口中需要有的数据 window, need := make(map[byte]int), make(map[byte]int) //start保存最优解的左端点，length保存最优解的长度 start, length := 0, math.MaxInt //valid保存window中已经保存的数据的数量 valid := 0 //先将窗口需要有的数据存入need for i := range t { need[t[i]]++ } //循环结束的条件即是窗口滑动到最右端的时候 for right &lt; len(s) { //c是即将存入窗口的数据 c := s[right] //增大窗口 right++ //对窗口进行一系列数据更新 ... //判断左侧窗口给是否要收缩 for window needs shrink { //d是要移出窗口的数据 d := s[left] //缩小窗口 left++ //对窗口进行一系列数据更新 ... } } } 每一行的代码的具体意义已经写在注释中
-        </div>
-          <a href="/post/chapter-15/" class="ba b--moon-gray bg-light-gray br2 color-inherit dib f7 hover-bg-moon-gray link mt2 ph2 pv1">read more</a>
-        
-      </div>
-    </div>
-  </div>
-</article>
-
-          </div>
-        
       </section>
 
       
       <section class="w-100">
         <h1 class="f3">More</h1>
         
+        
+          <h2 class="f5 fw4 mb4 dib mr3">
+            <a href="/post/chapter-15/" class="link black dim">
+               豆豆的刷题日记（7）
+            </a>
+          </h2>
         
           <h2 class="f5 fw4 mb4 dib mr3">
             <a href="/post/chapter-14/" class="link black dim">
@@ -311,12 +346,6 @@ go语言代码 func checkInclusion(s1 string, s2 string) bool { left, right := 0
           <h2 class="f5 fw4 mb4 dib mr3">
             <a href="/post/chapter-12/" class="link black dim">
               豆豆的刷题日记（4）
-            </a>
-          </h2>
-        
-          <h2 class="f5 fw4 mb4 dib mr3">
-            <a href="/post/chapter-11/" class="link black dim">
-              豆豆的刷题日记（3）
             </a>
           </h2>
         

@@ -13,7 +13,7 @@
 第二步：将以中间节点为头指针的链表反转 还是之前反转链表的思想，第一个变量pre记录当前节点的前驱节点，cur记录当前节点，next记录当前节点的下一个节点，最后返回反转后的头节点
 第三步：遍历这两个链表判断是否是回文链表 go语言代码
 func findMid(head *ListNode) *ListNode { slow := head fast := head for fast != nil &amp;&amp; fast.Next != nil { fast = fast.Next.Next slow = slow.Next } if fast != nil { slow = slow.Next } return slow } func reverse(head *ListNode) *ListNode { var pre *ListNode cur := head next := head for cur != nil { next = cur.">
-    <meta name="generator" content="Hugo 0.101.0-DEV" />
+    <meta name="generator" content="Hugo 0.100.2" />
     
     
     

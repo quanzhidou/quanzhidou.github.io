@@ -8,7 +8,7 @@
     <title>Articles | Ananke</title>
     <meta name="viewport" content="width=device-width,minimum-scale=1">
     <meta name="description" content="记录生活，分享快乐">
-    <meta name="generator" content="Hugo 0.101.0-DEV" />
+    <meta name="generator" content="Hugo 0.100.2" />
     
     
     
@@ -137,6 +137,27 @@
       </div>
     
     <h1 class="f3 near-black">
+      <a href="/post/chapter-17/" class="link black dim">
+        豆豆的刷题日记（9）
+      </a>
+    </h1>
+    <div class="nested-links f5 lh-copy nested-copy-line-height">
+      豆豆的刷题日记（9）——双指针之滑动窗口 leetcode 438题找到所有字母异位词
+思路 和leetcode 567题字符串的排列的思路一样，只需设置一个结果数组，在567题返回结果为true时不直接返回，而是记录到结果数组里即可
+go语言代码 func findAnagrams(s string, p string) []int { left, right := 0, 0 window, need := make(map[byte]int), make(map[byte]int) valid := 0 var start []int for i := range p { need[p[i]]++ } for right &lt; len(s) { c := s[right] right++ if need[c] != 0 { window[c]++ if window[c] == need[c] { valid++ } } for right-left &gt;= len(p) { if valid == len(need) { //这里不直接返回，记录到结果数组里 start = append(start, left) } d := s[left] left++ if need[d] !
+    </div>
+  </div>
+
+        </div>
+      
+        <div class="relative w-100 w-30-l mb4 bg-white">
+            <div class="mb3 pa4 mid-gray overflow-hidden">
+    
+      <div class="f6">
+        June 20, 2022
+      </div>
+    
+    <h1 class="f3 near-black">
       <a href="/post/chapter-16/" class="link black dim">
         豆豆的刷题日记（8）
       </a>
@@ -172,29 +193,6 @@ go语言代码 func checkInclusion(s1 string, s2 string) bool { left, right := 0
     <div class="nested-links f5 lh-copy nested-copy-line-height">
       豆豆的刷题日记（7）——双指针之滑动窗口 原理 滑动窗口就是维护一个窗口不断滑动，然后更新答案
 模板 func minWindow(s string, t string){ //left，right分别为滑动窗口的左右端点，并且是[left, right) left, right := 0, 0 //window为窗口中的数据，need为窗口中需要有的数据 window, need := make(map[byte]int), make(map[byte]int) //start保存最优解的左端点，length保存最优解的长度 start, length := 0, math.MaxInt //valid保存window中已经保存的数据的数量 valid := 0 //先将窗口需要有的数据存入need for i := range t { need[t[i]]++ } //循环结束的条件即是窗口滑动到最右端的时候 for right &lt; len(s) { //c是即将存入窗口的数据 c := s[right] //增大窗口 right++ //对窗口进行一系列数据更新 ... //判断左侧窗口给是否要收缩 for window needs shrink { //d是要移出窗口的数据 d := s[left] //缩小窗口 left++ //对窗口进行一系列数据更新 ... } } } 每一行的代码的具体意义已经写在注释中
-    </div>
-  </div>
-
-        </div>
-      
-        <div class="relative w-100 w-30-l mb4 bg-white">
-            <div class="mb3 pa4 mid-gray overflow-hidden">
-    
-      <div class="f6">
-        June 20, 2022
-      </div>
-    
-    <h1 class="f3 near-black">
-      <a href="/post/chapter-14/" class="link black dim">
-        豆豆的刷题日记（6）
-      </a>
-    </h1>
-    <div class="nested-links f5 lh-copy nested-copy-line-height">
-      豆豆的刷题日记（6）——快慢指针秒杀数组问题 快慢指针解决移除元素问题 leetcode 27题移除元素
-思路 还是快慢指针的思路，让fast指针走在前面，当nums[fast] != val的时候赋值给nums[slow]，但是这里有一个细节问题，就是先给nums[slow]赋值，然后在让slow++，这样做可以避免数组的开头就是val的情况，这时slow就是数组的长度
-go语言代码 func removeElement(nums []int, val int) int { if len(nums) == 0 { return 0 } slow := 0 for fast := 0; fast &lt; len(nums); fast++ { if nums[fast] != val { nums[slow] = nums[fast] slow++ } } return slow } 移除元素衍生问题 leetcode 283题移动0
-思路 移动零的问题就相当于上题中将要移除的元素设置为零，然后将移除完元素的数组后面的元素都设置为零
-go语言代码 func removeElement(nums []int, val int) int { p := removeElement(nums, 0); for ; p &lt; len(nums); p++{ nums[p] = 0 } } 其中removeElement函数见上题
     </div>
   </div>
 

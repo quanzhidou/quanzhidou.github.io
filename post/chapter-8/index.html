@@ -15,7 +15,7 @@
 第四步，执行完第三步的代码后，链表结构变成上图所示，然后将head.next节点指向head即可， head.Next.Next = head
 第五步，将head节点的next置为空，返回原链表的末尾节点last
 go语言代码 func reverseList(head *ListNode) *ListNode { if head == nil || head.Next == nil { return head } res := reverseList(head.Next) head.Next.Next = head head.Next = nil return res } ">
-    <meta name="generator" content="Hugo 0.101.0-DEV" />
+    <meta name="generator" content="Hugo 0.100.2" />
     
     
     

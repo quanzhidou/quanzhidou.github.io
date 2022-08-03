@@ -12,7 +12,7 @@
 go语言代码 func removeElement(nums []int, val int) int { if len(nums) == 0 { return 0 } slow := 0 for fast := 0; fast &lt; len(nums); fast&#43;&#43; { if nums[fast] != val { nums[slow] = nums[fast] slow&#43;&#43; } } return slow } 移除元素衍生问题 leetcode 283题移动0
 思路 移动零的问题就相当于上题中将要移除的元素设置为零，然后将移除完元素的数组后面的元素都设置为零
 go语言代码 func removeElement(nums []int, val int) int { p := removeElement(nums, 0); for ; p &lt; len(nums); p&#43;&#43;{ nums[p] = 0 } } 其中removeElement函数见上题">
-    <meta name="generator" content="Hugo 0.101.0-DEV" />
+    <meta name="generator" content="Hugo 0.100.2" />
     
     
     

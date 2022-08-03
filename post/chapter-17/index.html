@@ -10,7 +10,7 @@
     <meta name="description" content="豆豆的刷题日记（9）——双指针之滑动窗口 leetcode 438题找到所有字母异位词
 思路 和leetcode 567题字符串的排列的思路一样，只需设置一个结果数组，在567题返回结果为true时不直接返回，而是记录到结果数组里即可
 go语言代码 func findAnagrams(s string, p string) []int { left, right := 0, 0 window, need := make(map[byte]int), make(map[byte]int) valid := 0 var start []int for i := range p { need[p[i]]&#43;&#43; } for right &lt; len(s) { c := s[right] right&#43;&#43; if need[c] != 0 { window[c]&#43;&#43; if window[c] == need[c] { valid&#43;&#43; } } for right-left &gt;= len(p) { if valid == len(need) { //这里不直接返回，记录到结果数组里 start = append(start, left) } d := s[left] left&#43;&#43; if need[d] !">
-    <meta name="generator" content="Hugo 0.101.0-DEV" />
+    <meta name="generator" content="Hugo 0.100.2" />
     
     
     
