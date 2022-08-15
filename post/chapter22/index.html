@@ -1,0 +1,337 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <link rel="shortcut icon" href="../../images/star.png" type="image/x-icon"/>
+    
+    <title>哈夫曼树 | Ananke</title>
+    <meta name="viewport" content="width=device-width,minimum-scale=1">
+    <meta name="description" content="回炉重造数据结构——哈夫曼树 哈夫曼树的定义与原理 从树中一个节点到另一个节点之间的分支构成两个系欸但之间的路径，路径上的分支数目称作路径长度。树的路径长度就是从树根到每个节点的路径长度之和
+如果考虑到带权的系欸但，节点的带权的路径长度为从该节点到树根之间的路径长度与节点上权的乘积。
+哈夫曼树：带权路径长度WPL最小的二叉树称为哈夫曼树
+哈夫曼树的构造过程 根据给定的n个权值{w1,w2,&hellip;,wn}构成n棵二叉树的集合F={T1,T2,&hellip;,Tn}，其中每棵二叉树Ti中只有一个带权为wi的根节点，其左右子树均为空
+在F中选取两棵根节点权值最小的树作为左右子树构造一棵新的二叉树，且置新的二叉树的根节点的权值为其左右子树上根节点的权值之和。
+在F中删除这两棵树，同时将新的到的二叉树加入F中。
+重复步骤2和3，直到F只含一棵树为止，这棵树便是哈夫曼树
+哈夫曼编码 前缀编码：若要设计长短不等的编码，则必须时任意字符的编码都不是另一个字符的编码的前缀，这种编码称作前缀编码
+哈夫曼编码的过程：
+一般的，设需要编码的字符集为{d1,d2,&hellip;,dn}，各个字符在电文中出现的次数或频率集合为{w1,w2,&hellip;,wn},以d1,d2,&hellip;,dn作为叶子节点，以w1,w2,&hellip;,wn作为相应叶子节点的权值来构造一棵哈夫曼树。规定哈夫曼树的左分支代表0，右分支代表1，则从根节点到叶子节点所经过的路径分支组成的0和1的序列便为该节点对应字符的编码，这就是哈夫曼编码。">
+    <meta name="generator" content="Hugo 0.100.2" />
+    
+    
+    
+    
+      <meta name="robots" content="noindex, nofollow">
+    
+
+    
+<link rel="stylesheet" href="/ananke/css/main.min.css" >
+
+
+
+    
+    
+    
+      
+
+    
+
+    
+    
+    <meta property="og:title" content="哈夫曼树" />
+<meta property="og:description" content="回炉重造数据结构——哈夫曼树 哈夫曼树的定义与原理 从树中一个节点到另一个节点之间的分支构成两个系欸但之间的路径，路径上的分支数目称作路径长度。树的路径长度就是从树根到每个节点的路径长度之和
+如果考虑到带权的系欸但，节点的带权的路径长度为从该节点到树根之间的路径长度与节点上权的乘积。
+哈夫曼树：带权路径长度WPL最小的二叉树称为哈夫曼树
+哈夫曼树的构造过程 根据给定的n个权值{w1,w2,&hellip;,wn}构成n棵二叉树的集合F={T1,T2,&hellip;,Tn}，其中每棵二叉树Ti中只有一个带权为wi的根节点，其左右子树均为空
+在F中选取两棵根节点权值最小的树作为左右子树构造一棵新的二叉树，且置新的二叉树的根节点的权值为其左右子树上根节点的权值之和。
+在F中删除这两棵树，同时将新的到的二叉树加入F中。
+重复步骤2和3，直到F只含一棵树为止，这棵树便是哈夫曼树
+哈夫曼编码 前缀编码：若要设计长短不等的编码，则必须时任意字符的编码都不是另一个字符的编码的前缀，这种编码称作前缀编码
+哈夫曼编码的过程：
+一般的，设需要编码的字符集为{d1,d2,&hellip;,dn}，各个字符在电文中出现的次数或频率集合为{w1,w2,&hellip;,wn},以d1,d2,&hellip;,dn作为叶子节点，以w1,w2,&hellip;,wn作为相应叶子节点的权值来构造一棵哈夫曼树。规定哈夫曼树的左分支代表0，右分支代表1，则从根节点到叶子节点所经过的路径分支组成的0和1的序列便为该节点对应字符的编码，这就是哈夫曼编码。" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://quanzhidou.github.io/post/chapter22/" /><meta property="article:section" content="post" />
+<meta property="article:published_time" content="2022-08-15T17:49:09+08:00" />
+<meta property="article:modified_time" content="2022-08-15T17:49:09+08:00" /><meta property="og:site_name" content="Ananke" />
+
+<meta itemprop="name" content="哈夫曼树">
+<meta itemprop="description" content="回炉重造数据结构——哈夫曼树 哈夫曼树的定义与原理 从树中一个节点到另一个节点之间的分支构成两个系欸但之间的路径，路径上的分支数目称作路径长度。树的路径长度就是从树根到每个节点的路径长度之和
+如果考虑到带权的系欸但，节点的带权的路径长度为从该节点到树根之间的路径长度与节点上权的乘积。
+哈夫曼树：带权路径长度WPL最小的二叉树称为哈夫曼树
+哈夫曼树的构造过程 根据给定的n个权值{w1,w2,&hellip;,wn}构成n棵二叉树的集合F={T1,T2,&hellip;,Tn}，其中每棵二叉树Ti中只有一个带权为wi的根节点，其左右子树均为空
+在F中选取两棵根节点权值最小的树作为左右子树构造一棵新的二叉树，且置新的二叉树的根节点的权值为其左右子树上根节点的权值之和。
+在F中删除这两棵树，同时将新的到的二叉树加入F中。
+重复步骤2和3，直到F只含一棵树为止，这棵树便是哈夫曼树
+哈夫曼编码 前缀编码：若要设计长短不等的编码，则必须时任意字符的编码都不是另一个字符的编码的前缀，这种编码称作前缀编码
+哈夫曼编码的过程：
+一般的，设需要编码的字符集为{d1,d2,&hellip;,dn}，各个字符在电文中出现的次数或频率集合为{w1,w2,&hellip;,wn},以d1,d2,&hellip;,dn作为叶子节点，以w1,w2,&hellip;,wn作为相应叶子节点的权值来构造一棵哈夫曼树。规定哈夫曼树的左分支代表0，右分支代表1，则从根节点到叶子节点所经过的路径分支组成的0和1的序列便为该节点对应字符的编码，这就是哈夫曼编码。"><meta itemprop="datePublished" content="2022-08-15T17:49:09+08:00" />
+<meta itemprop="dateModified" content="2022-08-15T17:49:09+08:00" />
+<meta itemprop="wordCount" content="14">
+<meta itemprop="keywords" content="Go,Leetcode,DataStruct," /><meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="哈夫曼树"/>
+<meta name="twitter:description" content="回炉重造数据结构——哈夫曼树 哈夫曼树的定义与原理 从树中一个节点到另一个节点之间的分支构成两个系欸但之间的路径，路径上的分支数目称作路径长度。树的路径长度就是从树根到每个节点的路径长度之和
+如果考虑到带权的系欸但，节点的带权的路径长度为从该节点到树根之间的路径长度与节点上权的乘积。
+哈夫曼树：带权路径长度WPL最小的二叉树称为哈夫曼树
+哈夫曼树的构造过程 根据给定的n个权值{w1,w2,&hellip;,wn}构成n棵二叉树的集合F={T1,T2,&hellip;,Tn}，其中每棵二叉树Ti中只有一个带权为wi的根节点，其左右子树均为空
+在F中选取两棵根节点权值最小的树作为左右子树构造一棵新的二叉树，且置新的二叉树的根节点的权值为其左右子树上根节点的权值之和。
+在F中删除这两棵树，同时将新的到的二叉树加入F中。
+重复步骤2和3，直到F只含一棵树为止，这棵树便是哈夫曼树
+哈夫曼编码 前缀编码：若要设计长短不等的编码，则必须时任意字符的编码都不是另一个字符的编码的前缀，这种编码称作前缀编码
+哈夫曼编码的过程：
+一般的，设需要编码的字符集为{d1,d2,&hellip;,dn}，各个字符在电文中出现的次数或频率集合为{w1,w2,&hellip;,wn},以d1,d2,&hellip;,dn作为叶子节点，以w1,w2,&hellip;,wn作为相应叶子节点的权值来构造一棵哈夫曼树。规定哈夫曼树的左分支代表0，右分支代表1，则从根节点到叶子节点所经过的路径分支组成的0和1的序列便为该节点对应字符的编码，这就是哈夫曼编码。"/>
+
+	
+  </head>
+
+  <body class="ma0 avenir bg-near-white">
+
+    
+   
+  
+
+  <header>
+    <div class="bg-black">
+      <nav class="pv3 ph3 ph4-ns" role="navigation">
+  <div class="flex-l justify-between items-center center">
+    <a href="/" class="f3 fw2 hover-white no-underline white-90 dib">
+      
+        <img src="/natuo.png" class="w100 mw5-ns" alt="Ananke" />
+      
+    </a>
+    <div class="flex-l items-center">
+      
+
+      
+        <ul class="pl0 mr3">
+          
+          <li class="list f5 f4-ns fw4 dib pr3">
+            <a class="hover-white no-underline white-90" href="/about/" title="About page">
+              About
+            </a>
+          </li>
+          
+          <li class="list f5 f4-ns fw4 dib pr3">
+            <a class="hover-white no-underline white-90" href="/post/" title="Articles page">
+              Articles
+            </a>
+          </li>
+          
+          <li class="list f5 f4-ns fw4 dib pr3">
+            <a class="hover-white no-underline white-90" href="/contact/" title="Contact page">
+              Contact
+            </a>
+          </li>
+          
+        </ul>
+      
+      
+<div class="ananke-socials">
+  
+    <a href="https://github.com/quanzhidou" target="_blank" class="github ananke-social-link link-transition stackoverflow link dib z-999 pt3 pt0-l mr1" title="GitHub link" rel="noopener" aria-label="follow on GitHub——Opens in a new window">
+      
+        <span class="icon"><svg style="enable-background:new 0 0 512 512;" version="1.1" viewBox="0 0 512 512"  xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" >
+  <path d="M256,32C132.3,32,32,134.8,32,261.7c0,101.5,64.2,187.5,153.2,217.9c11.2,2.1,15.3-5,15.3-11.1   c0-5.5-0.2-19.9-0.3-39.1c-62.3,13.9-75.5-30.8-75.5-30.8c-10.2-26.5-24.9-33.6-24.9-33.6c-20.3-14.3,1.5-14,1.5-14   c22.5,1.6,34.3,23.7,34.3,23.7c20,35.1,52.4,25,65.2,19.1c2-14.8,7.8-25,14.2-30.7c-49.7-5.8-102-25.5-102-113.5   c0-25.1,8.7-45.6,23-61.6c-2.3-5.8-10-29.2,2.2-60.8c0,0,18.8-6.2,61.6,23.5c17.9-5.1,37-7.6,56.1-7.7c19,0.1,38.2,2.6,56.1,7.7   c42.8-29.7,61.5-23.5,61.5-23.5c12.2,31.6,4.5,55,2.2,60.8c14.3,16.1,23,36.6,23,61.6c0,88.2-52.4,107.6-102.3,113.3   c8,7.1,15.2,21.1,15.2,42.5c0,30.7-0.3,55.5-0.3,63c0,6.1,4,13.3,15.4,11C415.9,449.1,480,363.1,480,261.7   C480,134.8,379.7,32,256,32z"/>
+</svg>
+</span>
+      
+<span class="new-window"><svg  height="8px"  style="enable-background:new 0 0 1000 1000;" version="1.1" viewBox="0 0 1000 1000"  xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" >
+<path d="M598 128h298v298h-86v-152l-418 418-60-60 418-418h-152v-86zM810 810v-298h86v298c0 46-40 86-86 86h-596c-48 0-86-40-86-86v-596c0-46 38-86 86-86h298v86h-298v596h596z" style="fill-rule:evenodd;clip-rule:evenodd;"/>
+</svg>
+</span></a>
+  
+</div>
+
+    </div>
+  </div>
+</nav>
+
+    </div>
+  </header>
+
+
+
+    <main class="pb7" role="main">
+      
+  
+  <article class="flex-l flex-wrap justify-between mw8 center ph3">
+    <header class="mt4 w-100">
+      <aside class="instapaper_ignoref b helvetica tracked">
+          
+        ARTICLES
+      </aside>
+      
+
+
+
+
+
+
+
+
+
+
+  <div id="sharing" class="mt3 ananke-socials">
+    
+  </div>
+
+
+      <h1 class="f1 athelas mt3 mb1">哈夫曼树</h1>
+      
+      
+      
+      <time class="f6 mv4 dib tracked" datetime="2022-08-15T17:49:09+08:00">August 15, 2022</time>
+      
+
+      
+      
+    </header>
+    <div class="nested-copy-line-height lh-copy serif f4 nested-links mid-gray pr4-l w-two-thirds-l"><h1 id="回炉重造数据结构哈夫曼树">回炉重造数据结构——哈夫曼树</h1>
+<h2 id="哈夫曼树的定义与原理">哈夫曼树的定义与原理</h2>
+<p><strong>从树中一个节点到另一个节点之间的分支构成两个系欸但之间的路径，路径上的分支数目称作路径长度。树的路径长度就是从树根到每个节点的路径长度之和</strong></p>
+<p>如果考虑到带权的系欸但，节点的带权的路径长度为从该节点到树根之间的路径长度与节点上权的乘积。</p>
+<p><strong>哈夫曼树：带权路径长度WPL最小的二叉树称为哈夫曼树</strong></p>
+<h2 id="哈夫曼树的构造过程">哈夫曼树的构造过程</h2>
+<ol>
+<li>
+<p>根据给定的n个权值{w1,w2,&hellip;,wn}构成n棵二叉树的集合F={T1,T2,&hellip;,Tn}，其中每棵二叉树Ti中只有一个带权为wi的根节点，其左右子树均为空</p>
+</li>
+<li>
+<p>在F中选取两棵根节点权值最小的树作为左右子树构造一棵新的二叉树，且置新的二叉树的根节点的权值为其左右子树上根节点的权值之和。</p>
+</li>
+<li>
+<p>在F中删除这两棵树，同时将新的到的二叉树加入F中。</p>
+</li>
+<li>
+<p>重复步骤2和3，直到F只含一棵树为止，这棵树便是哈夫曼树</p>
+</li>
+</ol>
+<h2 id="哈夫曼编码">哈夫曼编码</h2>
+<p><strong>前缀编码：若要设计长短不等的编码，则必须时任意字符的编码都不是另一个字符的编码的前缀，这种编码称作前缀编码</strong></p>
+<p><strong>哈夫曼编码的过程：</strong></p>
+<p>一般的，设需要编码的字符集为{d1,d2,&hellip;,dn}，各个字符在电文中出现的次数或频率集合为{w1,w2,&hellip;,wn},以d1,d2,&hellip;,dn作为叶子节点，以w1,w2,&hellip;,wn作为相应叶子节点的权值来构造一棵哈夫曼树。规定哈夫曼树的左分支代表0，右分支代表1，则从根节点到叶子节点所经过的路径分支组成的0和1的序列便为该节点对应字符的编码，这就是哈夫曼编码。</p>
+<ul class="pa0">
+  
+   <li class="list di">
+     <a href="/tags/go" class="link f5 grow no-underline br-pill ba ph3 pv2 mb2 dib black sans-serif">Go</a>
+   </li>
+  
+   <li class="list di">
+     <a href="/tags/leetcode" class="link f5 grow no-underline br-pill ba ph3 pv2 mb2 dib black sans-serif">Leetcode</a>
+   </li>
+  
+   <li class="list di">
+     <a href="/tags/datastruct" class="link f5 grow no-underline br-pill ba ph3 pv2 mb2 dib black sans-serif">DataStruct</a>
+   </li>
+  
+</ul>
+<div class="mt6 instapaper_ignoref">
+      
+      
+      </div>
+    </div>
+
+    <aside class="w-30-l mt6-l">
+
+
+
+
+  <div class="bg-light-gray pa3 nested-list-reset nested-copy-line-height nested-links">
+    <p class="f5 b mb3">Related</p>
+    <ul class="pa0 list">
+	   
+	     <li  class="mb2">
+          <a href="/post/chapter21/">二叉线索树</a>
+        </li>
+	    
+	     <li  class="mb2">
+          <a href="/post/chapter20/">二叉树</a>
+        </li>
+	    
+	     <li  class="mb2">
+          <a href="/post/chapter-19/">KMP算法</a>
+        </li>
+	    
+	     <li  class="mb2">
+          <a href="/post/chapter-18/">豆豆的刷题日记（10）</a>
+        </li>
+	    
+	     <li  class="mb2">
+          <a href="/post/chapter-17/">豆豆的刷题日记（9）</a>
+        </li>
+	    
+	     <li  class="mb2">
+          <a href="/post/chapter-16/">豆豆的刷题日记（8）</a>
+        </li>
+	    
+	     <li  class="mb2">
+          <a href="/post/chapter-15/"> 豆豆的刷题日记（7）</a>
+        </li>
+	    
+	     <li  class="mb2">
+          <a href="/post/chapter-14/">豆豆的刷题日记（6）</a>
+        </li>
+	    
+	     <li  class="mb2">
+          <a href="/post/chapter-13/">豆豆的刷题日记（5）</a>
+        </li>
+	    
+	     <li  class="mb2">
+          <a href="/post/chapter-12/">豆豆的刷题日记（4）</a>
+        </li>
+	    
+	     <li  class="mb2">
+          <a href="/post/chapter-11/">豆豆的刷题日记（3）</a>
+        </li>
+	    
+	     <li  class="mb2">
+          <a href="/post/chapter-10/">豆豆的刷题日记（2）</a>
+        </li>
+	    
+	     <li  class="mb2">
+          <a href="/post/chapter-8/">豆豆的刷题日记（1）</a>
+        </li>
+	    
+	     <li  class="mb2">
+          <a href="/post/chapter-9/">Hugo 部署到GitHub Pages</a>
+        </li>
+	    
+	     <li  class="mb2">
+          <a href="/post/chapter-7/">第一次搭建Hugo</a>
+        </li>
+	    
+    </ul>
+</div>
+
+</aside>
+
+  </article>
+
+    </main>
+    <footer class="bg-black bottom-0 w-100 pa3" role="contentinfo">
+  <div class="flex justify-between">
+  <a class="f4 fw4 hover-white no-underline white-70 dn dib-ns pv2 ph3" href="https://quanzhidou.github.io" >
+    &copy;  Ananke 2022 
+  </a>
+    <div>
+<div class="ananke-socials">
+  
+    <a href="https://github.com/quanzhidou" target="_blank" class="github ananke-social-link link-transition stackoverflow link dib z-999 pt3 pt0-l mr1" title="GitHub link" rel="noopener" aria-label="follow on GitHub——Opens in a new window">
+      
+        <span class="icon"><svg style="enable-background:new 0 0 512 512;" version="1.1" viewBox="0 0 512 512"  xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" >
+  <path d="M256,32C132.3,32,32,134.8,32,261.7c0,101.5,64.2,187.5,153.2,217.9c11.2,2.1,15.3-5,15.3-11.1   c0-5.5-0.2-19.9-0.3-39.1c-62.3,13.9-75.5-30.8-75.5-30.8c-10.2-26.5-24.9-33.6-24.9-33.6c-20.3-14.3,1.5-14,1.5-14   c22.5,1.6,34.3,23.7,34.3,23.7c20,35.1,52.4,25,65.2,19.1c2-14.8,7.8-25,14.2-30.7c-49.7-5.8-102-25.5-102-113.5   c0-25.1,8.7-45.6,23-61.6c-2.3-5.8-10-29.2,2.2-60.8c0,0,18.8-6.2,61.6,23.5c17.9-5.1,37-7.6,56.1-7.7c19,0.1,38.2,2.6,56.1,7.7   c42.8-29.7,61.5-23.5,61.5-23.5c12.2,31.6,4.5,55,2.2,60.8c14.3,16.1,23,36.6,23,61.6c0,88.2-52.4,107.6-102.3,113.3   c8,7.1,15.2,21.1,15.2,42.5c0,30.7-0.3,55.5-0.3,63c0,6.1,4,13.3,15.4,11C415.9,449.1,480,363.1,480,261.7   C480,134.8,379.7,32,256,32z"/>
+</svg>
+</span>
+      
+<span class="new-window"><svg  height="8px"  style="enable-background:new 0 0 1000 1000;" version="1.1" viewBox="0 0 1000 1000"  xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" >
+<path d="M598 128h298v298h-86v-152l-418 418-60-60 418-418h-152v-86zM810 810v-298h86v298c0 46-40 86-86 86h-596c-48 0-86-40-86-86v-596c0-46 38-86 86-86h298v86h-298v596h596z" style="fill-rule:evenodd;clip-rule:evenodd;"/>
+</svg>
+</span></a>
+  
+</div>
+</div>
+  </div>
+</footer>
+
+  </body>
+</html>

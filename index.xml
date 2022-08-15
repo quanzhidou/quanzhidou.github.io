@@ -6,7 +6,42 @@
     <description>Recent content in 豆豆的BLOG on Ananke</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Wed, 03 Aug 2022 15:16:50 +0800</lastBuildDate><atom:link href="https://quanzhidou.github.io/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Mon, 15 Aug 2022 17:49:09 +0800</lastBuildDate><atom:link href="https://quanzhidou.github.io/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>哈夫曼树</title>
+      <link>https://quanzhidou.github.io/post/chapter22/</link>
+      <pubDate>Mon, 15 Aug 2022 17:49:09 +0800</pubDate>
+      
+      <guid>https://quanzhidou.github.io/post/chapter22/</guid>
+      <description>回炉重造数据结构——哈夫曼树 哈夫曼树的定义与原理 从树中一个节点到另一个节点之间的分支构成两个系欸但之间的路径，路径上的分支数目称作路径长度。树的路径长度就是从树根到每个节点的路径长度之和
+如果考虑到带权的系欸但，节点的带权的路径长度为从该节点到树根之间的路径长度与节点上权的乘积。
+哈夫曼树：带权路径长度WPL最小的二叉树称为哈夫曼树
+哈夫曼树的构造过程 根据给定的n个权值{w1,w2,&amp;hellip;,wn}构成n棵二叉树的集合F={T1,T2,&amp;hellip;,Tn}，其中每棵二叉树Ti中只有一个带权为wi的根节点，其左右子树均为空
+在F中选取两棵根节点权值最小的树作为左右子树构造一棵新的二叉树，且置新的二叉树的根节点的权值为其左右子树上根节点的权值之和。
+在F中删除这两棵树，同时将新的到的二叉树加入F中。
+重复步骤2和3，直到F只含一棵树为止，这棵树便是哈夫曼树
+哈夫曼编码 前缀编码：若要设计长短不等的编码，则必须时任意字符的编码都不是另一个字符的编码的前缀，这种编码称作前缀编码
+哈夫曼编码的过程：
+一般的，设需要编码的字符集为{d1,d2,&amp;hellip;,dn}，各个字符在电文中出现的次数或频率集合为{w1,w2,&amp;hellip;,wn},以d1,d2,&amp;hellip;,dn作为叶子节点，以w1,w2,&amp;hellip;,wn作为相应叶子节点的权值来构造一棵哈夫曼树。规定哈夫曼树的左分支代表0，右分支代表1，则从根节点到叶子节点所经过的路径分支组成的0和1的序列便为该节点对应字符的编码，这就是哈夫曼编码。</description>
+    </item>
+    
+    <item>
+      <title>二叉线索树</title>
+      <link>https://quanzhidou.github.io/post/chapter21/</link>
+      <pubDate>Mon, 15 Aug 2022 16:24:49 +0800</pubDate>
+      
+      <guid>https://quanzhidou.github.io/post/chapter21/</guid>
+      <description>回炉重造数据结构——二叉线索树 传统形式二叉树的弊端 首先以上图二叉树为例，对于一个又n个节点的二叉树，每个节点又只想左右孩子的两个指针域，所以一共是2n个指针域。而n个节点的二叉树一共又n-1条分支数，也就是说，其实是存在2n-(n-1)=n+1个空指针域，这些空指针域浪费了内存资源。
+另一方面，对上图二叉树做中序遍历时，得到了HDIBJEAFCG这样的字符序列，遍历过后，我们可以直到I的前驱是D，后继是B等任意节点的前驱和后继。再传统形式的二叉树结构中只能直到指向其左右孩子节点的地址，而不知道某个节点的前驱是谁，后继是谁。
+综合以上两个角度来看，我们可以考虑利用空地址，存放指向节点再某种遍历次序下的前驱和后继节点的地址。我们把这种指向前驱和后继的指针称为线索，加上线索的二叉链表称为线索链表，相应的二叉树就称为线索二叉树
+对二叉树以某种次序遍历使其变为线索二叉树的过程称作是线索化
+不过在线索化的过程中会产生一个新的问题，我们如何直到某一节点的lchild指针是指向它的左孩子还是指向前驱？rchild是指向右孩子还是指向后继？为了解决这个问题，我们可以在每个节点再增设两个标志域ltag和rtag。
+其中：
+ltag为0时指向该节点的左孩子，为1时指向该节点的前驱
+rtag为0时指向该节点的右孩子，为1时指向该节点的后继
+线索二叉树实现 type BiThrNode struct { data string lchild *BiThrNode rchild *BiThrNode Ltag int Rtag int } var pre = new(BiThrNode) func InThreading(p *BiThrNode) { if p != nil{ InThreading(p.lchild) if p.lchild == nil{ p.Ltag = 1 p.lchild = pre } if pre.rchild == nil{ pre.Rtag = 1 pre.rchild = p } pre = p InThreading(p.rchild) } } 观察以上代码，在if条件中的代码和二叉树中序遍历的递归代码几乎完全一样，只不过将本是打印节点的功能改成了线索化的功能</description>
+    </item>
+    
     <item>
       <title>二叉树</title>
       <link>https://quanzhidou.github.io/post/chapter20/</link>

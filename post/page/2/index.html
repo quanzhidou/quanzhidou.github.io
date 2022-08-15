@@ -133,6 +133,50 @@
             <div class="mb3 pa4 mid-gray overflow-hidden">
     
       <div class="f6">
+        July 19, 2022
+      </div>
+    
+    <h1 class="f3 near-black">
+      <a href="/post/chapter-19/" class="link black dim">
+        KMP算法
+      </a>
+    </h1>
+    <div class="nested-links f5 lh-copy nested-copy-line-height">
+      回炉重造数据结构之——KMP算法 原理：暴力匹配有很大的弊端，当发生某个字符匹配不到的时候，主串的索引i与模式串的索引j都要回溯，可是每次匹配时，索引j前面的模式串已经匹配过了，根据这个匹配结果，主串的索引i就可以避免回溯，在进行匹配之前，我们需要对模式串进行处理，求出模式串中每一个位置的前缀与后缀相等的最大长度。
+获取next数组代码
+func getNext(t string) []int{ next := make([]int, 0) next = append(next, 0) i, prefixLen := 1, 0 //prefixLen为最大公共前后缀长度，初始为0 for i &lt; len(t){ if t[prefixLen] == t[i]{//如果匹配上最大公共前后缀长度+1，并记录到next中 prefixLen++ next = append(next, prefixLen) i++ }else{ if prefixLen == 0{ next = append(next, 0) i++ }else{ prefixLen = next[prefixLen - 1] } } } } KMP
+func KMP(s, t string) int{ next := getNext(t) i, j := 0, 0 for i &lt; len(s) &amp;&amp; j &lt; len(t){ if s[i] == t[j]{ i++ j++ }else if j &gt; 0{ j = next[j - 1] }else{ i++ } } if j &gt;= len(t) { return i - j } else { return -1 } } 
+    </div>
+  </div>
+
+        </div>
+      
+        <div class="relative w-100 w-30-l mb4 bg-white">
+            <div class="mb3 pa4 mid-gray overflow-hidden">
+    
+      <div class="f6">
+        June 20, 2022
+      </div>
+    
+    <h1 class="f3 near-black">
+      <a href="/post/chapter-18/" class="link black dim">
+        豆豆的刷题日记（10）
+      </a>
+    </h1>
+    <div class="nested-links f5 lh-copy nested-copy-line-height">
+      豆豆的刷题日记（10）——双指针之滑动窗口 leetcode 3题无重复字符的最长字串
+思路 这题比较关键的点在于窗口收缩的条件以及何时更新最大值，首先来看窗口扩大的过程
+首先用一个名为window的map来记录窗口中的字符及数量，而窗口何时收缩呢，当窗口中的字符数量大于1的时候则开始收缩，即window[c] &gt; 1的时候left++，然后将s[left]从窗口中删去；因为窗口收缩时由条件（即window[c] &gt; 1）得知，窗口收缩时是有重复字符的，这时候如果记录窗口长度是不符合题目条件的，所以需要在窗口收缩后在更新最大值
+go语言代码 func lengthOfLongestSubstring(s string) int { left, right := 0, 0 window := make(map[byte]int) length := math.MinInt for right &lt; len(s) { c := s[right] right++ window[c]++ for window[c] &gt; 1 { d := s[left] left++ window[d]-- } if length &lt; right-left { length = right - left } } if length != math.MinInt { return length } else { return 0 } } 总结 滑动窗口其实原理很简单，但是有很多细节问题难以处理，通过对滑动窗口问题的总结出的模板，在做滑动窗口的相关问题时只需考虑以下四个问题
+    </div>
+  </div>
+
+        </div>
+      
+        <div class="relative w-100 w-30-l mb4 bg-white">
+            <div class="mb3 pa4 mid-gray overflow-hidden">
+    
+      <div class="f6">
         June 20, 2022
       </div>
     
@@ -145,54 +189,6 @@
       豆豆的刷题日记（9）——双指针之滑动窗口 leetcode 438题找到所有字母异位词
 思路 和leetcode 567题字符串的排列的思路一样，只需设置一个结果数组，在567题返回结果为true时不直接返回，而是记录到结果数组里即可
 go语言代码 func findAnagrams(s string, p string) []int { left, right := 0, 0 window, need := make(map[byte]int), make(map[byte]int) valid := 0 var start []int for i := range p { need[p[i]]++ } for right &lt; len(s) { c := s[right] right++ if need[c] != 0 { window[c]++ if window[c] == need[c] { valid++ } } for right-left &gt;= len(p) { if valid == len(need) { //这里不直接返回，记录到结果数组里 start = append(start, left) } d := s[left] left++ if need[d] !
-    </div>
-  </div>
-
-        </div>
-      
-        <div class="relative w-100 w-30-l mb4 bg-white">
-            <div class="mb3 pa4 mid-gray overflow-hidden">
-    
-      <div class="f6">
-        June 20, 2022
-      </div>
-    
-    <h1 class="f3 near-black">
-      <a href="/post/chapter-16/" class="link black dim">
-        豆豆的刷题日记（8）
-      </a>
-    </h1>
-    <div class="nested-links f5 lh-copy nested-copy-line-height">
-      豆豆的刷题日记（8）——双指针之滑动窗口 leetcode 567题字符串的排列
-思路 还是滑动窗口的思路，不过在套用模板之前还是要明确那四个问题
-1、当移动 right 扩大窗口，即加入字符时，应该更新哪些数据？
-2、什么条件下，窗口应该暂停扩大，开始移动 left 缩小窗口？
-3、当移动 left 缩小窗口，即移出字符时，应该更新哪些数据？
-4、我们要的结果应该在扩大窗口时还是缩小窗口时进行更新？
-先回答第二个问题，该题要确认s2是否包含s1的一个排列，既然是排列，当然是窗口的大小，即right - left 需要大于或等于s1字符串的长度
-第一个问题与第三个问题，其本质上与leetcode 76最小覆盖字串的对窗口进行的操作是一致的
-而何时返回这个问题，只要当valid == len(need)被满足时，就可以返回true，当窗口滑动到s2字符串最右端时仍不满足这个条件，证明s2中不包含s1的排列，返回false
-go语言代码 func checkInclusion(s1 string, s2 string) bool { left, right := 0, 0 valid := 0 window, need := make(map[byte]int), make(map[byte]int) for i := range s1 { need[s1[i]]++ } for right &lt; len(s2) { c := s2[right] right++ if need[c] != 0 { window[c]++ if window[c] == need[c] { valid++ } } for right-left &gt;= len(s1) { if valid == len(need) { return true } b := s2[left] left++ if need[b] !
-    </div>
-  </div>
-
-        </div>
-      
-        <div class="relative w-100 w-30-l mb4 bg-white">
-            <div class="mb3 pa4 mid-gray overflow-hidden">
-    
-      <div class="f6">
-        June 20, 2022
-      </div>
-    
-    <h1 class="f3 near-black">
-      <a href="/post/chapter-15/" class="link black dim">
-         豆豆的刷题日记（7）
-      </a>
-    </h1>
-    <div class="nested-links f5 lh-copy nested-copy-line-height">
-      豆豆的刷题日记（7）——双指针之滑动窗口 原理 滑动窗口就是维护一个窗口不断滑动，然后更新答案
-模板 func minWindow(s string, t string){ //left，right分别为滑动窗口的左右端点，并且是[left, right) left, right := 0, 0 //window为窗口中的数据，need为窗口中需要有的数据 window, need := make(map[byte]int), make(map[byte]int) //start保存最优解的左端点，length保存最优解的长度 start, length := 0, math.MaxInt //valid保存window中已经保存的数据的数量 valid := 0 //先将窗口需要有的数据存入need for i := range t { need[t[i]]++ } //循环结束的条件即是窗口滑动到最右端的时候 for right &lt; len(s) { //c是即将存入窗口的数据 c := s[right] //增大窗口 right++ //对窗口进行一系列数据更新 ... //判断左侧窗口给是否要收缩 for window needs shrink { //d是要移出窗口的数据 d := s[left] //缩小窗口 left++ //对窗口进行一系列数据更新 ... } } } 每一行的代码的具体意义已经写在注释中
     </div>
   </div>
 
@@ -226,7 +222,7 @@ go语言代码 func checkInclusion(s1 string, s2 string) bool { left, right := 0
         <a href="/post/page/3/" aria-label="Next" class="page-link" role="button"><span aria-hidden="true">&raquo;</span></a>
       </li>
       <li class="page-item">
-        <a href="/post/page/5/" aria-label="Last" class="page-link" role="button"><span aria-hidden="true">&raquo;&raquo;</span></a>
+        <a href="/post/page/6/" aria-label="Last" class="page-link" role="button"><span aria-hidden="true">&raquo;&raquo;</span></a>
       </li>
     </ul>
   </article>

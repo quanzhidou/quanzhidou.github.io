@@ -133,6 +133,54 @@
             <div class="mb3 pa4 mid-gray overflow-hidden">
     
       <div class="f6">
+        June 20, 2022
+      </div>
+    
+    <h1 class="f3 near-black">
+      <a href="/post/chapter-13/" class="link black dim">
+        豆豆的刷题日记（5）
+      </a>
+    </h1>
+    <div class="nested-links f5 lh-copy nested-copy-line-height">
+      豆豆的刷题日记（5）——快慢指针秒杀数组问题 leetcode 26题删除有序数组中的重复项
+思路 直接使用快慢指针技巧，让fast指针走在前面，slow指针走在后面，因为是有序数组，所以重复项一定是连续的，所以只需要找到不重复项并赋值给nums[slow]即可，也就是说当nums[slow] != nums[fast]就将nums[fast]赋值给nums[slow]，最后返回不重复数组的长度即slow+1即可
+go语言代码 func removeDuplicates(nums []int) int { if len(nums) == 0 { return 0 } slow := 0 for fast := 0; fast &lt; len(nums); fast++ { if nums[slow] != nums[fast] { slow++ nums[slow] = nums[fast] } } return slow } 踩得坑 一开始以为返回的是数组最后元素的下标，没想到是返回数组的长度，看了好久。。。。
+类似问题 类似问题 leetcode 83题删除排序链表中的重复项
+思路 还是快慢指针技巧，与上题类似，只不过是将对数组的赋值操作变为对链表的删除操作
+go语言代码 func deleteDuplicates(head *ListNode) *ListNode { if head == nil { return nil } slow := head fast := head for fast !
+    </div>
+  </div>
+
+        </div>
+      
+        <div class="relative w-100 w-30-l mb4 bg-white">
+            <div class="mb3 pa4 mid-gray overflow-hidden">
+    
+      <div class="f6">
+        June 19, 2022
+      </div>
+    
+    <h1 class="f3 near-black">
+      <a href="/post/chapter-12/" class="link black dim">
+        豆豆的刷题日记（4）
+      </a>
+    </h1>
+    <div class="nested-links f5 lh-copy nested-copy-line-height">
+      豆豆的刷题日记（4） 递归的魔力（4）——反转链表最终版 leetcode 234题回文链表
+不多废话直接上思路
+第一步：找到中间节点主要思想为快慢指针 使用快慢指针这里会有一个问题，链表节点个数可能是奇数个也可能是偶数个，判断的方式就是fast节点最后的值是否为nil，如果fast节点最终的值是nil，证明链表节点为偶数个，如果不为空，则为奇数个节点，在这种情况下，slow指针还需要在走一步
+第二步：将以中间节点为头指针的链表反转 还是之前反转链表的思想，第一个变量pre记录当前节点的前驱节点，cur记录当前节点，next记录当前节点的下一个节点，最后返回反转后的头节点
+第三步：遍历这两个链表判断是否是回文链表 go语言代码
+func findMid(head *ListNode) *ListNode { slow := head fast := head for fast != nil &amp;&amp; fast.Next != nil { fast = fast.Next.Next slow = slow.Next } if fast != nil { slow = slow.Next } return slow } func reverse(head *ListNode) *ListNode { var pre *ListNode cur := head next := head for cur != nil { next = cur.
+    </div>
+  </div>
+
+        </div>
+      
+        <div class="relative w-100 w-30-l mb4 bg-white">
+            <div class="mb3 pa4 mid-gray overflow-hidden">
+    
+      <div class="f6">
         June 18, 2022
       </div>
     
@@ -153,57 +201,6 @@ go语言代码 func reverseSection(left *ListNode, right *ListNode) *ListNode{ v
 
         </div>
       
-        <div class="relative w-100 w-30-l mb4 bg-white">
-            <div class="mb3 pa4 mid-gray overflow-hidden">
-    
-      <div class="f6">
-        June 18, 2022
-      </div>
-    
-    <h1 class="f3 near-black">
-      <a href="/post/chapter-10/" class="link black dim">
-        豆豆的刷题日记（2）
-      </a>
-    </h1>
-    <div class="nested-links f5 lh-copy nested-copy-line-height">
-      豆豆的刷题日记（2） 递归的魔力（2）——反转链表进阶 反转链表前 N 个节点 思路和反转整个链表差不多，但需要稍微修改一下
-反转整个链表代码
-func reverseList(head *ListNode) *ListNode { if head == nil || head.Next == nil { return head } res := reverseList(head.Next) head.Next.Next = head head.Next = nil return res } 如图，需要修改的地方有返回的节点不同，不是最后一个节点，所以要记录一下后驱节点
-在反转整个链表的时候，最后直接将head.Next置为空，是因为将整个链表反转之后，原来的头节点就变成了最后一个节点，所以可以直接置为空，现在head节点反转后不一定时最后一个节点，所以要将head.Next设置为后驱节点
-go语言代码 var successor *ListNode func reverseN(head *ListNode, n int) *ListNode { if n == 1{ successor = head.Next return head } last := reverseN(head.Next, n - 1) head.Next.Next = head head.Next = successor return last } 反转一段区间内的链表 leetcode 92题反转链表Ⅱ
-    </div>
-  </div>
-
-        </div>
-      
-        <div class="relative w-100 w-30-l mb4 bg-white">
-            <div class="mb3 pa4 mid-gray overflow-hidden">
-    
-      <div class="f6">
-        June 18, 2022
-      </div>
-    
-    <h1 class="f3 near-black">
-      <a href="/post/chapter-9/" class="link black dim">
-        Hugo 部署到GitHub Pages
-      </a>
-    </h1>
-    <div class="nested-links f5 lh-copy nested-copy-line-height">
-      将本地Hugo部署到Github Pages 第一步在本地生成Hugo静态资源 在本地搭建好Hugo项目后，使用hugo new sitename命令会生成一个名为sitename的文件夹，该文件夹目录结构如下
-archetypes/ content/ data/ layouts/ static/ themes/ config.toml 简单介绍下各个文件夹作用
-archetypes存放创建文件时使用的模板，可以自定义front matter属性。 assets存放需要被Hugo Pipes处理的文件，且只有使用了.Permalink或者.RelPermalink的文件才能被发布到public目录。 注意，默认不会创建assets目录。 config是配置文件，可以有JSON、 YAML或者TOML三种格式，默认使用根目录下的config.toml、config.yaml或config.json中的某一个。可以通过--config来配置读取一个或多个配置文件，如：hugo --config a.toml,b.toml,c.toml。 注意，默认不会创建config目录。 content存放的各种md文件用于部署站点，该目录下可以自行创建若干个子目录来便于对文章进行分类，这些子目录被称为section。 data目录存放的是用于定义变量的模板文件，相当于Java里的常量类，这些文件有JSON、 YAML或者TOML三种格式，会在生成站点时被使用到。一般用不到该功能，具体用法可以参考：data templates layouts目录存放的模板文件用于渲染html页面，模板里可以定义不同页面的html代码。 static目录存放的是静态内容：图片、CSS、JavaScript等。 resources目录用于缓存某些文件来提高生成效率。 注意，默认不会创建resources目录。 在安装好主题之后，使用hugo new chapter命令来生成新的博客，该命令会在网站根目录/content/post文件夹中生成一个新的文章文件，在该文件中编辑好内容后就可以启动服务查看博客了
-使用hugo server -D来启动服务，这时通过127.0.0.1:1313就可以访问刚刚编辑好的博客
-确认博客无问题后，通过hugo -D命令生成网站静态资源，该命令执行完毕之后，会生成一个public文件，这个文件中就是网站的静态资源，此文件也是我们要上传到仓库的文件。
-第二步创建github仓库 在github上创建仓库 首先在github上创建一个名为.github.io的仓库，这样创建仓库是因为GitHub默认会把&lt;username&gt;.github.io的master分支的内容部署到GitHub Pages站点上，所以只需要使用.github.io作为域名即可浏览hugo，而无需添加其他子域名
-创建SSH key 首先为自己的git创建用户名及邮箱
-git config –-global user.name ‘xxxxx’ git config –-global user.email ‘xxx@xx.xxx’ 第二步生成密钥
-ssh-keygen -t rsa -C &#39;上面的邮箱’ 执行完该命令后会在C://Users/用户名/.ssh路径下生成两个文件id_rsa（私有秘钥）和id_rsa.pub（公有密钥）
-将自己的SSH key添加到github上 登陆github，进入到Settings，找到SSH&amp;GPG keys，点解new ssh key，填入刚刚生成的d_rsa.pub文件中的内容
-    </div>
-  </div>
-
-        </div>
-      
     </aside>
     
     <ul class="pagination pagination-default">
@@ -212,9 +209,6 @@ ssh-keygen -t rsa -C &#39;上面的邮箱’ 执行完该命令后会在C://User
       </li>
       <li class="page-item">
         <a href="/post/page/3/" aria-label="Previous" class="page-link" role="button"><span aria-hidden="true">&laquo;</span></a>
-      </li>
-      <li class="page-item">
-        <a href="/post/" aria-label="Page 1" class="page-link" role="button">1</a>
       </li>
       <li class="page-item">
         <a href="/post/page/2/" aria-label="Page 2" class="page-link" role="button">2</a>
@@ -229,10 +223,13 @@ ssh-keygen -t rsa -C &#39;上面的邮箱’ 执行完该命令后会在C://User
         <a href="/post/page/5/" aria-label="Page 5" class="page-link" role="button">5</a>
       </li>
       <li class="page-item">
+        <a href="/post/page/6/" aria-label="Page 6" class="page-link" role="button">6</a>
+      </li>
+      <li class="page-item">
         <a href="/post/page/5/" aria-label="Next" class="page-link" role="button"><span aria-hidden="true">&raquo;</span></a>
       </li>
       <li class="page-item">
-        <a href="/post/page/5/" aria-label="Last" class="page-link" role="button"><span aria-hidden="true">&raquo;&raquo;</span></a>
+        <a href="/post/page/6/" aria-label="Last" class="page-link" role="button"><span aria-hidden="true">&raquo;&raquo;</span></a>
       </li>
     </ul>
   </article>

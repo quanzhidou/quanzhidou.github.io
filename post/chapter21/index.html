@@ -1,0 +1,348 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <link rel="shortcut icon" href="../../images/star.png" type="image/x-icon"/>
+    
+    <title>二叉线索树 | Ananke</title>
+    <meta name="viewport" content="width=device-width,minimum-scale=1">
+    <meta name="description" content="回炉重造数据结构——二叉线索树 传统形式二叉树的弊端 首先以上图二叉树为例，对于一个又n个节点的二叉树，每个节点又只想左右孩子的两个指针域，所以一共是2n个指针域。而n个节点的二叉树一共又n-1条分支数，也就是说，其实是存在2n-(n-1)=n&#43;1个空指针域，这些空指针域浪费了内存资源。
+另一方面，对上图二叉树做中序遍历时，得到了HDIBJEAFCG这样的字符序列，遍历过后，我们可以直到I的前驱是D，后继是B等任意节点的前驱和后继。再传统形式的二叉树结构中只能直到指向其左右孩子节点的地址，而不知道某个节点的前驱是谁，后继是谁。
+综合以上两个角度来看，我们可以考虑利用空地址，存放指向节点再某种遍历次序下的前驱和后继节点的地址。我们把这种指向前驱和后继的指针称为线索，加上线索的二叉链表称为线索链表，相应的二叉树就称为线索二叉树
+对二叉树以某种次序遍历使其变为线索二叉树的过程称作是线索化
+不过在线索化的过程中会产生一个新的问题，我们如何直到某一节点的lchild指针是指向它的左孩子还是指向前驱？rchild是指向右孩子还是指向后继？为了解决这个问题，我们可以在每个节点再增设两个标志域ltag和rtag。
+其中：
+ltag为0时指向该节点的左孩子，为1时指向该节点的前驱
+rtag为0时指向该节点的右孩子，为1时指向该节点的后继
+线索二叉树实现 type BiThrNode struct { data string lchild *BiThrNode rchild *BiThrNode Ltag int Rtag int } var pre = new(BiThrNode) func InThreading(p *BiThrNode) { if p != nil{ InThreading(p.lchild) if p.lchild == nil{ p.Ltag = 1 p.lchild = pre } if pre.rchild == nil{ pre.Rtag = 1 pre.rchild = p } pre = p InThreading(p.rchild) } } 观察以上代码，在if条件中的代码和二叉树中序遍历的递归代码几乎完全一样，只不过将本是打印节点的功能改成了线索化的功能">
+    <meta name="generator" content="Hugo 0.100.2" />
+    
+    
+    
+    
+      <meta name="robots" content="noindex, nofollow">
+    
+
+    
+<link rel="stylesheet" href="/ananke/css/main.min.css" >
+
+
+
+    
+    
+    
+      
+
+    
+
+    
+    
+    <meta property="og:title" content="二叉线索树" />
+<meta property="og:description" content="回炉重造数据结构——二叉线索树 传统形式二叉树的弊端 首先以上图二叉树为例，对于一个又n个节点的二叉树，每个节点又只想左右孩子的两个指针域，所以一共是2n个指针域。而n个节点的二叉树一共又n-1条分支数，也就是说，其实是存在2n-(n-1)=n&#43;1个空指针域，这些空指针域浪费了内存资源。
+另一方面，对上图二叉树做中序遍历时，得到了HDIBJEAFCG这样的字符序列，遍历过后，我们可以直到I的前驱是D，后继是B等任意节点的前驱和后继。再传统形式的二叉树结构中只能直到指向其左右孩子节点的地址，而不知道某个节点的前驱是谁，后继是谁。
+综合以上两个角度来看，我们可以考虑利用空地址，存放指向节点再某种遍历次序下的前驱和后继节点的地址。我们把这种指向前驱和后继的指针称为线索，加上线索的二叉链表称为线索链表，相应的二叉树就称为线索二叉树
+对二叉树以某种次序遍历使其变为线索二叉树的过程称作是线索化
+不过在线索化的过程中会产生一个新的问题，我们如何直到某一节点的lchild指针是指向它的左孩子还是指向前驱？rchild是指向右孩子还是指向后继？为了解决这个问题，我们可以在每个节点再增设两个标志域ltag和rtag。
+其中：
+ltag为0时指向该节点的左孩子，为1时指向该节点的前驱
+rtag为0时指向该节点的右孩子，为1时指向该节点的后继
+线索二叉树实现 type BiThrNode struct { data string lchild *BiThrNode rchild *BiThrNode Ltag int Rtag int } var pre = new(BiThrNode) func InThreading(p *BiThrNode) { if p != nil{ InThreading(p.lchild) if p.lchild == nil{ p.Ltag = 1 p.lchild = pre } if pre.rchild == nil{ pre.Rtag = 1 pre.rchild = p } pre = p InThreading(p.rchild) } } 观察以上代码，在if条件中的代码和二叉树中序遍历的递归代码几乎完全一样，只不过将本是打印节点的功能改成了线索化的功能" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://quanzhidou.github.io/post/chapter21/" /><meta property="article:section" content="post" />
+<meta property="article:published_time" content="2022-08-15T16:24:49+08:00" />
+<meta property="article:modified_time" content="2022-08-15T16:24:49+08:00" /><meta property="og:site_name" content="Ananke" />
+
+<meta itemprop="name" content="二叉线索树">
+<meta itemprop="description" content="回炉重造数据结构——二叉线索树 传统形式二叉树的弊端 首先以上图二叉树为例，对于一个又n个节点的二叉树，每个节点又只想左右孩子的两个指针域，所以一共是2n个指针域。而n个节点的二叉树一共又n-1条分支数，也就是说，其实是存在2n-(n-1)=n&#43;1个空指针域，这些空指针域浪费了内存资源。
+另一方面，对上图二叉树做中序遍历时，得到了HDIBJEAFCG这样的字符序列，遍历过后，我们可以直到I的前驱是D，后继是B等任意节点的前驱和后继。再传统形式的二叉树结构中只能直到指向其左右孩子节点的地址，而不知道某个节点的前驱是谁，后继是谁。
+综合以上两个角度来看，我们可以考虑利用空地址，存放指向节点再某种遍历次序下的前驱和后继节点的地址。我们把这种指向前驱和后继的指针称为线索，加上线索的二叉链表称为线索链表，相应的二叉树就称为线索二叉树
+对二叉树以某种次序遍历使其变为线索二叉树的过程称作是线索化
+不过在线索化的过程中会产生一个新的问题，我们如何直到某一节点的lchild指针是指向它的左孩子还是指向前驱？rchild是指向右孩子还是指向后继？为了解决这个问题，我们可以在每个节点再增设两个标志域ltag和rtag。
+其中：
+ltag为0时指向该节点的左孩子，为1时指向该节点的前驱
+rtag为0时指向该节点的右孩子，为1时指向该节点的后继
+线索二叉树实现 type BiThrNode struct { data string lchild *BiThrNode rchild *BiThrNode Ltag int Rtag int } var pre = new(BiThrNode) func InThreading(p *BiThrNode) { if p != nil{ InThreading(p.lchild) if p.lchild == nil{ p.Ltag = 1 p.lchild = pre } if pre.rchild == nil{ pre.Rtag = 1 pre.rchild = p } pre = p InThreading(p.rchild) } } 观察以上代码，在if条件中的代码和二叉树中序遍历的递归代码几乎完全一样，只不过将本是打印节点的功能改成了线索化的功能"><meta itemprop="datePublished" content="2022-08-15T16:24:49+08:00" />
+<meta itemprop="dateModified" content="2022-08-15T16:24:49+08:00" />
+<meta itemprop="wordCount" content="68">
+<meta itemprop="keywords" content="Go,Leetcode,DataStruct," /><meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="二叉线索树"/>
+<meta name="twitter:description" content="回炉重造数据结构——二叉线索树 传统形式二叉树的弊端 首先以上图二叉树为例，对于一个又n个节点的二叉树，每个节点又只想左右孩子的两个指针域，所以一共是2n个指针域。而n个节点的二叉树一共又n-1条分支数，也就是说，其实是存在2n-(n-1)=n&#43;1个空指针域，这些空指针域浪费了内存资源。
+另一方面，对上图二叉树做中序遍历时，得到了HDIBJEAFCG这样的字符序列，遍历过后，我们可以直到I的前驱是D，后继是B等任意节点的前驱和后继。再传统形式的二叉树结构中只能直到指向其左右孩子节点的地址，而不知道某个节点的前驱是谁，后继是谁。
+综合以上两个角度来看，我们可以考虑利用空地址，存放指向节点再某种遍历次序下的前驱和后继节点的地址。我们把这种指向前驱和后继的指针称为线索，加上线索的二叉链表称为线索链表，相应的二叉树就称为线索二叉树
+对二叉树以某种次序遍历使其变为线索二叉树的过程称作是线索化
+不过在线索化的过程中会产生一个新的问题，我们如何直到某一节点的lchild指针是指向它的左孩子还是指向前驱？rchild是指向右孩子还是指向后继？为了解决这个问题，我们可以在每个节点再增设两个标志域ltag和rtag。
+其中：
+ltag为0时指向该节点的左孩子，为1时指向该节点的前驱
+rtag为0时指向该节点的右孩子，为1时指向该节点的后继
+线索二叉树实现 type BiThrNode struct { data string lchild *BiThrNode rchild *BiThrNode Ltag int Rtag int } var pre = new(BiThrNode) func InThreading(p *BiThrNode) { if p != nil{ InThreading(p.lchild) if p.lchild == nil{ p.Ltag = 1 p.lchild = pre } if pre.rchild == nil{ pre.Rtag = 1 pre.rchild = p } pre = p InThreading(p.rchild) } } 观察以上代码，在if条件中的代码和二叉树中序遍历的递归代码几乎完全一样，只不过将本是打印节点的功能改成了线索化的功能"/>
+
+	
+  </head>
+
+  <body class="ma0 avenir bg-near-white">
+
+    
+   
+  
+
+  <header>
+    <div class="bg-black">
+      <nav class="pv3 ph3 ph4-ns" role="navigation">
+  <div class="flex-l justify-between items-center center">
+    <a href="/" class="f3 fw2 hover-white no-underline white-90 dib">
+      
+        <img src="/natuo.png" class="w100 mw5-ns" alt="Ananke" />
+      
+    </a>
+    <div class="flex-l items-center">
+      
+
+      
+        <ul class="pl0 mr3">
+          
+          <li class="list f5 f4-ns fw4 dib pr3">
+            <a class="hover-white no-underline white-90" href="/about/" title="About page">
+              About
+            </a>
+          </li>
+          
+          <li class="list f5 f4-ns fw4 dib pr3">
+            <a class="hover-white no-underline white-90" href="/post/" title="Articles page">
+              Articles
+            </a>
+          </li>
+          
+          <li class="list f5 f4-ns fw4 dib pr3">
+            <a class="hover-white no-underline white-90" href="/contact/" title="Contact page">
+              Contact
+            </a>
+          </li>
+          
+        </ul>
+      
+      
+<div class="ananke-socials">
+  
+    <a href="https://github.com/quanzhidou" target="_blank" class="github ananke-social-link link-transition stackoverflow link dib z-999 pt3 pt0-l mr1" title="GitHub link" rel="noopener" aria-label="follow on GitHub——Opens in a new window">
+      
+        <span class="icon"><svg style="enable-background:new 0 0 512 512;" version="1.1" viewBox="0 0 512 512"  xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" >
+  <path d="M256,32C132.3,32,32,134.8,32,261.7c0,101.5,64.2,187.5,153.2,217.9c11.2,2.1,15.3-5,15.3-11.1   c0-5.5-0.2-19.9-0.3-39.1c-62.3,13.9-75.5-30.8-75.5-30.8c-10.2-26.5-24.9-33.6-24.9-33.6c-20.3-14.3,1.5-14,1.5-14   c22.5,1.6,34.3,23.7,34.3,23.7c20,35.1,52.4,25,65.2,19.1c2-14.8,7.8-25,14.2-30.7c-49.7-5.8-102-25.5-102-113.5   c0-25.1,8.7-45.6,23-61.6c-2.3-5.8-10-29.2,2.2-60.8c0,0,18.8-6.2,61.6,23.5c17.9-5.1,37-7.6,56.1-7.7c19,0.1,38.2,2.6,56.1,7.7   c42.8-29.7,61.5-23.5,61.5-23.5c12.2,31.6,4.5,55,2.2,60.8c14.3,16.1,23,36.6,23,61.6c0,88.2-52.4,107.6-102.3,113.3   c8,7.1,15.2,21.1,15.2,42.5c0,30.7-0.3,55.5-0.3,63c0,6.1,4,13.3,15.4,11C415.9,449.1,480,363.1,480,261.7   C480,134.8,379.7,32,256,32z"/>
+</svg>
+</span>
+      
+<span class="new-window"><svg  height="8px"  style="enable-background:new 0 0 1000 1000;" version="1.1" viewBox="0 0 1000 1000"  xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" >
+<path d="M598 128h298v298h-86v-152l-418 418-60-60 418-418h-152v-86zM810 810v-298h86v298c0 46-40 86-86 86h-596c-48 0-86-40-86-86v-596c0-46 38-86 86-86h298v86h-298v596h596z" style="fill-rule:evenodd;clip-rule:evenodd;"/>
+</svg>
+</span></a>
+  
+</div>
+
+    </div>
+  </div>
+</nav>
+
+    </div>
+  </header>
+
+
+
+    <main class="pb7" role="main">
+      
+  
+  <article class="flex-l flex-wrap justify-between mw8 center ph3">
+    <header class="mt4 w-100">
+      <aside class="instapaper_ignoref b helvetica tracked">
+          
+        ARTICLES
+      </aside>
+      
+
+
+
+
+
+
+
+
+
+
+  <div id="sharing" class="mt3 ananke-socials">
+    
+  </div>
+
+
+      <h1 class="f1 athelas mt3 mb1">二叉线索树</h1>
+      
+      
+      
+      <time class="f6 mv4 dib tracked" datetime="2022-08-15T16:24:49+08:00">August 15, 2022</time>
+      
+
+      
+      
+    </header>
+    <div class="nested-copy-line-height lh-copy serif f4 nested-links mid-gray pr4-l w-two-thirds-l"><h1 id="回炉重造数据结构二叉线索树">回炉重造数据结构——二叉线索树</h1>
+<h2 id="传统形式二叉树的弊端">传统形式二叉树的弊端</h2>
+<p><img src="/images/chapter21_1.png" alt="chapter-21_1"></p>
+<p>首先以上图二叉树为例，对于一个又n个节点的二叉树，每个节点又只想左右孩子的两个指针域，所以一共是2n个指针域。而n个节点的二叉树一共又n-1条分支数，也就是说，其实是存在2n-(n-1)=n+1个空指针域，这些空指针域浪费了内存资源。</p>
+<p>另一方面，对上图二叉树做中序遍历时，得到了HDIBJEAFCG这样的字符序列，遍历过后，我们可以直到I的前驱是D，后继是B等任意节点的前驱和后继。再传统形式的二叉树结构中只能直到指向其左右孩子节点的地址，而不知道某个节点的前驱是谁，后继是谁。</p>
+<p>综合以上两个角度来看，我们可以考虑利用空地址，存放指向节点再某种遍历次序下的前驱和后继节点的地址。<strong>我们把这种指向前驱和后继的指针称为线索，加上线索的二叉链表称为线索链表，相应的二叉树就称为线索二叉树</strong></p>
+<p><strong>对二叉树以某种次序遍历使其变为线索二叉树的过程称作是线索化</strong></p>
+<p>不过在线索化的过程中会产生一个新的问题，我们如何直到某一节点的lchild指针是指向它的左孩子还是指向前驱？rchild是指向右孩子还是指向后继？为了解决这个问题，我们可以在每个节点再增设两个标志域ltag和rtag。</p>
+<p>其中：</p>
+<ul>
+<li>
+<p>ltag为0时指向该节点的左孩子，为1时指向该节点的前驱</p>
+</li>
+<li>
+<p>rtag为0时指向该节点的右孩子，为1时指向该节点的后继</p>
+</li>
+</ul>
+<h2 id="线索二叉树实现">线索二叉树实现</h2>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-go" data-lang="go"><span style="display:flex;"><span><span style="color:#66d9ef">type</span> <span style="color:#a6e22e">BiThrNode</span> <span style="color:#66d9ef">struct</span> {
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">data</span> <span style="color:#66d9ef">string</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">lchild</span> <span style="color:#f92672">*</span><span style="color:#a6e22e">BiThrNode</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">rchild</span> <span style="color:#f92672">*</span><span style="color:#a6e22e">BiThrNode</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">Ltag</span> <span style="color:#66d9ef">int</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">Rtag</span> <span style="color:#66d9ef">int</span>
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">var</span> <span style="color:#a6e22e">pre</span> = new(<span style="color:#a6e22e">BiThrNode</span>)
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">func</span> <span style="color:#a6e22e">InThreading</span>(<span style="color:#a6e22e">p</span> <span style="color:#f92672">*</span><span style="color:#a6e22e">BiThrNode</span>)  {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">if</span> <span style="color:#a6e22e">p</span> <span style="color:#f92672">!=</span> <span style="color:#66d9ef">nil</span>{
+</span></span><span style="display:flex;"><span>        <span style="color:#a6e22e">InThreading</span>(<span style="color:#a6e22e">p</span>.<span style="color:#a6e22e">lchild</span>)
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">if</span> <span style="color:#a6e22e">p</span>.<span style="color:#a6e22e">lchild</span> <span style="color:#f92672">==</span> <span style="color:#66d9ef">nil</span>{
+</span></span><span style="display:flex;"><span>            <span style="color:#a6e22e">p</span>.<span style="color:#a6e22e">Ltag</span> = <span style="color:#ae81ff">1</span>
+</span></span><span style="display:flex;"><span>            <span style="color:#a6e22e">p</span>.<span style="color:#a6e22e">lchild</span> = <span style="color:#a6e22e">pre</span>
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">if</span> <span style="color:#a6e22e">pre</span>.<span style="color:#a6e22e">rchild</span> <span style="color:#f92672">==</span> <span style="color:#66d9ef">nil</span>{
+</span></span><span style="display:flex;"><span>            <span style="color:#a6e22e">pre</span>.<span style="color:#a6e22e">Rtag</span> = <span style="color:#ae81ff">1</span>
+</span></span><span style="display:flex;"><span>            <span style="color:#a6e22e">pre</span>.<span style="color:#a6e22e">rchild</span> = <span style="color:#a6e22e">p</span>
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>        <span style="color:#a6e22e">pre</span> = <span style="color:#a6e22e">p</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#a6e22e">InThreading</span>(<span style="color:#a6e22e">p</span>.<span style="color:#a6e22e">rchild</span>)
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>观察以上代码，在if条件中的代码和二叉树中序遍历的递归代码几乎完全一样，只不过将本是打印节点的功能改成了线索化的功能</p>
+<ul class="pa0">
+  
+   <li class="list di">
+     <a href="/tags/go" class="link f5 grow no-underline br-pill ba ph3 pv2 mb2 dib black sans-serif">Go</a>
+   </li>
+  
+   <li class="list di">
+     <a href="/tags/leetcode" class="link f5 grow no-underline br-pill ba ph3 pv2 mb2 dib black sans-serif">Leetcode</a>
+   </li>
+  
+   <li class="list di">
+     <a href="/tags/datastruct" class="link f5 grow no-underline br-pill ba ph3 pv2 mb2 dib black sans-serif">DataStruct</a>
+   </li>
+  
+</ul>
+<div class="mt6 instapaper_ignoref">
+      
+      
+      </div>
+    </div>
+
+    <aside class="w-30-l mt6-l">
+
+
+
+
+  <div class="bg-light-gray pa3 nested-list-reset nested-copy-line-height nested-links">
+    <p class="f5 b mb3">Related</p>
+    <ul class="pa0 list">
+	   
+	     <li  class="mb2">
+          <a href="/post/chapter20/">二叉树</a>
+        </li>
+	    
+	     <li  class="mb2">
+          <a href="/post/chapter-19/">KMP算法</a>
+        </li>
+	    
+	     <li  class="mb2">
+          <a href="/post/chapter-18/">豆豆的刷题日记（10）</a>
+        </li>
+	    
+	     <li  class="mb2">
+          <a href="/post/chapter-17/">豆豆的刷题日记（9）</a>
+        </li>
+	    
+	     <li  class="mb2">
+          <a href="/post/chapter-16/">豆豆的刷题日记（8）</a>
+        </li>
+	    
+	     <li  class="mb2">
+          <a href="/post/chapter-15/"> 豆豆的刷题日记（7）</a>
+        </li>
+	    
+	     <li  class="mb2">
+          <a href="/post/chapter-14/">豆豆的刷题日记（6）</a>
+        </li>
+	    
+	     <li  class="mb2">
+          <a href="/post/chapter-13/">豆豆的刷题日记（5）</a>
+        </li>
+	    
+	     <li  class="mb2">
+          <a href="/post/chapter-12/">豆豆的刷题日记（4）</a>
+        </li>
+	    
+	     <li  class="mb2">
+          <a href="/post/chapter-11/">豆豆的刷题日记（3）</a>
+        </li>
+	    
+	     <li  class="mb2">
+          <a href="/post/chapter-10/">豆豆的刷题日记（2）</a>
+        </li>
+	    
+	     <li  class="mb2">
+          <a href="/post/chapter-8/">豆豆的刷题日记（1）</a>
+        </li>
+	    
+	     <li  class="mb2">
+          <a href="/post/chapter-9/">Hugo 部署到GitHub Pages</a>
+        </li>
+	    
+	     <li  class="mb2">
+          <a href="/post/chapter-7/">第一次搭建Hugo</a>
+        </li>
+	    
+    </ul>
+</div>
+
+</aside>
+
+  </article>
+
+    </main>
+    <footer class="bg-black bottom-0 w-100 pa3" role="contentinfo">
+  <div class="flex justify-between">
+  <a class="f4 fw4 hover-white no-underline white-70 dn dib-ns pv2 ph3" href="https://quanzhidou.github.io" >
+    &copy;  Ananke 2022 
+  </a>
+    <div>
+<div class="ananke-socials">
+  
+    <a href="https://github.com/quanzhidou" target="_blank" class="github ananke-social-link link-transition stackoverflow link dib z-999 pt3 pt0-l mr1" title="GitHub link" rel="noopener" aria-label="follow on GitHub——Opens in a new window">
+      
+        <span class="icon"><svg style="enable-background:new 0 0 512 512;" version="1.1" viewBox="0 0 512 512"  xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" >
+  <path d="M256,32C132.3,32,32,134.8,32,261.7c0,101.5,64.2,187.5,153.2,217.9c11.2,2.1,15.3-5,15.3-11.1   c0-5.5-0.2-19.9-0.3-39.1c-62.3,13.9-75.5-30.8-75.5-30.8c-10.2-26.5-24.9-33.6-24.9-33.6c-20.3-14.3,1.5-14,1.5-14   c22.5,1.6,34.3,23.7,34.3,23.7c20,35.1,52.4,25,65.2,19.1c2-14.8,7.8-25,14.2-30.7c-49.7-5.8-102-25.5-102-113.5   c0-25.1,8.7-45.6,23-61.6c-2.3-5.8-10-29.2,2.2-60.8c0,0,18.8-6.2,61.6,23.5c17.9-5.1,37-7.6,56.1-7.7c19,0.1,38.2,2.6,56.1,7.7   c42.8-29.7,61.5-23.5,61.5-23.5c12.2,31.6,4.5,55,2.2,60.8c14.3,16.1,23,36.6,23,61.6c0,88.2-52.4,107.6-102.3,113.3   c8,7.1,15.2,21.1,15.2,42.5c0,30.7-0.3,55.5-0.3,63c0,6.1,4,13.3,15.4,11C415.9,449.1,480,363.1,480,261.7   C480,134.8,379.7,32,256,32z"/>
+</svg>
+</span>
+      
+<span class="new-window"><svg  height="8px"  style="enable-background:new 0 0 1000 1000;" version="1.1" viewBox="0 0 1000 1000"  xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" >
+<path d="M598 128h298v298h-86v-152l-418 418-60-60 418-418h-152v-86zM810 810v-298h86v298c0 46-40 86-86 86h-596c-48 0-86-40-86-86v-596c0-46 38-86 86-86h298v86h-298v596h596z" style="fill-rule:evenodd;clip-rule:evenodd;"/>
+</svg>
+</span></a>
+  
+</div>
+</div>
+  </div>
+</footer>
+
+  </body>
+</html>
